@@ -183,9 +183,11 @@ def process_additional_checks(
                         additional_check_instance.check_contract_second_pass(contract)
                 # Results
                 for additional_check_instance in additional_check_instances:
-                    additional_checks.extend(
-                        additional_check_instance.get_additional_check_results()
-                    )
+                    for (
+                        additional_check
+                    ) in additional_check_instance.get_additional_check_results():
+                        additional_check["network_id"] = network.get("id")
+                        additional_checks.append(additional_check)
 
     # Return
     return {"additional_checks": additional_checks, "statistics": statistics}
