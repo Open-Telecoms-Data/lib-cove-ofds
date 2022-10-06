@@ -70,7 +70,11 @@ def test_start_node_not_found_1():
     assert results["validation_errors_count"] == 0
 
     assert results["additional_checks_count"] == 1
-    assert results["additional_checks"][0]["type"] == "link_start_node_not_found"
+    assert results["additional_checks"][0] == {
+        "link_id": "1",
+        "missing_node_id": "167",
+        "type": "link_start_node_not_found",
+    }
 
 
 def test_end_node_not_found_1():
@@ -92,7 +96,11 @@ def test_end_node_not_found_1():
     assert results["validation_errors_count"] == 0
 
     assert results["additional_checks_count"] == 1
-    assert results["additional_checks"][0]["type"] == "link_end_node_not_found"
+    assert results["additional_checks"][0] == {
+        "link_id": "1",
+        "missing_node_id": "2467",
+        "type": "link_end_node_not_found",
+    }
 
 
 def test_node_location_type_incorrect_1():
