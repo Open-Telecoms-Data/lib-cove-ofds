@@ -97,6 +97,21 @@ class NodesLocationAndLinksRouteAdditionalCheckForNetwork(AdditionalCheckForNetw
                 self._additional_check_results.append(
                     {"type": "link_route_type_incorrect", "link_id": link.get("id")}
                 )
+            if not self._is_json_list_coordinates(location.get("coordinates")):
+                self._additional_check_results.append(
+                    {
+                        "type": "link_route_coordinates_incorrect",
+                        "link_id": link.get("id"),
+                    }
+                )
+
+    def _is_json_list_coordinates(self, list_coordinates):
+        if not isinstance(list_coordinates, list):
+            return False
+        for coordinates in list_coordinates:
+            if not self._is_json_coordinates(coordinates):
+                return False
+        return True
 
     def _is_json_coordinates(self, coordinates):
         return (
