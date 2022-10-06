@@ -81,6 +81,13 @@ class NodesLocationAndLinksRouteAdditionalCheckForNetwork(AdditionalCheckForNetw
                 self._additional_check_results.append(
                     {"type": "node_location_type_incorrect", "node_id": node.get("id")}
                 )
+            if not self._is_json_coordinates(location.get("coordinates")):
+                self._additional_check_results.append(
+                    {
+                        "type": "node_location_coordinates_incorrect",
+                        "node_id": node.get("id"),
+                    }
+                )
 
     def check_link_first_pass(self, link: dict):
         location = link.get("route")
@@ -90,6 +97,14 @@ class NodesLocationAndLinksRouteAdditionalCheckForNetwork(AdditionalCheckForNetw
                 self._additional_check_results.append(
                     {"type": "link_route_type_incorrect", "link_id": link.get("id")}
                 )
+
+    def _is_json_coordinates(self, coordinates):
+        return (
+            isinstance(coordinates, list)
+            and len(coordinates) == 2
+            and (isinstance(coordinates[0], float) or isinstance(coordinates[0], int))
+            and (isinstance(coordinates[1], float) or isinstance(coordinates[1], int))
+        )
 
 
 ADDITIONAL_CHECK_CLASSES_FOR_NETWORK = [
