@@ -72,8 +72,29 @@ class LinksMustHaveValidNodesAdditionalCheckForNetwork(AdditionalCheckForNetwork
             )
 
 
+class NodesLocationAndLinksRouteAdditionalCheckForNetwork(AdditionalCheckForNetwork):
+    def check_node_first_pass(self, node: dict):
+        location = node.get("location")
+        if location:
+            type = location.get("type")
+            if type != "Point":
+                self._additional_check_results.append(
+                    {"type": "node_location_type_incorrect", "node_id": node.get("id")}
+                )
+
+    def check_link_first_pass(self, link: dict):
+        location = link.get("route")
+        if location:
+            type = location.get("type")
+            if type != "LineString":
+                self._additional_check_results.append(
+                    {"type": "link_route_type_incorrect", "link_id": link.get("id")}
+                )
+
+
 ADDITIONAL_CHECK_CLASSES_FOR_NETWORK = [
     LinksMustHaveValidNodesAdditionalCheckForNetwork,
+    NodesLocationAndLinksRouteAdditionalCheckForNetwork,
 ]
 
 
