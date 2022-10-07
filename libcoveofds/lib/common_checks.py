@@ -45,6 +45,9 @@ class AdditionalCheckForNetwork:
     def get_additional_check_results(self):
         return self._additional_check_results
 
+    def skip_if_any_related_resources(self) -> bool:
+        pass
+
 
 class LinksMustHaveValidNodesAdditionalCheckForNetwork(AdditionalCheckForNetwork):
     def __init__(self, lib_cove_bods_config, schema_object):
@@ -70,6 +73,9 @@ class LinksMustHaveValidNodesAdditionalCheckForNetwork(AdditionalCheckForNetwork
             self._additional_check_results.append(
                 {"type": error_type, "missing_node_id": node_id, "link_id": link_id}
             )
+
+    def skip_if_any_related_resources(self) -> bool:
+        return True
 
 
 class NodesLocationAndLinksRouteAdditionalCheckForNetwork(AdditionalCheckForNetwork):
@@ -121,6 +127,9 @@ class NodesLocationAndLinksRouteAdditionalCheckForNetwork(AdditionalCheckForNetw
             and (isinstance(coordinates[1], float) or isinstance(coordinates[1], int))
         )
 
+    def skip_if_any_related_resources(self) -> bool:
+        return False
+
 
 ADDITIONAL_CHECK_CLASSES_FOR_NETWORK = [
     LinksMustHaveValidNodesAdditionalCheckForNetwork,
@@ -143,6 +152,19 @@ def process_additional_checks(
                     x(lib_cove_ofds_config, schema_object)
                     for x in ADDITIONAL_CHECK_CLASSES_FOR_NETWORK
                 ]
+                related_resources = network.get("relatedResources", [])
+                if related_resources:
+                    additional_check_instances = [
+                        x
+                        for x in additional_check_instances
+                        if not x.skip_if_any_related_resources()
+                    ]
+                    additional_checks.append(
+                        {
+                            "network_id": network.get("id"),
+                            "type": "has_related_resources",
+                        }
+                    )
                 nodes = network.get("nodes", [])
                 nodes = nodes if isinstance(nodes, list) else []
                 links = network.get("links", [])

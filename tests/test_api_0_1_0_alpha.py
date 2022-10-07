@@ -78,6 +78,34 @@ def test_start_node_not_found_1():
     }
 
 
+def test_start_node_not_found_but_has_related_resources_1():
+    """This data file has external nodes, so we can't check that links have a start.
+    Make sure that error doesn't appear.
+    But look for has_related_resources which should appear."""
+
+    cove_temp_folder = tempfile.mkdtemp(
+        prefix="lib-cove-ofds-tests-", dir=tempfile.gettempdir()
+    )
+    json_filename = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        "fixtures",
+        "0_1_0_alpha",
+        "start_node_not_found_but_has_related_resources_1.json",
+    )
+
+    results = ofds_json_output(cove_temp_folder, json_filename)
+
+    assert results["schema_version"] == "0.1.0-alpha"
+
+    assert results["validation_errors_count"] == 0
+
+    assert results["additional_checks_count"] == 1
+    assert results["additional_checks"][0] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "type": "has_related_resources",
+    }
+
+
 def test_end_node_not_found_1():
 
     cove_temp_folder = tempfile.mkdtemp(
