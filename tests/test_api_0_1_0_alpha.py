@@ -235,3 +235,128 @@ def test_link_route_coordinates_incorrect_1():
         "link_id": "1",
         "type": "link_route_coordinates_incorrect",
     }
+
+
+def test_phase_id_not_found_1():
+
+    cove_temp_folder = tempfile.mkdtemp(
+        prefix="lib-cove-ofds-tests-", dir=tempfile.gettempdir()
+    )
+    json_filename = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        "fixtures",
+        "0_1_0_alpha",
+        "phase_id_not_found_1.json",
+    )
+
+    results = ofds_json_output(cove_temp_folder, json_filename)
+
+    assert results["schema_version"] == "0.1.0-alpha"
+
+    assert results["validation_errors_count"] == 0
+
+    assert results["additional_checks_count"] == 3
+
+    # Library is not meant to return these in any special order, so sort by type to get something we can check.
+    additional_checks = sorted(results["additional_checks"], key=lambda d: d["type"])
+
+    assert additional_checks[0] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "contract_id": "1",
+        "type": "contract_related_phase_reference_id_not_found",
+    }
+    assert additional_checks[1] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "link_id": "1",
+        "type": "link_phase_reference_id_not_found",
+    }
+    assert additional_checks[2] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "node_id": "1",
+        "type": "node_phase_reference_id_not_found",
+    }
+
+
+def test_phase_name_not_match_1():
+
+    cove_temp_folder = tempfile.mkdtemp(
+        prefix="lib-cove-ofds-tests-", dir=tempfile.gettempdir()
+    )
+    json_filename = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        "fixtures",
+        "0_1_0_alpha",
+        "phase_name_not_match_1.json",
+    )
+
+    results = ofds_json_output(cove_temp_folder, json_filename)
+
+    assert results["schema_version"] == "0.1.0-alpha"
+
+    assert results["validation_errors_count"] == 0
+
+    assert results["additional_checks_count"] == 3
+
+    # Library is not meant to return these in any special order, so sort by type to get something we can check.
+    additional_checks = sorted(results["additional_checks"], key=lambda d: d["type"])
+
+    assert additional_checks[0] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "contract_id": "1",
+        "type": "contract_related_phase_reference_name_does_not_match",
+    }
+    assert additional_checks[1] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "link_id": "1",
+        "type": "link_phase_reference_name_does_not_match",
+    }
+    assert additional_checks[2] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "node_id": "1",
+        "type": "node_phase_reference_name_does_not_match",
+    }
+
+
+def test_phase_reference_name_set_but_not_in_original_1():
+
+    cove_temp_folder = tempfile.mkdtemp(
+        prefix="lib-cove-ofds-tests-", dir=tempfile.gettempdir()
+    )
+    json_filename = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        "fixtures",
+        "0_1_0_alpha",
+        "phase_reference_name_set_but_not_in_original_1.json",
+    )
+
+    results = ofds_json_output(cove_temp_folder, json_filename)
+
+    assert results["schema_version"] == "0.1.0-alpha"
+
+    assert results["validation_errors_count"] == 0
+
+    assert results["additional_checks_count"] == 4
+
+    # Library is not meant to return these in any special order, so sort by type to get something we can check.
+    additional_checks = sorted(results["additional_checks"], key=lambda d: d["type"])
+
+    assert additional_checks[0] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "contract_id": "1",
+        "type": "contract_related_phase_reference_name_set_but_not_in_original",
+    }
+    assert additional_checks[1] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "link_id": "1",
+        "type": "link_phase_reference_name_set_but_not_in_original",
+    }
+    assert additional_checks[2] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "node_id": "1",
+        "type": "node_phase_reference_name_set_but_not_in_original",
+    }
+    assert additional_checks[3] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "node_id": "2",
+        "type": "node_phase_reference_name_set_but_not_in_original",
+    }

@@ -131,9 +131,106 @@ class NodesLocationAndLinksRouteAdditionalCheckForNetwork(AdditionalCheckForNetw
         return False
 
 
+class PhaseReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
+    def __init__(self, lib_cove_bods_config, schema_object):
+        super().__init__(lib_cove_bods_config, schema_object)
+        self._phases: dict = {}
+
+    def check_phase_first_pass(self, phase: dict):
+        id = phase.get("id")
+        name = phase.get("name")
+        if id:
+            self._phases[id] = name
+
+    def check_node_second_pass(self, node: dict):
+        if "phase" in node and isinstance(node["phase"], dict):
+            self._check_related_phase_object(
+                node["phase"],
+                {
+                    "type": "node_phase_reference_id_not_found",
+                    "node_id": node.get("id"),
+                },
+                {
+                    "type": "node_phase_reference_name_does_not_match",
+                    "node_id": node.get("id"),
+                },
+                {
+                    "type": "node_phase_reference_name_set_but_not_in_original",
+                    "node_id": node.get("id"),
+                },
+            )
+
+    def check_link_second_pass(self, link: dict):
+        if "phase" in link and isinstance(link["phase"], dict):
+            self._check_related_phase_object(
+                link["phase"],
+                {
+                    "type": "link_phase_reference_id_not_found",
+                    "link_id": link.get("id"),
+                },
+                {
+                    "type": "link_phase_reference_name_does_not_match",
+                    "link_id": link.get("id"),
+                },
+                {
+                    "type": "link_phase_reference_name_set_but_not_in_original",
+                    "link_id": link.get("id"),
+                },
+            )
+
+    def check_contract_second_pass(self, contract: dict):
+        if "relatedPhases" in contract and isinstance(contract["relatedPhases"], list):
+            for related_phase in contract["relatedPhases"]:
+                if isinstance(related_phase, dict):
+                    self._check_related_phase_object(
+                        related_phase,
+                        {
+                            "type": "contract_related_phase_reference_id_not_found",
+                            "contract_id": contract.get("id"),
+                        },
+                        {
+                            "type": "contract_related_phase_reference_name_does_not_match",
+                            "contract_id": contract.get("id"),
+                        },
+                        {
+                            "type": "contract_related_phase_reference_name_set_but_not_in_original",
+                            "contract_id": contract.get("id"),
+                        },
+                    )
+
+    def _check_related_phase_object(
+        self,
+        related_phase: dict,
+        id_not_found_result: dict,
+        name_not_match_result: dict,
+        name_set_but_not_in_original_result: dict,
+    ):
+        id = related_phase.get("id")
+        name = related_phase.get("name")
+        # id is required in JSON Schema - if it is not set we can let that validation raise an error.
+        # We'll only carry on with our checks (those that can't be done in JSON Schema) if id exists.
+        if id:
+            if id in self._phases:
+                # check - if name is set on reference but not on original
+                if name and not self._phases[id]:
+                    self._additional_check_results.append(
+                        name_set_but_not_in_original_result
+                    )
+                # check - if names are both set, do they match?
+                if name and self._phases[id] and name != self._phases[id]:
+                    self._additional_check_results.append(name_not_match_result)
+            else:
+                # check failed - id is not known
+                self._additional_check_results.append(id_not_found_result)
+
+    def skip_if_any_related_resources(self) -> bool:
+        return False
+
+
 ADDITIONAL_CHECK_CLASSES_FOR_NETWORK = [
     LinksMustHaveValidNodesAdditionalCheckForNetwork,
     NodesLocationAndLinksRouteAdditionalCheckForNetwork,
+    PhaseReferenceAdditionalCheckForNetwork,
 ]
 
 
