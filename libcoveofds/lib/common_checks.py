@@ -227,10 +227,33 @@ class PhaseReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
         return False
 
 
+class NodeInternationalConnectionCountryAdditionalCheckForNetwork(
+    AdditionalCheckForNetwork
+):
+    def check_node_first_pass(self, node: dict):
+        if "internationalConnections" in node and isinstance(
+            node["internationalConnections"], list
+        ):
+            for international_connection in node["internationalConnections"]:
+                if isinstance(
+                    international_connection, dict
+                ) and not international_connection.get("country"):
+                    self._additional_check_results.append(
+                        {
+                            "type": "node_international_connections_country_not_set",
+                            "node_id": node.get("id"),
+                        }
+                    )
+
+    def skip_if_any_related_resources(self) -> bool:
+        return False
+
+
 ADDITIONAL_CHECK_CLASSES_FOR_NETWORK = [
     LinksMustHaveValidNodesAdditionalCheckForNetwork,
     NodesLocationAndLinksRouteAdditionalCheckForNetwork,
     PhaseReferenceAdditionalCheckForNetwork,
+    NodeInternationalConnectionCountryAdditionalCheckForNetwork,
 ]
 
 

@@ -360,3 +360,29 @@ def test_phase_reference_name_set_but_not_in_original_1():
         "node_id": "2",
         "type": "node_phase_reference_name_set_but_not_in_original",
     }
+
+
+def test_node_international_connections_country_not_set_1():
+
+    cove_temp_folder = tempfile.mkdtemp(
+        prefix="lib-cove-ofds-tests-", dir=tempfile.gettempdir()
+    )
+    json_filename = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        "fixtures",
+        "0_1_0_alpha",
+        "node_international_connections_country_not_set_1.json",
+    )
+
+    results = ofds_json_output(cove_temp_folder, json_filename)
+
+    assert results["schema_version"] == "0.1.0-alpha"
+
+    assert results["validation_errors_count"] == 0
+
+    assert results["additional_checks_count"] == 1
+    assert results["additional_checks"][0] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "node_id": "1",
+        "type": "node_international_connections_country_not_set",
+    }
