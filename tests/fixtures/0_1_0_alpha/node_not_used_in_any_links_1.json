@@ -5,19 +5,13 @@
       "name": "Ghana Fibre Network",
       "nodes": [
         {
-          "id": "1",
-          "name": "Accra",
-          "location": {
-            "type": "LineString",
-            "coordinates": [
-              -0.174,
-              5.625
-            ]
-          }
+          "id": "1"
         },
         {
-          "id": "2",
-          "name": "Kumasi"
+          "id": "2"
+        },
+        {
+          "id": "3"
         }
       ],
       "links": [

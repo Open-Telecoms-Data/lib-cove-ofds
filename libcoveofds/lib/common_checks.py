@@ -249,11 +249,39 @@ class NodeInternationalConnectionCountryAdditionalCheckForNetwork(
         return False
 
 
+class IsNodeUsedInLinkAdditionalCheckForNetwork(AdditionalCheckForNetwork):
+    def __init__(self, lib_cove_bods_config, schema_object):
+        super().__init__(lib_cove_bods_config, schema_object)
+        self._node_ids_used_in_links = []
+
+    def check_link_first_pass(self, link: dict):
+        start = link.get("start")
+        if start and start not in self._node_ids_used_in_links:
+            self._node_ids_used_in_links.append(start)
+        end = link.get("end")
+        if end and end not in self._node_ids_used_in_links:
+            self._node_ids_used_in_links.append(end)
+
+    def check_node_second_pass(self, node: dict):
+        id = node.get("id")
+        if id and id not in self._node_ids_used_in_links:
+            self._additional_check_results.append(
+                {
+                    "type": "node_not_used_in_any_links",
+                    "node_id": node.get("id"),
+                }
+            )
+
+    def skip_if_any_related_resources(self) -> bool:
+        return True
+
+
 ADDITIONAL_CHECK_CLASSES_FOR_NETWORK = [
     LinksMustHaveValidNodesAdditionalCheckForNetwork,
     NodesLocationAndLinksRouteAdditionalCheckForNetwork,
     PhaseReferenceAdditionalCheckForNetwork,
     NodeInternationalConnectionCountryAdditionalCheckForNetwork,
+    IsNodeUsedInLinkAdditionalCheckForNetwork,
 ]
 
 
