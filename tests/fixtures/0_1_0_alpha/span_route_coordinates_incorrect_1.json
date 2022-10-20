@@ -9,17 +9,21 @@
         },
         {
           "id": "2"
-        },
-        {
-          "id": "3"
         }
       ],
-      "links": [
+      "spans": [
         {
           "id": "1",
           "name": "Accra to Kumasi",
           "start": "1",
-          "end": "2"
+          "end": "2",
+          "route": {
+            "type": "LineString",
+            "coordinates": [
+              -1.628,
+              6.711
+            ]
+          }
         }
       ]
     }
