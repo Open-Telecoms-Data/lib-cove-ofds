@@ -15,7 +15,7 @@ class AdditionalCheckForNetwork:
     def check_node_first_pass(self, node: dict):
         pass
 
-    def check_link_first_pass(self, link: dict):
+    def check_span_first_pass(self, span: dict):
         pass
 
     def check_phase_first_pass(self, phase: dict):
@@ -30,7 +30,7 @@ class AdditionalCheckForNetwork:
     def check_node_second_pass(self, node: dict):
         pass
 
-    def check_link_second_pass(self, link: dict):
+    def check_span_second_pass(self, span: dict):
         pass
 
     def check_phase_second_pass(self, phase: dict):
@@ -45,11 +45,14 @@ class AdditionalCheckForNetwork:
     def get_additional_check_results(self):
         return self._additional_check_results
 
-    def skip_if_any_related_resources(self) -> bool:
-        pass
+    def skip_if_any_links_have_external_node_data(self) -> bool:
+        return False
+
+    def skip_if_any_links_have_external_span_data(self) -> bool:
+        return False
 
 
-class LinksMustHaveValidNodesAdditionalCheckForNetwork(AdditionalCheckForNetwork):
+class SpansMustHaveValidNodesAdditionalCheckForNetwork(AdditionalCheckForNetwork):
     def __init__(self, lib_cove_bods_config, schema_object):
         super().__init__(lib_cove_bods_config, schema_object)
         self._node_ids_seen = []
@@ -59,26 +62,29 @@ class LinksMustHaveValidNodesAdditionalCheckForNetwork(AdditionalCheckForNetwork
         if id:
             self._node_ids_seen.append(id)
 
-    def check_link_second_pass(self, link: dict):
-        link_id = link.get("id")
-        start = link.get("start")
+    def check_span_second_pass(self, span: dict):
+        span_id = span.get("id")
+        start = span.get("start")
         if start:
-            self._check_node_id_valid(start, "link_start_node_not_found", link_id)
-        end = link.get("end")
+            self._check_node_id_valid(start, "span_start_node_not_found", span_id)
+        end = span.get("end")
         if end:
-            self._check_node_id_valid(end, "link_end_node_not_found", link_id)
+            self._check_node_id_valid(end, "span_end_node_not_found", span_id)
 
-    def _check_node_id_valid(self, node_id, error_type, link_id):
+    def _check_node_id_valid(self, node_id, error_type, span_id):
         if not node_id in self._node_ids_seen:
             self._additional_check_results.append(
-                {"type": error_type, "missing_node_id": node_id, "link_id": link_id}
+                {"type": error_type, "missing_node_id": node_id, "span_id": span_id}
             )
 
-    def skip_if_any_related_resources(self) -> bool:
+    def skip_if_any_links_have_external_node_data(self) -> bool:
+        return True
+
+    def skip_if_any_links_have_external_span_data(self) -> bool:
         return True
 
 
-class NodesLocationAndLinksRouteAdditionalCheckForNetwork(AdditionalCheckForNetwork):
+class NodesLocationAndSpansRouteAdditionalCheckForNetwork(AdditionalCheckForNetwork):
     def check_node_first_pass(self, node: dict):
         location = node.get("location")
         if location:
@@ -95,19 +101,19 @@ class NodesLocationAndLinksRouteAdditionalCheckForNetwork(AdditionalCheckForNetw
                     }
                 )
 
-    def check_link_first_pass(self, link: dict):
-        location = link.get("route")
+    def check_span_first_pass(self, span: dict):
+        location = span.get("route")
         if location:
             type = location.get("type")
             if type != "LineString":
                 self._additional_check_results.append(
-                    {"type": "link_route_type_incorrect", "link_id": link.get("id")}
+                    {"type": "span_route_type_incorrect", "span_id": span.get("id")}
                 )
             if not self._is_json_list_coordinates(location.get("coordinates")):
                 self._additional_check_results.append(
                     {
-                        "type": "link_route_coordinates_incorrect",
-                        "link_id": link.get("id"),
+                        "type": "span_route_coordinates_incorrect",
+                        "span_id": span.get("id"),
                     }
                 )
 
@@ -127,13 +133,155 @@ class NodesLocationAndLinksRouteAdditionalCheckForNetwork(AdditionalCheckForNetw
             and (isinstance(coordinates[1], float) or isinstance(coordinates[1], int))
         )
 
-    def skip_if_any_related_resources(self) -> bool:
-        return False
+
+class PhaseReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
+    def __init__(self, lib_cove_bods_config, schema_object):
+        super().__init__(lib_cove_bods_config, schema_object)
+        self._phases: dict = {}
+
+    def check_phase_first_pass(self, phase: dict):
+        id = phase.get("id")
+        name = phase.get("name")
+        if id:
+            self._phases[id] = name
+
+    def check_node_second_pass(self, node: dict):
+        if "phase" in node and isinstance(node["phase"], dict):
+            self._check_related_phase_object(
+                node["phase"],
+                {
+                    "type": "node_phase_reference_id_not_found",
+                    "node_id": node.get("id"),
+                },
+                {
+                    "type": "node_phase_reference_name_does_not_match",
+                    "node_id": node.get("id"),
+                },
+                {
+                    "type": "node_phase_reference_name_set_but_not_in_original",
+                    "node_id": node.get("id"),
+                },
+            )
+
+    def check_span_second_pass(self, span: dict):
+        if "phase" in span and isinstance(span["phase"], dict):
+            self._check_related_phase_object(
+                span["phase"],
+                {
+                    "type": "span_phase_reference_id_not_found",
+                    "span_id": span.get("id"),
+                },
+                {
+                    "type": "span_phase_reference_name_does_not_match",
+                    "span_id": span.get("id"),
+                },
+                {
+                    "type": "span_phase_reference_name_set_but_not_in_original",
+                    "span_id": span.get("id"),
+                },
+            )
+
+    def check_contract_second_pass(self, contract: dict):
+        if "relatedPhases" in contract and isinstance(contract["relatedPhases"], list):
+            for related_phase in contract["relatedPhases"]:
+                if isinstance(related_phase, dict):
+                    self._check_related_phase_object(
+                        related_phase,
+                        {
+                            "type": "contract_related_phase_reference_id_not_found",
+                            "contract_id": contract.get("id"),
+                        },
+                        {
+                            "type": "contract_related_phase_reference_name_does_not_match",
+                            "contract_id": contract.get("id"),
+                        },
+                        {
+                            "type": "contract_related_phase_reference_name_set_but_not_in_original",
+                            "contract_id": contract.get("id"),
+                        },
+                    )
+
+    def _check_related_phase_object(
+        self,
+        related_phase: dict,
+        id_not_found_result: dict,
+        name_not_match_result: dict,
+        name_set_but_not_in_original_result: dict,
+    ):
+        id = related_phase.get("id")
+        name = related_phase.get("name")
+        # id is required in JSON Schema - if it is not set we can let that validation raise an error.
+        # We'll only carry on with our checks (those that can't be done in JSON Schema) if id exists.
+        if id:
+            if id in self._phases:
+                # check - if name is set on reference but not on original
+                if name and not self._phases[id]:
+                    self._additional_check_results.append(
+                        name_set_but_not_in_original_result
+                    )
+                # check - if names are both set, do they match?
+                if name and self._phases[id] and name != self._phases[id]:
+                    self._additional_check_results.append(name_not_match_result)
+            else:
+                # check failed - id is not known
+                self._additional_check_results.append(id_not_found_result)
+
+
+class NodeInternationalConnectionCountryAdditionalCheckForNetwork(
+    AdditionalCheckForNetwork
+):
+    def check_node_first_pass(self, node: dict):
+        if "internationalConnections" in node and isinstance(
+            node["internationalConnections"], list
+        ):
+            for international_connection in node["internationalConnections"]:
+                if isinstance(
+                    international_connection, dict
+                ) and not international_connection.get("country"):
+                    self._additional_check_results.append(
+                        {
+                            "type": "node_international_connections_country_not_set",
+                            "node_id": node.get("id"),
+                        }
+                    )
+
+
+class IsNodeUsedInSpanAdditionalCheckForNetwork(AdditionalCheckForNetwork):
+    def __init__(self, lib_cove_bods_config, schema_object):
+        super().__init__(lib_cove_bods_config, schema_object)
+        self._node_ids_used_in_spans = []
+
+    def check_span_first_pass(self, span: dict):
+        start = span.get("start")
+        if start and start not in self._node_ids_used_in_spans:
+            self._node_ids_used_in_spans.append(start)
+        end = span.get("end")
+        if end and end not in self._node_ids_used_in_spans:
+            self._node_ids_used_in_spans.append(end)
+
+    def check_node_second_pass(self, node: dict):
+        id = node.get("id")
+        if id and id not in self._node_ids_used_in_spans:
+            self._additional_check_results.append(
+                {
+                    "type": "node_not_used_in_any_spans",
+                    "node_id": node.get("id"),
+                }
+            )
+
+    def skip_if_any_links_have_external_node_data(self) -> bool:
+        return True
+
+    def skip_if_any_links_have_external_span_data(self) -> bool:
+        return True
 
 
 ADDITIONAL_CHECK_CLASSES_FOR_NETWORK = [
-    LinksMustHaveValidNodesAdditionalCheckForNetwork,
-    NodesLocationAndLinksRouteAdditionalCheckForNetwork,
+    SpansMustHaveValidNodesAdditionalCheckForNetwork,
+    NodesLocationAndSpansRouteAdditionalCheckForNetwork,
+    PhaseReferenceAdditionalCheckForNetwork,
+    NodeInternationalConnectionCountryAdditionalCheckForNetwork,
+    IsNodeUsedInSpanAdditionalCheckForNetwork,
 ]
 
 
@@ -152,23 +300,49 @@ def process_additional_checks(
                     x(lib_cove_ofds_config, schema_object)
                     for x in ADDITIONAL_CHECK_CLASSES_FOR_NETWORK
                 ]
-                related_resources = network.get("relatedResources", [])
-                if related_resources:
+                links = network.get("links", [])
+                links_with_external_nodes = [
+                    l
+                    for l in links
+                    if isinstance(l, dict)
+                    and l.get("rel", "")
+                    in schema_object.get_link_rels_for_external_nodes()
+                ]
+                if links_with_external_nodes:
                     additional_check_instances = [
                         x
                         for x in additional_check_instances
-                        if not x.skip_if_any_related_resources()
+                        if not x.skip_if_any_links_have_external_node_data()
                     ]
                     additional_checks.append(
                         {
                             "network_id": network.get("id"),
-                            "type": "has_related_resources",
+                            "type": "has_links_with_external_node_data",
+                        }
+                    )
+                links_with_external_spans = [
+                    l
+                    for l in links
+                    if isinstance(l, dict)
+                    and l.get("rel", "")
+                    in schema_object.get_link_rels_for_external_spans()
+                ]
+                if links_with_external_spans:
+                    additional_check_instances = [
+                        x
+                        for x in additional_check_instances
+                        if not x.skip_if_any_links_have_external_span_data()
+                    ]
+                    additional_checks.append(
+                        {
+                            "network_id": network.get("id"),
+                            "type": "has_links_with_external_span_data",
                         }
                     )
                 nodes = network.get("nodes", [])
                 nodes = nodes if isinstance(nodes, list) else []
-                links = network.get("links", [])
-                links = links if isinstance(links, list) else []
+                spans = network.get("spans", [])
+                spans = spans if isinstance(spans, list) else []
                 phases = network.get("phases", [])
                 phases = phases if isinstance(phases, list) else []
                 organisations = network.get("organisations", [])
@@ -179,8 +353,8 @@ def process_additional_checks(
                 for additional_check_instance in additional_check_instances:
                     for node in nodes:
                         additional_check_instance.check_node_first_pass(node)
-                    for link in links:
-                        additional_check_instance.check_link_first_pass(link)
+                    for span in spans:
+                        additional_check_instance.check_span_first_pass(span)
                     for phase in phases:
                         additional_check_instance.check_phase_first_pass(phase)
                     for organisation in organisations:
@@ -193,8 +367,8 @@ def process_additional_checks(
                 for additional_check_instance in additional_check_instances:
                     for node in nodes:
                         additional_check_instance.check_node_second_pass(node)
-                    for link in links:
-                        additional_check_instance.check_link_second_pass(link)
+                    for span in spans:
+                        additional_check_instance.check_span_second_pass(span)
                     for phase in phases:
                         additional_check_instance.check_phase_second_pass(phase)
                     for organisation in organisations:

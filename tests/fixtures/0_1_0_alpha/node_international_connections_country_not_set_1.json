@@ -5,25 +5,25 @@
       "name": "Ghana Fibre Network",
       "nodes": [
         {
-          "id": "1"
+          "id": "1",
+          "name": "Accra",
+          "internationalConnections": [
+            {
+              "region": "Lomé"
+            }
+          ]
         },
         {
-          "id": "2"
+          "id": "2",
+          "name": "Kumasi"
         }
       ],
-      "links": [
+      "spans": [
         {
           "id": "1",
           "name": "Accra to Kumasi",
           "start": "1",
-          "end": "2",
-          "route": {
-            "type": "LineString",
-            "coordinates": [
-              -1.628,
-              6.711
-            ]
-          }
+          "end": "2"
         }
       ]
     }

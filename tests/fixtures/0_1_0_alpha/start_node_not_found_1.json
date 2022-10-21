@@ -5,15 +5,11 @@
       "name": "Ghana Fibre Network",
       "nodes": [
         {
-          "id": "1",
-          "name": "Accra"
-        },
-        {
           "id": "2",
           "name": "Kumasi"
         }
       ],
-      "links": [
+      "spans": [
         {
           "id": "1",
           "name": "Accra to Kumasi",

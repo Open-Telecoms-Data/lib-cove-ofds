@@ -63,6 +63,18 @@
               ]
             ]
           }
+        },
+        {
+          "id": "2",
+          "name": "Kumasi"
+        }
+      ],
+      "spans": [
+        {
+          "id": "1",
+          "name": "Accra to Kumasi",
+          "start": "1",
+          "end": "2"
         }
       ]
     }
