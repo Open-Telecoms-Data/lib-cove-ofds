@@ -52,6 +52,27 @@ Produces additional checks of types:
 * `contract_related_phase_reference_name_does_not_match`
 * `contract_related_phase_reference_name_set_but_not_in_original`
 
+Organisation reference checks
+-----------------------------
+
+Checks referenced organisations exist.
+
+If a name is given in the reference, check it matches the name of the organisation exactly.
+
+Also raises an alert if a name is given in the organisation reference but not the organisation.
+
+Produces additional checks of types:
+
+* `node_organisation_reference_id_not_found`
+* `node_organisation_reference_name_does_not_match`
+* `node_organisation_reference_name_set_but_not_in_original`
+* `span_organisation_reference_id_not_found`
+* `span_organisation_reference_name_does_not_match`
+* `span_organisation_reference_name_set_but_not_in_original`
+* `phase_organisation_reference_id_not_found`
+* `phase_organisation_reference_name_does_not_match`
+* `phase_organisation_reference_name_set_but_not_in_original`
+
 Node internationalConnections Country must be set
 -------------------------------------------------
 
