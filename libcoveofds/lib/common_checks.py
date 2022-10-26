@@ -227,6 +227,166 @@ class PhaseReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                 self._additional_check_results.append(id_not_found_result)
 
 
+class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
+    def __init__(self, lib_cove_bods_config, schema_object):
+        super().__init__(lib_cove_bods_config, schema_object)
+        self._organisations: dict = {}
+
+    def check_organisation_first_pass(self, organisation: dict):
+        id = organisation.get("id")
+        name = organisation.get("name")
+        if id:
+            self._organisations[id] = name
+
+    def check_node_second_pass(self, node: dict):
+        if "physicalInfrastructureProvider" in node and isinstance(
+            node["physicalInfrastructureProvider"], dict
+        ):
+            self._check_related_organisation_object(
+                node["physicalInfrastructureProvider"],
+                {
+                    "type": "node_organisation_reference_id_not_found",
+                    "node_id": node.get("id"),
+                    "field": "physicalInfrastructureProvider",
+                },
+                {
+                    "type": "node_organisation_reference_name_does_not_match",
+                    "node_id": node.get("id"),
+                    "field": "physicalInfrastructureProvider",
+                },
+                {
+                    "type": "node_organisation_reference_name_set_but_not_in_original",
+                    "node_id": node.get("id"),
+                    "field": "physicalInfrastructureProvider",
+                },
+            )
+        if "networkProvider" in node and isinstance(node["networkProvider"], dict):
+            self._check_related_organisation_object(
+                node["networkProvider"],
+                {
+                    "type": "node_organisation_reference_id_not_found",
+                    "node_id": node.get("id"),
+                    "field": "networkProvider",
+                },
+                {
+                    "type": "node_organisation_reference_name_does_not_match",
+                    "node_id": node.get("id"),
+                    "field": "networkProvider",
+                },
+                {
+                    "type": "node_organisation_reference_name_set_but_not_in_original",
+                    "node_id": node.get("id"),
+                    "field": "networkProvider",
+                },
+            )
+
+    def check_span_second_pass(self, span: dict):
+        if "physicalInfrastructureProvider" in span and isinstance(
+            span["physicalInfrastructureProvider"], dict
+        ):
+            self._check_related_organisation_object(
+                span["physicalInfrastructureProvider"],
+                {
+                    "type": "span_organisation_reference_id_not_found",
+                    "span_id": span.get("id"),
+                    "field": "physicalInfrastructureProvider",
+                },
+                {
+                    "type": "span_organisation_reference_name_does_not_match",
+                    "span_id": span.get("id"),
+                    "field": "physicalInfrastructureProvider",
+                },
+                {
+                    "type": "span_organisation_reference_name_set_but_not_in_original",
+                    "span_id": span.get("id"),
+                    "field": "physicalInfrastructureProvider",
+                },
+            )
+        if "networkProvider" in span and isinstance(span["networkProvider"], dict):
+            self._check_related_organisation_object(
+                span["networkProvider"],
+                {
+                    "type": "span_organisation_reference_id_not_found",
+                    "span_id": span.get("id"),
+                    "field": "networkProvider",
+                },
+                {
+                    "type": "span_organisation_reference_name_does_not_match",
+                    "span_id": span.get("id"),
+                    "field": "networkProvider",
+                },
+                {
+                    "type": "span_organisation_reference_name_set_but_not_in_original",
+                    "span_id": span.get("id"),
+                    "field": "networkProvider",
+                },
+            )
+        if "supplier" in span and isinstance(span["supplier"], dict):
+            self._check_related_organisation_object(
+                span["supplier"],
+                {
+                    "type": "span_organisation_reference_id_not_found",
+                    "span_id": span.get("id"),
+                    "field": "supplier",
+                },
+                {
+                    "type": "span_organisation_reference_name_does_not_match",
+                    "span_id": span.get("id"),
+                    "field": "supplier",
+                },
+                {
+                    "type": "span_organisation_reference_name_set_but_not_in_original",
+                    "span_id": span.get("id"),
+                    "field": "supplier",
+                },
+            )
+
+    def check_phase_second_pass(self, phase: dict):
+        if "funders" in phase and isinstance(phase["funders"], list):
+            for funder in phase["funders"]:
+                if isinstance(funder, dict):
+                    self._check_related_organisation_object(
+                        funder,
+                        {
+                            "type": "phase_organisation_reference_id_not_found",
+                            "phase_id": phase.get("id"),
+                        },
+                        {
+                            "type": "phase_organisation_reference_name_does_not_match",
+                            "phase_id": phase.get("id"),
+                        },
+                        {
+                            "type": "phase_organisation_reference_name_set_but_not_in_original",
+                            "phase_id": phase.get("id"),
+                        },
+                    )
+
+    def _check_related_organisation_object(
+        self,
+        related_organisation: dict,
+        id_not_found_result: dict,
+        name_not_match_result: dict,
+        name_set_but_not_in_original_result: dict,
+    ):
+        id = related_organisation.get("id")
+        name = related_organisation.get("name")
+        # id is required in JSON Schema - if it is not set we can let that validation raise an error.
+        # We'll only carry on with our checks (those that can't be done in JSON Schema) if id exists.
+        if id:
+            if id in self._organisations:
+                # check - if name is set on reference but not on original
+                if name and not self._organisations[id]:
+                    self._additional_check_results.append(
+                        name_set_but_not_in_original_result
+                    )
+                # check - if names are both set, do they match?
+                if name and self._organisations[id] and name != self._organisations[id]:
+                    self._additional_check_results.append(name_not_match_result)
+            else:
+                # check failed - id is not known
+                self._additional_check_results.append(id_not_found_result)
+
+
 class NodeInternationalConnectionCountryAdditionalCheckForNetwork(
     AdditionalCheckForNetwork
 ):
@@ -280,6 +440,7 @@ ADDITIONAL_CHECK_CLASSES_FOR_NETWORK = [
     SpansMustHaveValidNodesAdditionalCheckForNetwork,
     NodesLocationAndSpansRouteAdditionalCheckForNetwork,
     PhaseReferenceAdditionalCheckForNetwork,
+    OrganisationReferenceAdditionalCheckForNetwork,
     NodeInternationalConnectionCountryAdditionalCheckForNetwork,
     IsNodeUsedInSpanAdditionalCheckForNetwork,
 ]

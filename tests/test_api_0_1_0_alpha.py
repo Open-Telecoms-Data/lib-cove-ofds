@@ -365,6 +365,192 @@ def test_phase_reference_name_set_but_not_in_original_1():
     }
 
 
+def test_organisation_id_not_found_1():
+
+    cove_temp_folder = tempfile.mkdtemp(
+        prefix="lib-cove-ofds-tests-", dir=tempfile.gettempdir()
+    )
+    json_filename = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        "fixtures",
+        "0_1_0_alpha",
+        "organisation_id_not_found_1.json",
+    )
+
+    results = ofds_json_output(cove_temp_folder, json_filename)
+
+    assert results["schema_version"] == "0.1.0-alpha"
+
+    assert results["validation_errors_count"] == 0
+
+    assert results["additional_checks_count"] == 6
+
+    # Library is not meant to return these in any special order, so sort to get something we can check.
+    additional_checks = sorted(
+        results["additional_checks"], key=lambda d: d["type"] + d.get("field", "")
+    )
+
+    assert additional_checks[0] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "node_id": "1",
+        "type": "node_organisation_reference_id_not_found",
+        "field": "networkProvider",
+    }
+    assert additional_checks[1] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "node_id": "1",
+        "type": "node_organisation_reference_id_not_found",
+        "field": "physicalInfrastructureProvider",
+    }
+    assert additional_checks[2] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "phase_id": "1",
+        "type": "phase_organisation_reference_id_not_found",
+    }
+    assert additional_checks[3] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "span_id": "1",
+        "type": "span_organisation_reference_id_not_found",
+        "field": "networkProvider",
+    }
+    assert additional_checks[4] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "span_id": "1",
+        "type": "span_organisation_reference_id_not_found",
+        "field": "physicalInfrastructureProvider",
+    }
+    assert additional_checks[5] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "span_id": "1",
+        "type": "span_organisation_reference_id_not_found",
+        "field": "supplier",
+    }
+
+
+def test_organisation_name_not_match_1():
+
+    cove_temp_folder = tempfile.mkdtemp(
+        prefix="lib-cove-ofds-tests-", dir=tempfile.gettempdir()
+    )
+    json_filename = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        "fixtures",
+        "0_1_0_alpha",
+        "organisation_name_not_match_1.json",
+    )
+
+    results = ofds_json_output(cove_temp_folder, json_filename)
+
+    assert results["schema_version"] == "0.1.0-alpha"
+
+    assert results["validation_errors_count"] == 0
+
+    assert results["additional_checks_count"] == 6
+
+    # Library is not meant to return these in any special order, so sort to get something we can check.
+    additional_checks = sorted(
+        results["additional_checks"], key=lambda d: d["type"] + d.get("field", "")
+    )
+
+    assert additional_checks[0] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "node_id": "1",
+        "type": "node_organisation_reference_name_does_not_match",
+        "field": "networkProvider",
+    }
+    assert additional_checks[1] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "node_id": "1",
+        "type": "node_organisation_reference_name_does_not_match",
+        "field": "physicalInfrastructureProvider",
+    }
+    assert additional_checks[2] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "phase_id": "1",
+        "type": "phase_organisation_reference_name_does_not_match",
+    }
+    assert additional_checks[3] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "span_id": "1",
+        "type": "span_organisation_reference_name_does_not_match",
+        "field": "networkProvider",
+    }
+    assert additional_checks[4] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "span_id": "1",
+        "type": "span_organisation_reference_name_does_not_match",
+        "field": "physicalInfrastructureProvider",
+    }
+    assert additional_checks[5] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "span_id": "1",
+        "type": "span_organisation_reference_name_does_not_match",
+        "field": "supplier",
+    }
+
+
+def test_organisation_reference_name_set_but_not_in_original_1():
+
+    cove_temp_folder = tempfile.mkdtemp(
+        prefix="lib-cove-ofds-tests-", dir=tempfile.gettempdir()
+    )
+    json_filename = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        "fixtures",
+        "0_1_0_alpha",
+        "organisation_reference_name_set_but_not_in_original_1.json",
+    )
+
+    results = ofds_json_output(cove_temp_folder, json_filename)
+
+    assert results["schema_version"] == "0.1.0-alpha"
+
+    assert results["validation_errors_count"] == 0
+
+    assert results["additional_checks_count"] == 6
+
+    # Library is not meant to return these in any special order, so sort to get something we can check.
+    additional_checks = sorted(
+        results["additional_checks"], key=lambda d: d["type"] + d.get("field", "")
+    )
+
+    assert additional_checks[0] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "node_id": "1",
+        "type": "node_organisation_reference_name_set_but_not_in_original",
+        "field": "networkProvider",
+    }
+    assert additional_checks[1] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "node_id": "1",
+        "type": "node_organisation_reference_name_set_but_not_in_original",
+        "field": "physicalInfrastructureProvider",
+    }
+    assert additional_checks[2] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "phase_id": "1",
+        "type": "phase_organisation_reference_name_set_but_not_in_original",
+    }
+    assert additional_checks[3] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "span_id": "1",
+        "type": "span_organisation_reference_name_set_but_not_in_original",
+        "field": "networkProvider",
+    }
+    assert additional_checks[4] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "span_id": "1",
+        "type": "span_organisation_reference_name_set_but_not_in_original",
+        "field": "physicalInfrastructureProvider",
+    }
+    assert additional_checks[5] == {
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+        "span_id": "1",
+        "type": "span_organisation_reference_name_set_but_not_in_original",
+        "field": "supplier",
+    }
+
+
 def test_node_international_connections_country_not_set_1():
 
     cove_temp_folder = tempfile.mkdtemp(
