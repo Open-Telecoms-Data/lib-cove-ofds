@@ -1,16 +1,12 @@
-from libcoveofds.config import LibCoveOFDSConfig
-from libcoveofds.schema import SchemaOFDS
+from libcoveofds.schema import OFDSSchema
 
 
 class AdditionalCheckForNetwork:
-    """Any check or statistic that wants to be provided should extend this abstract class and overwrite methods"""
+    """Any check that wants to be provided should extend this abstract class and overwrite methods"""
 
-    def __init__(
-        self, lib_cove_ofds_config: LibCoveOFDSConfig, schema_object: SchemaOFDS
-    ):
+    def __init__(self, schema_object: OFDSSchema):
         self._additional_check_results: list = []
-        self.lib_cove_ofds_config: LibCoveOFDSConfig = lib_cove_ofds_config
-        self._schema_object: SchemaOFDS = schema_object
+        self._schema_object: OFDSSchema = schema_object
 
     def check_node_first_pass(self, node: dict):
         pass
@@ -53,9 +49,9 @@ class AdditionalCheckForNetwork:
 
 
 class SpansMustHaveValidNodesAdditionalCheckForNetwork(AdditionalCheckForNetwork):
-    def __init__(self, lib_cove_bods_config, schema_object):
-        super().__init__(lib_cove_bods_config, schema_object)
-        self._node_ids_seen = []
+    def __init__(self, schema_object: OFDSSchema):
+        super().__init__(schema_object)
+        self._node_ids_seen: list = []
 
     def check_node_first_pass(self, node: dict):
         id = node.get("id")
@@ -135,8 +131,8 @@ class NodesLocationAndSpansRouteAdditionalCheckForNetwork(AdditionalCheckForNetw
 
 
 class PhaseReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
-    def __init__(self, lib_cove_bods_config, schema_object):
-        super().__init__(lib_cove_bods_config, schema_object)
+    def __init__(self, schema_object: OFDSSchema):
+        super().__init__(schema_object)
         self._phases: dict = {}
 
     def check_phase_first_pass(self, phase: dict):
@@ -228,8 +224,8 @@ class PhaseReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
 
 
 class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
-    def __init__(self, lib_cove_bods_config, schema_object):
-        super().__init__(lib_cove_bods_config, schema_object)
+    def __init__(self, schema_object: OFDSSchema):
+        super().__init__(schema_object)
         self._organisations: dict = {}
 
     def check_organisation_first_pass(self, organisation: dict):
@@ -407,9 +403,9 @@ class NodeInternationalConnectionCountryAdditionalCheckForNetwork(
 
 
 class IsNodeUsedInSpanAdditionalCheckForNetwork(AdditionalCheckForNetwork):
-    def __init__(self, lib_cove_bods_config, schema_object):
-        super().__init__(lib_cove_bods_config, schema_object)
-        self._node_ids_used_in_spans = []
+    def __init__(self, schema_object: OFDSSchema):
+        super().__init__(schema_object)
+        self._node_ids_used_in_spans: list = []
 
     def check_span_first_pass(self, span: dict):
         start = span.get("start")
@@ -446,105 +442,112 @@ ADDITIONAL_CHECK_CLASSES_FOR_NETWORK = [
 ]
 
 
-def process_additional_checks(
-    json_data: dict, lib_cove_ofds_config: LibCoveOFDSConfig, schema_object: SchemaOFDS
-):
-    additional_checks: list = []
-    statistics: dict = {}
+class PythonValidate:
+    def __init__(self, schema: OFDSSchema):
+        self._schema = schema
 
-    # For each Network
-    networks = json_data.get("networks")
-    if isinstance(networks, list):
-        for network in networks:
-            if isinstance(network, dict):
-                additional_check_instances = [
-                    x(lib_cove_ofds_config, schema_object)
-                    for x in ADDITIONAL_CHECK_CLASSES_FOR_NETWORK
-                ]
-                links = network.get("links", [])
-                links_with_external_nodes = [
-                    l
-                    for l in links
-                    if isinstance(l, dict)
-                    and l.get("rel", "")
-                    in schema_object.get_link_rels_for_external_nodes()
-                ]
-                if links_with_external_nodes:
-                    additional_check_instances = [
-                        x
-                        for x in additional_check_instances
-                        if not x.skip_if_any_links_have_external_node_data()
-                    ]
-                    additional_checks.append(
-                        {
-                            "network_id": network.get("id"),
-                            "type": "has_links_with_external_node_data",
-                        }
-                    )
-                links_with_external_spans = [
-                    l
-                    for l in links
-                    if isinstance(l, dict)
-                    and l.get("rel", "")
-                    in schema_object.get_link_rels_for_external_spans()
-                ]
-                if links_with_external_spans:
-                    additional_check_instances = [
-                        x
-                        for x in additional_check_instances
-                        if not x.skip_if_any_links_have_external_span_data()
-                    ]
-                    additional_checks.append(
-                        {
-                            "network_id": network.get("id"),
-                            "type": "has_links_with_external_span_data",
-                        }
-                    )
-                nodes = network.get("nodes", [])
-                nodes = nodes if isinstance(nodes, list) else []
-                spans = network.get("spans", [])
-                spans = spans if isinstance(spans, list) else []
-                phases = network.get("phases", [])
-                phases = phases if isinstance(phases, list) else []
-                organisations = network.get("organisations", [])
-                organisations = organisations if isinstance(organisations, list) else []
-                contracts = network.get("contracts", [])
-                contracts = contracts if isinstance(contracts, list) else []
-                # First pass
-                for additional_check_instance in additional_check_instances:
-                    for node in nodes:
-                        additional_check_instance.check_node_first_pass(node)
-                    for span in spans:
-                        additional_check_instance.check_span_first_pass(span)
-                    for phase in phases:
-                        additional_check_instance.check_phase_first_pass(phase)
-                    for organisation in organisations:
-                        additional_check_instance.check_organisation_first_pass(
-                            organisation
-                        )
-                    for contract in contracts:
-                        additional_check_instance.check_contract_first_pass(contract)
-                # Second pass
-                for additional_check_instance in additional_check_instances:
-                    for node in nodes:
-                        additional_check_instance.check_node_second_pass(node)
-                    for span in spans:
-                        additional_check_instance.check_span_second_pass(span)
-                    for phase in phases:
-                        additional_check_instance.check_phase_second_pass(phase)
-                    for organisation in organisations:
-                        additional_check_instance.check_organisation_second_pass(
-                            organisation
-                        )
-                    for contract in contracts:
-                        additional_check_instance.check_contract_second_pass(contract)
-                # Results
-                for additional_check_instance in additional_check_instances:
-                    for (
-                        additional_check
-                    ) in additional_check_instance.get_additional_check_results():
-                        additional_check["network_id"] = network.get("id")
-                        additional_checks.append(additional_check)
+    def validate(self, json_data: dict) -> list:
 
-    # Return
-    return {"additional_checks": additional_checks, "statistics": statistics}
+        additional_checks: list = []
+
+        # For each Network
+        networks = json_data.get("networks")
+        if isinstance(networks, list):
+            for network in networks:
+                if isinstance(network, dict):
+                    additional_check_instances = [
+                        x(self._schema) for x in ADDITIONAL_CHECK_CLASSES_FOR_NETWORK
+                    ]
+                    links = network.get("links", [])
+                    links_with_external_nodes = [
+                        l
+                        for l in links
+                        if isinstance(l, dict)
+                        and l.get("rel", "")
+                        in self._schema.get_link_rels_for_external_nodes()
+                    ]
+                    if links_with_external_nodes:
+                        additional_check_instances = [
+                            x
+                            for x in additional_check_instances
+                            if not x.skip_if_any_links_have_external_node_data()
+                        ]
+                        additional_checks.append(
+                            {
+                                "network_id": network.get("id"),
+                                "type": "has_links_with_external_node_data",
+                            }
+                        )
+                    links_with_external_spans = [
+                        l
+                        for l in links
+                        if isinstance(l, dict)
+                        and l.get("rel", "")
+                        in self._schema.get_link_rels_for_external_spans()
+                    ]
+                    if links_with_external_spans:
+                        additional_check_instances = [
+                            x
+                            for x in additional_check_instances
+                            if not x.skip_if_any_links_have_external_span_data()
+                        ]
+                        additional_checks.append(
+                            {
+                                "network_id": network.get("id"),
+                                "type": "has_links_with_external_span_data",
+                            }
+                        )
+                    nodes = network.get("nodes", [])
+                    nodes = nodes if isinstance(nodes, list) else []
+                    spans = network.get("spans", [])
+                    spans = spans if isinstance(spans, list) else []
+                    phases = network.get("phases", [])
+                    phases = phases if isinstance(phases, list) else []
+                    organisations = network.get("organisations", [])
+                    organisations = (
+                        organisations if isinstance(organisations, list) else []
+                    )
+                    contracts = network.get("contracts", [])
+                    contracts = contracts if isinstance(contracts, list) else []
+                    # First pass
+                    for additional_check_instance in additional_check_instances:
+                        for node in nodes:
+                            additional_check_instance.check_node_first_pass(node)
+                        for span in spans:
+                            additional_check_instance.check_span_first_pass(span)
+                        for phase in phases:
+                            additional_check_instance.check_phase_first_pass(phase)
+                        for organisation in organisations:
+                            additional_check_instance.check_organisation_first_pass(
+                                organisation
+                            )
+                        for contract in contracts:
+                            additional_check_instance.check_contract_first_pass(
+                                contract
+                            )
+                    # Second pass
+                    for additional_check_instance in additional_check_instances:
+                        for node in nodes:
+                            additional_check_instance.check_node_second_pass(node)
+                        for span in spans:
+                            additional_check_instance.check_span_second_pass(span)
+                        for phase in phases:
+                            additional_check_instance.check_phase_second_pass(phase)
+                        for organisation in organisations:
+                            additional_check_instance.check_organisation_second_pass(
+                                organisation
+                            )
+                        for contract in contracts:
+                            additional_check_instance.check_contract_second_pass(
+                                contract
+                            )
+                    # Results
+                    for additional_check_instance in additional_check_instances:
+                        for (
+                            additional_check
+                        ) in additional_check_instance.get_additional_check_results():
+                            additional_check["network_id"] = network.get("id")
+                            additional_checks.append(additional_check)
+
+        # Return
+        return additional_checks

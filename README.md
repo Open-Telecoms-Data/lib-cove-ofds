@@ -38,13 +38,13 @@ Make sure dev dependencies are installed in your virtual environment:
 
 Then run:
 
-    isort libcoveofds/ tests/ setup.py
-    black libcoveofds/ tests/ setup.py
-    flake8 libcoveofds/ tests/ setup.py
+    isort libcoveofds/ libcove2/ tests/ setup.py
+    black libcoveofds/ libcove2/ tests/ setup.py
+    flake8 libcoveofds/ libcove2/ tests/ setup.py
     mypy --install-types --non-interactive -p  libcoveofds
 
 
-## Code for use by external users
+**## Code for use by external users**
 
 The only code that should be used directly by users is the `libcoveofds.config` and `libcoveofds.api` modules.
 
