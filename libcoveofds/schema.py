@@ -1,4 +1,7 @@
+import jsonref
 import requests
+
+from libcove2.common import schema_dict_fields_generator
 
 
 class OFDSSchema:
@@ -8,6 +11,10 @@ class OFDSSchema:
     def get_schema(self):
         r = requests.get(self.url)
         return r.json()
+
+    def get_schema_dereferenced(self):
+        r = requests.get(self.url)
+        return jsonref.loads(r.text)
 
     def get_link_rels_for_external_nodes(self) -> list:
         return [
@@ -20,3 +27,6 @@ class OFDSSchema:
             "tag:opentelecomdata.net,2022:spansAPI",
             "tag:opentelecomdata.net,2022:spansFile",
         ]
+
+    def get_fields(self) -> set:
+        return set(schema_dict_fields_generator(self.get_schema_dereferenced()))

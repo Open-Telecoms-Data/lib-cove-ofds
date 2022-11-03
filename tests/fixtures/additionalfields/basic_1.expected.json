@@ -1,0 +1,12 @@
+[
+    [
+        "/networks",
+        "extra_field_1",
+        1
+    ],
+    [
+        "/networks/nodes",
+        "extra_field_2",
+        2
+    ]
+]

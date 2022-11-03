@@ -1,6 +1,7 @@
 import argparse
 import json
 
+import libcoveofds.additionalfields
 import libcoveofds.python_validate
 import libcoveofds.schema
 
@@ -11,6 +12,11 @@ def main():
 
     python_validate_parser = subparsers.add_parser("pythonvalidate", aliases=["pv"])
     python_validate_parser.add_argument(
+        "inputfilename", help="File name of an input JSON data file"
+    )
+
+    additional_fields_parser = subparsers.add_parser("additionalfields", aliases=["af"])
+    additional_fields_parser.add_argument(
         "inputfilename", help="File name of an input JSON data file"
     )
 
@@ -25,6 +31,18 @@ def main():
         validator = libcoveofds.python_validate.PythonValidate(schema)
 
         output = validator.validate(input_data)
+
+        print(json.dumps(output, indent=4))
+
+    elif args.subparser_name == "additionalfields" or args.subparser_name == "af":
+
+        with open(args.inputfilename) as fp:
+            input_data = json.load(fp)
+
+        schema = libcoveofds.schema.OFDSSchema()
+        validator = libcoveofds.additionalfields.AdditionalFields(schema)
+
+        output = validator.process(input_data)
 
         print(json.dumps(output, indent=4))
 
