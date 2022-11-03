@@ -30,3 +30,19 @@ class OFDSSchema:
 
     def get_fields(self) -> set:
         return set(schema_dict_fields_generator(self.get_schema_dereferenced()))
+
+    def extract_data_ids_from_data_and_path(self, data: dict, path: list) -> dict:
+        out: dict = {}
+        # network_id
+        if len(path) >= 2 and path[0] == "networks":
+            network_id = data["networks"][path[1]].get("id")
+            if network_id:
+                out["network_id"] = network_id
+        # other ids
+        for field in ["node", "span"]:
+            if len(path) >= 4 and path[0] == "networks" and path[2] == field + "s":
+                id = data["networks"][path[1]][field + "s"][path[3]].get("id")
+                if id:
+                    out[field + "_id"] = id
+        # return
+        return out
