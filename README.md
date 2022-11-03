@@ -44,7 +44,7 @@ Then run:
     mypy --install-types --non-interactive -p  libcoveofds
 
 
-## Code for use by external users
+**## Code for use by external users**
 
 The only code that should be used directly by users is the `libcoveofds.config` and `libcoveofds.api` modules.
 

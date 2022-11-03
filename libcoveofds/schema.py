@@ -1,22 +1,13 @@
-from libcove.lib.common import SchemaJsonMixin  # type: ignore
-
-from libcoveofds.config import LibCoveOFDSConfig
+import requests
 
 
-class SchemaOFDS(SchemaJsonMixin):
-    def __init__(
-        self, json_data: dict = None, lib_cove_ofds_config: LibCoveOFDSConfig = None
-    ):
-        lib_cove_ofds_config_object: LibCoveOFDSConfig = (
-            lib_cove_ofds_config or LibCoveOFDSConfig()
-        )
+class OFDSSchema:
 
-        self.pkg_schema_url = lib_cove_ofds_config_object.config.get(
-            "package_schema_url"
-        )
-        self.schema_url = lib_cove_ofds_config_object.config.get("schema_url")
-        self.schema_version = lib_cove_ofds_config_object.config.get("schema_version")
-        self.schema_host = lib_cove_ofds_config_object.config.get("schema_host")
+    url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/b2b4ed722d6b078251da05eb0da8304ebefd34e5/schema/network-package-schema.json"
+
+    def get_schema(self):
+        r = requests.get(self.url)
+        return r.json()
 
     def get_link_rels_for_external_nodes(self) -> list:
         return [
