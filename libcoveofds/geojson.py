@@ -174,7 +174,7 @@ class GeoJSONToJSONConverter:
                 self._networks[network.get("id")] = copy.deepcopy(network)
                 self._networks[network.get("id")]["nodes"] = []
                 self._networks[network.get("id")]["spans"] = []
-                self._networks[network.get("id")]["phases"] = []
+                self._networks[network.get("id")]["phases"] = {}
                 self._networks[network.get("id")]["organisations"] = []
                 self._networks[network.get("id")]["contracts"] = []
 
@@ -189,6 +189,11 @@ class GeoJSONToJSONConverter:
         if network_id not in self._networks.keys():
             # TODO log error
             return
+
+        if isinstance(node.get("phase"), dict) and node.get("phase"):
+            phase_id = self._process_phase(network_id, node["phase"])
+            if phase_id:
+                node["phase"] = {"id": phase_id}
 
         if geojson_feature_node.get("geometry"):
             node["location"] = geojson_feature_node["geometry"]
@@ -207,6 +212,11 @@ class GeoJSONToJSONConverter:
             # TODO log error
             return
 
+        if isinstance(span.get("phase"), dict) and span.get("phase"):
+            phase_id = self._process_phase(network_id, span["phase"])
+            if phase_id:
+                span["phase"] = {"id": phase_id}
+
         if geojson_feature_span.get("geometry"):
             span["route"] = geojson_feature_span["geometry"]
 
@@ -215,6 +225,17 @@ class GeoJSONToJSONConverter:
 
         self._networks[network_id]["spans"].append(span)
 
+    def _process_phase(self, network_id: str, phase: dict) -> str:
+        phase_id = phase.get("id")
+        if phase_id:
+            if phase_id in self._networks[network_id]["phases"]:
+                # TODO check value is same, add error if not
+                pass
+            else:
+                self._networks[network_id]["phases"][phase_id] = phase
+            return phase_id
+        return ""
+
     def get_json(self) -> dict:
         out: dict = {"networks": []}
         for network in self._networks.values():
@@ -222,5 +243,9 @@ class GeoJSONToJSONConverter:
             for key in ["nodes", "spans", "phases", "organisations", "contracts"]:
                 if not network[key]:
                     del network[key]
+            # Sometimes we store these things in dicts - turn to lists
+            for key in ["phases"]:
+                if key in network:
+                    network[key] = list(network[key].values())
             out["networks"].append(network)
         return out
