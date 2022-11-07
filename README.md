@@ -30,6 +30,8 @@ You can also pass the raw option to see the JSON as it originally came out of th
 
     python -m pytest
 
+For writing tests, look in `make_expected_test_data.sh` for a helper script.
+
 ### Code linting
 
 Make sure dev dependencies are installed in your virtual environment:
