@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Makes Phases into references & populates phases array (Nodes, Spans)
     - Makes Organisations into references & populates organisations array (Nodes, Spans)
 
+### Changed
+
+- Schema object - change properties and methods to have both package schema and data schema
+
 ## [0.2.0] - 2022-11-03
 
 ### Changed

@@ -6,15 +6,21 @@ from libcove2.common import schema_dict_fields_generator
 
 class OFDSSchema:
 
-    url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/b2b4ed722d6b078251da05eb0da8304ebefd34e5/schema/network-package-schema.json"
+    package_schema_url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/b2b4ed722d6b078251da05eb0da8304ebefd34e5/schema/network-package-schema.json"
 
-    def get_schema(self):
-        r = requests.get(self.url)
+    data_schema_url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/b2b4ed722d6b078251da05eb0da8304ebefd34e5/schema/network-schema.json"
+
+    def get_package_schema(self):
+        r = requests.get(self.package_schema_url)
         return r.json()
 
-    def get_schema_dereferenced(self):
-        r = requests.get(self.url)
+    def get_package_schema_dereferenced(self):
+        r = requests.get(self.package_schema_url)
         return jsonref.loads(r.text)
+
+    def get_data_schema(self):
+        r = requests.get(self.data_schema_url)
+        return r.json()
 
     def get_link_rels_for_external_nodes(self) -> list:
         return [
@@ -28,8 +34,8 @@ class OFDSSchema:
             "tag:opentelecomdata.net,2022:spansFile",
         ]
 
-    def get_fields(self) -> set:
-        return set(schema_dict_fields_generator(self.get_schema_dereferenced()))
+    def get_package_schema_fields(self) -> set:
+        return set(schema_dict_fields_generator(self.get_package_schema_dereferenced()))
 
     def extract_data_ids_from_data_and_path(self, data: dict, path: list) -> dict:
         out: dict = {}

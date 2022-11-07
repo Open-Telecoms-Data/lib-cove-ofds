@@ -9,7 +9,7 @@ class JSONSchemaValidator:
         self._schema = schema
 
     def validate(self, json_data: dict) -> list:
-        validator = Draft202012Validator(schema=self._schema.get_schema())
+        validator = Draft202012Validator(schema=self._schema.get_package_schema())
         output = []
         for e in validator.iter_errors(json_data):
             output.append(ValidationError(e, json_data, self._schema))
