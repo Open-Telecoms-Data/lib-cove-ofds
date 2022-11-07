@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - GeoJSON to JSON and JSON to GeoJSON conversion
 - Improved in GeoJSON to JSON:
     - Makes Phases into references & populates phases array (Nodes, Spans)
+    - Makes Organisations into references & populates organisations array (Nodes, Spans)
 
 ## [0.2.0] - 2022-11-03
 

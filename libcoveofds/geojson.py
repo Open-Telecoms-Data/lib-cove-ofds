@@ -175,7 +175,7 @@ class GeoJSONToJSONConverter:
                 self._networks[network.get("id")]["nodes"] = []
                 self._networks[network.get("id")]["spans"] = []
                 self._networks[network.get("id")]["phases"] = {}
-                self._networks[network.get("id")]["organisations"] = []
+                self._networks[network.get("id")]["organisations"] = {}
                 self._networks[network.get("id")]["contracts"] = []
 
     def _process_node(self, geojson_feature_node: dict) -> None:
@@ -190,6 +190,14 @@ class GeoJSONToJSONConverter:
             # TODO log error
             return
 
+        # sort organisations
+        for field in ["physicalInfrastructureProvider", "networkProvider"]:
+            if isinstance(node.get(field), dict) and node.get(field):
+                organisation_id = self._process_organisation(network_id, node[field])
+                if organisation_id:
+                    node[field] = {"id": organisation_id}
+
+        # sort phase
         if isinstance(node.get("phase"), dict) and node.get("phase"):
             phase_id = self._process_phase(network_id, node["phase"])
             if phase_id:
@@ -212,6 +220,14 @@ class GeoJSONToJSONConverter:
             # TODO log error
             return
 
+        # sort organisations
+        for field in ["physicalInfrastructureProvider", "networkProvider", "supplier"]:
+            if isinstance(span.get(field), dict) and span.get(field):
+                organisation_id = self._process_organisation(network_id, span[field])
+                if organisation_id:
+                    span[field] = {"id": organisation_id}
+
+        # sort phase
         if isinstance(span.get("phase"), dict) and span.get("phase"):
             phase_id = self._process_phase(network_id, span["phase"])
             if phase_id:
@@ -236,6 +252,19 @@ class GeoJSONToJSONConverter:
             return phase_id
         return ""
 
+    def _process_organisation(self, network_id: str, organisation: dict) -> str:
+        organisation_id = organisation.get("id")
+        if organisation_id:
+            if organisation_id in self._networks[network_id]["organisations"]:
+                # TODO check value is same, add error if not
+                pass
+            else:
+                self._networks[network_id]["organisations"][
+                    organisation_id
+                ] = organisation
+            return organisation_id
+        return ""
+
     def get_json(self) -> dict:
         out: dict = {"networks": []}
         for network in self._networks.values():
@@ -244,7 +273,7 @@ class GeoJSONToJSONConverter:
                 if not network[key]:
                     del network[key]
             # Sometimes we store these things in dicts - turn to lists
-            for key in ["phases"]:
+            for key in ["phases", "organisations"]:
                 if key in network:
                     network[key] = list(network[key].values())
             out["networks"].append(network)

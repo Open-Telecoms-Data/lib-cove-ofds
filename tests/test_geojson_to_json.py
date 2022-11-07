@@ -10,8 +10,9 @@ GEOJSON_TO_JSON_FILES = [
     ("basic_1"),
     # no locations / route set
     ("no_geometry_1"),
-    # dereference phases correctly
+    # sort references to things correctly
     ("phases_1"),
+    ("organisations_1"),
 ]
 
 
