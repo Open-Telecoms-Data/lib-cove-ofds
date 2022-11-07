@@ -9,6 +9,24 @@
         "/networks/name": {
             "count": 1
         },
+        "/networks/contracts": {
+            "count": 1
+        },
+        "/networks/contracts/id": {
+            "count": 1
+        },
+        "/networks/contracts/title": {
+            "count": 1
+        },
+        "/networks/contracts/description": {
+            "count": 1
+        },
+        "/networks/contracts/relatedPhases": {
+            "count": 1
+        },
+        "/networks/contracts/relatedPhases/id": {
+            "count": 1
+        },
         "/networks/nodes": {
             "count": 1
         },

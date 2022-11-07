@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Makes Organisations into references & populates organisations array (Nodes, Spans)
     - Add meta output, with output field coverage
     - Fix bug that meant get_json() could not be called twice
+    - Include contracts
 
 ### Changed
 

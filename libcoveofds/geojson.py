@@ -178,7 +178,25 @@ class GeoJSONToJSONConverter:
                 self._networks[network.get("id")]["spans"] = []
                 self._networks[network.get("id")]["phases"] = {}
                 self._networks[network.get("id")]["organisations"] = {}
-                self._networks[network.get("id")]["contracts"] = []
+
+                # Sort references to phases in contracts
+                if "contracts" in self._networks[network.get("id")] and isinstance(
+                    self._networks[network.get("id")]["contracts"], list
+                ):
+                    for contract in self._networks[network.get("id")]["contracts"]:
+                        if "relatedPhases" in contract and isinstance(
+                            contract["relatedPhases"], list
+                        ):
+                            out: list = []
+                            for phase_reference in contract["relatedPhases"]:
+                                phase_id = self._process_phase(
+                                    network.get("id"), phase_reference
+                                )
+                                if phase_id:
+                                    out.append({"id": phase_id})
+                                else:
+                                    out.append(phase_reference)
+                            contract["relatedPhases"] = out
 
     def _process_node(self, geojson_feature_node: dict) -> None:
         node = copy.deepcopy(geojson_feature_node.get("properties", {}))
@@ -274,7 +292,7 @@ class GeoJSONToJSONConverter:
             network = copy.deepcopy(network)
             # Arrays have minItems: 1 set - so if no content, remove the empty array
             for key in ["nodes", "spans", "phases", "organisations", "contracts"]:
-                if not network[key]:
+                if key in network and not network[key]:
                     del network[key]
             # Sometimes we store these things in dicts - turn to lists
             for key in ["phases", "organisations"]:
