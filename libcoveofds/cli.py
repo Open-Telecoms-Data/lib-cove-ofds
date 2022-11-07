@@ -50,6 +50,11 @@ def main():
     geojson_to_json_parser.add_argument(
         "outputfilename", help="Output filename to write JSON data to"
     )
+    geojson_to_json_parser.add_argument(
+        "--outputmetafilename",
+        help="Output filename to write meta JSON data to",
+        required=False,
+    )
 
     args = parser.parse_args()
 
@@ -118,6 +123,10 @@ def main():
 
         with open(args.outputfilename, "w") as fp:
             json.dump(converter.get_json(), fp, indent=4)
+
+        if args.outputmetafilename:
+            with open(args.outputmetafilename, "w") as fp:
+                json.dump(converter.get_meta_json(), fp, indent=4)
 
 
 if __name__ == "__main__":

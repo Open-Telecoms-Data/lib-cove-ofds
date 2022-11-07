@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Improved in GeoJSON to JSON:
     - Makes Phases into references & populates phases array (Nodes, Spans)
     - Makes Organisations into references & populates organisations array (Nodes, Spans)
+    - Add meta output, with output field coverage
+    - Fix bug that meant get_json() could not be called twice
 
 ### Changed
 

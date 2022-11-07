@@ -1,5 +1,7 @@
 import copy
 
+from libcove2.common import fields_present_generator
+
 
 class JSONToGeoJSONConverter:
     def __init__(self):
@@ -268,6 +270,8 @@ class GeoJSONToJSONConverter:
     def get_json(self) -> dict:
         out: dict = {"networks": []}
         for network in self._networks.values():
+            # We are going to change network, so we need to take a copy
+            network = copy.deepcopy(network)
             # Arrays have minItems: 1 set - so if no content, remove the empty array
             for key in ["nodes", "spans", "phases", "organisations", "contracts"]:
                 if not network[key]:
@@ -277,4 +281,15 @@ class GeoJSONToJSONConverter:
                 if key in network:
                     network[key] = list(network[key].values())
             out["networks"].append(network)
+        return out
+
+    def get_meta_json(self) -> dict:
+        out: dict = {"output_field_coverage": {}}
+        # field coverage
+        for key, value in fields_present_generator(self.get_json()):
+            if key not in out["output_field_coverage"]:
+                out["output_field_coverage"][key] = {"count": 1}
+            else:
+                out["output_field_coverage"][key]["count"] += 1
+        # return
         return out
