@@ -43,10 +43,3 @@ Then run:
     flake8 libcoveofds/ libcove2/ tests/ setup.py
     mypy --install-types --non-interactive -p  libcoveofds
 
-
-**## Code for use by external users**
-
-The only code that should be used directly by users is the `libcoveofds.config` and `libcoveofds.api` modules.
-
-Other code ( Code in `lib`, etc) should not be used by external users of this library directly, as the structure and 
-use of these may change more frequently.
