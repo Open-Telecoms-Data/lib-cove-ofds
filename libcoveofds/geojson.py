@@ -49,6 +49,26 @@ class JSONToGeoJSONConverter:
     def get_spans_geojson(self) -> dict:
         return {"type": "FeatureCollection", "features": self._spans_geojson_features}
 
+    def get_meta_json(self) -> dict:
+        out: dict = {
+            "nodes_output_field_coverage": {},
+            "spans_output_field_coverage": {},
+        }
+        # nodes field coverage
+        for key, value in fields_present_generator(self.get_nodes_geojson()):
+            if key not in out["nodes_output_field_coverage"]:
+                out["nodes_output_field_coverage"][key] = {"count": 1}
+            else:
+                out["nodes_output_field_coverage"][key]["count"] += 1
+        # spans field coverage
+        for key, value in fields_present_generator(self.get_spans_geojson()):
+            if key not in out["spans_output_field_coverage"]:
+                out["spans_output_field_coverage"][key] = {"count": 1}
+            else:
+                out["spans_output_field_coverage"][key]["count"] += 1
+        # return
+        return out
+
     def _dereference_object(self, ref, list):
         """
         Return from list the object referenced by ref. Otherwise, return ref.

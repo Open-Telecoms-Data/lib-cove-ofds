@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
     - Add meta output, with output field coverage
     - Fix bug that meant get_json() could not be called twice
     - Include contracts
+- Improved in JSON to GeoJSON:
+    - Add meta output, with output field coverage
 
 ### Changed
 

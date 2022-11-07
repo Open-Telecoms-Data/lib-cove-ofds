@@ -40,6 +40,12 @@ def test_json_to_geojson(filename):
         "json_to_geojson",
         filename + ".expected.nodes.geo.json",
     )
+    meta_expected_filename = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        "fixtures",
+        "json_to_geojson",
+        filename + ".expected.meta.json",
+    )
 
     with open(json_filename) as fp:
         json_data = json.load(fp)
@@ -54,3 +60,7 @@ def test_json_to_geojson(filename):
     with open(expected_nodes_filename) as fp:
         expected_nodes_data = json.load(fp)
     assert expected_nodes_data == converter.get_nodes_geojson()
+
+    with open(meta_expected_filename) as fp:
+        meta_expected_data = json.load(fp)
+    assert meta_expected_data == converter.get_meta_json()

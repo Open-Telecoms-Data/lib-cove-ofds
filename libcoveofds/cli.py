@@ -39,6 +39,11 @@ def main():
     json_to_geojson_parser.add_argument(
         "outputspansfilename", help="Output filename to write Spans GeoJSON data to"
     )
+    json_to_geojson_parser.add_argument(
+        "--outputmetafilename",
+        help="Output filename to write meta JSON data to",
+        required=False,
+    )
 
     geojson_to_json_parser = subparsers.add_parser("geojsontojson", aliases=["gjtoj"])
     geojson_to_json_parser.add_argument(
@@ -109,6 +114,10 @@ def main():
 
         with open(args.outputspansfilename, "w") as fp:
             json.dump(converter.get_spans_geojson(), fp, indent=4)
+
+        if args.outputmetafilename:
+            with open(args.outputmetafilename, "w") as fp:
+                json.dump(converter.get_meta_json(), fp, indent=4)
 
     elif args.subparser_name == "geojsontojson" or args.subparser_name == "gjtoj":
 

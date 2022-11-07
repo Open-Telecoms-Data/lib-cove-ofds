@@ -1,0 +1,204 @@
+{
+    "nodes_output_field_coverage": {
+        "/type": {
+            "count": 1
+        },
+        "/features": {
+            "count": 1
+        },
+        "/features/type": {
+            "count": 2
+        },
+        "/features/geometry": {
+            "count": 2
+        },
+        "/features/geometry/type": {
+            "count": 2
+        },
+        "/features/geometry/coordinates": {
+            "count": 2
+        },
+        "/features/properties": {
+            "count": 2
+        },
+        "/features/properties/id": {
+            "count": 2
+        },
+        "/features/properties/name": {
+            "count": 2
+        },
+        "/features/properties/phase": {
+            "count": 2
+        },
+        "/features/properties/phase/id": {
+            "count": 2
+        },
+        "/features/properties/phase/name": {
+            "count": 2
+        },
+        "/features/properties/phase/description": {
+            "count": 2
+        },
+        "/features/properties/network": {
+            "count": 2
+        },
+        "/features/properties/network/id": {
+            "count": 2
+        },
+        "/features/properties/network/name": {
+            "count": 2
+        },
+        "/features/properties/network/contracts": {
+            "count": 2
+        },
+        "/features/properties/network/contracts/id": {
+            "count": 2
+        },
+        "/features/properties/network/contracts/title": {
+            "count": 2
+        },
+        "/features/properties/network/contracts/description": {
+            "count": 2
+        },
+        "/features/properties/network/contracts/relatedPhases": {
+            "count": 2
+        },
+        "/features/properties/network/contracts/relatedPhases/id": {
+            "count": 2
+        },
+        "/features/properties/network/contracts/relatedPhases/name": {
+            "count": 2
+        },
+        "/features/properties/network/contracts/relatedPhases/description": {
+            "count": 2
+        },
+        "/features/properties/status": {
+            "count": 1
+        }
+    },
+    "spans_output_field_coverage": {
+        "/type": {
+            "count": 1
+        },
+        "/features": {
+            "count": 1
+        },
+        "/features/type": {
+            "count": 1
+        },
+        "/features/geometry": {
+            "count": 1
+        },
+        "/features/geometry/type": {
+            "count": 1
+        },
+        "/features/geometry/coordinates": {
+            "count": 1
+        },
+        "/features/properties": {
+            "count": 1
+        },
+        "/features/properties/id": {
+            "count": 1
+        },
+        "/features/properties/name": {
+            "count": 1
+        },
+        "/features/properties/start": {
+            "count": 1
+        },
+        "/features/properties/start/id": {
+            "count": 1
+        },
+        "/features/properties/start/name": {
+            "count": 1
+        },
+        "/features/properties/start/location": {
+            "count": 1
+        },
+        "/features/properties/start/location/type": {
+            "count": 1
+        },
+        "/features/properties/start/location/coordinates": {
+            "count": 1
+        },
+        "/features/properties/start/phase": {
+            "count": 1
+        },
+        "/features/properties/start/phase/id": {
+            "count": 1
+        },
+        "/features/properties/end": {
+            "count": 1
+        },
+        "/features/properties/end/id": {
+            "count": 1
+        },
+        "/features/properties/end/name": {
+            "count": 1
+        },
+        "/features/properties/end/status": {
+            "count": 1
+        },
+        "/features/properties/end/location": {
+            "count": 1
+        },
+        "/features/properties/end/location/type": {
+            "count": 1
+        },
+        "/features/properties/end/location/coordinates": {
+            "count": 1
+        },
+        "/features/properties/end/phase": {
+            "count": 1
+        },
+        "/features/properties/end/phase/id": {
+            "count": 1
+        },
+        "/features/properties/phase": {
+            "count": 1
+        },
+        "/features/properties/phase/id": {
+            "count": 1
+        },
+        "/features/properties/phase/name": {
+            "count": 1
+        },
+        "/features/properties/phase/description": {
+            "count": 1
+        },
+        "/features/properties/network": {
+            "count": 1
+        },
+        "/features/properties/network/id": {
+            "count": 1
+        },
+        "/features/properties/network/name": {
+            "count": 1
+        },
+        "/features/properties/network/contracts": {
+            "count": 1
+        },
+        "/features/properties/network/contracts/id": {
+            "count": 1
+        },
+        "/features/properties/network/contracts/title": {
+            "count": 1
+        },
+        "/features/properties/network/contracts/description": {
+            "count": 1
+        },
+        "/features/properties/network/contracts/relatedPhases": {
+            "count": 1
+        },
+        "/features/properties/network/contracts/relatedPhases/id": {
+            "count": 1
+        },
+        "/features/properties/network/contracts/relatedPhases/name": {
+            "count": 1
+        },
+        "/features/properties/network/contracts/relatedPhases/description": {
+            "count": 1
+        }
+    }
+}

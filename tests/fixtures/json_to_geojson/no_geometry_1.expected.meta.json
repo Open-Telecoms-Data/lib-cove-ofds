@@ -1,0 +1,90 @@
+{
+    "nodes_output_field_coverage": {
+        "/type": {
+            "count": 1
+        },
+        "/features": {
+            "count": 1
+        },
+        "/features/type": {
+            "count": 2
+        },
+        "/features/geometry": {
+            "count": 2
+        },
+        "/features/properties": {
+            "count": 2
+        },
+        "/features/properties/id": {
+            "count": 2
+        },
+        "/features/properties/name": {
+            "count": 2
+        },
+        "/features/properties/network": {
+            "count": 2
+        },
+        "/features/properties/network/id": {
+            "count": 2
+        },
+        "/features/properties/network/name": {
+            "count": 2
+        },
+        "/features/properties/status": {
+            "count": 1
+        }
+    },
+    "spans_output_field_coverage": {
+        "/type": {
+            "count": 1
+        },
+        "/features": {
+            "count": 1
+        },
+        "/features/type": {
+            "count": 1
+        },
+        "/features/geometry": {
+            "count": 1
+        },
+        "/features/properties": {
+            "count": 1
+        },
+        "/features/properties/id": {
+            "count": 1
+        },
+        "/features/properties/name": {
+            "count": 1
+        },
+        "/features/properties/start": {
+            "count": 1
+        },
+        "/features/properties/start/id": {
+            "count": 1
+        },
+        "/features/properties/start/name": {
+            "count": 1
+        },
+        "/features/properties/end": {
+            "count": 1
+        },
+        "/features/properties/end/id": {
+            "count": 1
+        },
+        "/features/properties/end/name": {
+            "count": 1
+        },
+        "/features/properties/end/status": {
+            "count": 1
+        },
+        "/features/properties/network": {
+            "count": 1
+        },
+        "/features/properties/network/id": {
+            "count": 1
+        },
+        "/features/properties/network/name": {
+            "count": 1
+        }
+    }
+}

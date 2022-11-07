@@ -18,10 +18,10 @@ libcoveofds gjtoj --outputmetafilename tests/fixtures/geojson_to_json/phases_1.m
 libcoveofds gjtoj --outputmetafilename tests/fixtures/geojson_to_json/organisations_1.meta.expected.json  tests/fixtures/geojson_to_json/organisations_1.nodes.geo.json tests/fixtures/geojson_to_json/organisations_1.spans.geo.json  tests/fixtures/geojson_to_json/organisations_1.expected.json
 
 # JSON to GeoJSON
-libcoveofds jtogj tests/fixtures/json_to_geojson/basic_1.json tests/fixtures/json_to_geojson/basic_1.expected.nodes.geo.json tests/fixtures/json_to_geojson/basic_1.expected.spans.geo.json
-libcoveofds jtogj tests/fixtures/json_to_geojson/phases_1.json tests/fixtures/json_to_geojson/phases_1.expected.nodes.geo.json tests/fixtures/json_to_geojson/phases_1.expected.spans.geo.json
-libcoveofds jtogj tests/fixtures/json_to_geojson/organisations_1.json tests/fixtures/json_to_geojson/organisations_1.expected.nodes.geo.json tests/fixtures/json_to_geojson/organisations_1.expected.spans.geo.json
-libcoveofds jtogj tests/fixtures/json_to_geojson/no_geometry_1.json tests/fixtures/json_to_geojson/no_geometry_1.expected.nodes.geo.json tests/fixtures/json_to_geojson/no_geometry_1.expected.spans.geo.json
+libcoveofds jtogj --outputmetafilename tests/fixtures/json_to_geojson/basic_1.expected.meta.json tests/fixtures/json_to_geojson/basic_1.json tests/fixtures/json_to_geojson/basic_1.expected.nodes.geo.json tests/fixtures/json_to_geojson/basic_1.expected.spans.geo.json
+libcoveofds jtogj --outputmetafilename tests/fixtures/json_to_geojson/phases_1.expected.meta.json tests/fixtures/json_to_geojson/phases_1.json tests/fixtures/json_to_geojson/phases_1.expected.nodes.geo.json tests/fixtures/json_to_geojson/phases_1.expected.spans.geo.json
+libcoveofds jtogj --outputmetafilename tests/fixtures/json_to_geojson/organisations_1.expected.meta.json tests/fixtures/json_to_geojson/organisations_1.json tests/fixtures/json_to_geojson/organisations_1.expected.nodes.geo.json tests/fixtures/json_to_geojson/organisations_1.expected.spans.geo.json
+libcoveofds jtogj --outputmetafilename tests/fixtures/json_to_geojson/no_geometry_1.expected.meta.json tests/fixtures/json_to_geojson/no_geometry_1.json tests/fixtures/json_to_geojson/no_geometry_1.expected.nodes.geo.json tests/fixtures/json_to_geojson/no_geometry_1.expected.spans.geo.json
 
 # JSON Schema validate
 libcoveofds jsv  tests/fixtures/jsonschemavalidate/basic_1.input.json > tests/fixtures/jsonschemavalidate/basic_1.expected.json
