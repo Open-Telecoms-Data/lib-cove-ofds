@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Schema object - change properties and methods to have both package schema and data schema
+- Update to the latest version of the schema.
 
 ## [0.2.0] - 2022-11-03
 
