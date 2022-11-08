@@ -1,0 +1,40 @@
+{
+    "output_field_coverage": {
+        "/networks": {
+            "count": 1
+        },
+        "/networks/id": {
+            "count": 1
+        },
+        "/networks/name": {
+            "count": 1
+        },
+        "/networks/nodes": {
+            "count": 1
+        },
+        "/networks/nodes/id": {
+            "count": 2
+        },
+        "/networks/nodes/name": {
+            "count": 2
+        },
+        "/networks/nodes/status": {
+            "count": 1
+        },
+        "/networks/spans": {
+            "count": 1
+        },
+        "/networks/spans/id": {
+            "count": 1
+        },
+        "/networks/spans/name": {
+            "count": 1
+        },
+        "/networks/spans/start": {
+            "count": 1
+        },
+        "/networks/spans/end": {
+            "count": 1
+        }
+    }
+}

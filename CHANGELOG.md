@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.3.0] - 2022-11-08
+
+### Added
+
+- GeoJSON to JSON and JSON to GeoJSON conversion
+- Improved in GeoJSON to JSON:
+    - Makes Phases into references & populates phases array (Nodes, Spans)
+    - Makes Organisations into references & populates organisations array (Nodes, Spans)
+    - Add meta output, with output field coverage
+    - Fix bug that meant get_json() could not be called twice
+    - Include contracts
+- Improved in JSON to GeoJSON:
+    - Add meta output, with output field coverage
+
+### Changed
+
+- Schema object - change properties and methods to have both package schema and data schema
+- Update to the latest version of the schema.
+
 ## [0.2.0] - 2022-11-03
 
 ### Changed
