@@ -13,6 +13,9 @@ GEOJSON_TO_JSON_FILES = [
     # sort references to things correctly
     ("phases_1"),
     ("organisations_1"),
+    # Check for errors in meta
+    ("phases_inconsistent_1"),
+    ("organisations_inconsistent_1"),
 ]
 
 

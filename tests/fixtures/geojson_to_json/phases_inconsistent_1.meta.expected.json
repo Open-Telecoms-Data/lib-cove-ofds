@@ -9,6 +9,24 @@
         "/networks/name": {
             "count": 1
         },
+        "/networks/contracts": {
+            "count": 1
+        },
+        "/networks/contracts/id": {
+            "count": 1
+        },
+        "/networks/contracts/title": {
+            "count": 1
+        },
+        "/networks/contracts/description": {
+            "count": 1
+        },
+        "/networks/contracts/relatedPhases": {
+            "count": 1
+        },
+        "/networks/contracts/relatedPhases/id": {
+            "count": 1
+        },
         "/networks/nodes": {
             "count": 1
         },
@@ -16,6 +34,12 @@
             "count": 2
         },
         "/networks/nodes/name": {
+            "count": 2
+        },
+        "/networks/nodes/phase": {
+            "count": 2
+        },
+        "/networks/nodes/phase/id": {
             "count": 2
         },
         "/networks/nodes/location": {
@@ -45,6 +69,12 @@
         "/networks/spans/end": {
             "count": 1
         },
+        "/networks/spans/phase": {
+            "count": 1
+        },
+        "/networks/spans/phase/id": {
+            "count": 1
+        },
         "/networks/spans/route": {
             "count": 1
         },
@@ -53,8 +83,26 @@
         },
         "/networks/spans/route/coordinates": {
             "count": 1
+        },
+        "/networks/phases": {
+            "count": 1
+        },
+        "/networks/phases/id": {
+            "count": 1
+        },
+        "/networks/phases/name": {
+            "count": 1
+        },
+        "/networks/phases/description": {
+            "count": 1
         }
     },
-    "inconsistent_phases_by_network_id": {},
+    "inconsistent_phases_by_network_id": {
+        "a096d627-72e1-4f9b-b129-951b1737bff4": {
+            "phase_ids": [
+                "1"
+            ]
+        }
+    },
     "inconsistent_organisations_by_network_id": {}
 }
