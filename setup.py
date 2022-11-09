@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="libcoveofds",
-    version="0.3.0",
+    version="0.4.0",
     author="Open Data Services",
     author_email="code@opendataservices.coop",
     url="https://github.com/Open-Telecoms-Data/lib-cove-ofds",
