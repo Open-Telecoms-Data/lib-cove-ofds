@@ -30,5 +30,19 @@ libcoveofds jsv  tests/fixtures/jsonschemavalidate/basic_1.input.json > tests/fi
 libcoveofds jsv  tests/fixtures/jsonschemavalidate/bad_uuid_1.input.json > tests/fixtures/jsonschemavalidate/bad_uuid_1.expected.json
 
 # Python validate
-# TODO
-#libcoveofds pv tests/fixtures/pythonvalidate/basic_1.input.json  > tests/fixtures/pythonvalidate/basic_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/basic_1.input.json  > tests/fixtures/pythonvalidate/basic_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/end_node_not_found_1.input.json  > tests/fixtures/pythonvalidate/end_node_not_found_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/node_international_connections_country_not_set_1.input.json  > tests/fixtures/pythonvalidate/node_international_connections_country_not_set_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/node_location_coordinates_incorrect_1.input.json  > tests/fixtures/pythonvalidate/node_location_coordinates_incorrect_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/node_location_type_incorrect_1.input.json  > tests/fixtures/pythonvalidate/node_location_type_incorrect_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/node_not_used_in_any_spans_1.input.json  > tests/fixtures/pythonvalidate/node_not_used_in_any_spans_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/organisation_id_not_found_1.input.json  > tests/fixtures/pythonvalidate/organisation_id_not_found_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/organisation_name_not_match_1.input.json  > tests/fixtures/pythonvalidate/organisation_name_not_match_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/organisation_reference_name_set_but_not_in_original_1.input.json  > tests/fixtures/pythonvalidate/organisation_reference_name_set_but_not_in_original_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/phase_id_not_found_1.input.json  > tests/fixtures/pythonvalidate/phase_id_not_found_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/phase_name_not_match_1.input.json  > tests/fixtures/pythonvalidate/phase_name_not_match_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/phase_reference_name_set_but_not_in_original_1.input.json  > tests/fixtures/pythonvalidate/phase_reference_name_set_but_not_in_original_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/span_route_coordinates_incorrect_1.input.json  > tests/fixtures/pythonvalidate/span_route_coordinates_incorrect_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/span_route_type_incorrect_1.input.json  > tests/fixtures/pythonvalidate/span_route_type_incorrect_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/start_node_not_found_1.input.json  > tests/fixtures/pythonvalidate/start_node_not_found_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/start_node_not_found_but_has_external_nodes_1.input.json  > tests/fixtures/pythonvalidate/start_node_not_found_but_has_external_nodes_1.expected.json

@@ -1,37 +1,37 @@
 [
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "node_id": "1",
-    "type": "node_organisation_reference_name_set_but_not_in_original",
-    "field": "networkProvider"
-  },
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "node_id": "1",
-    "type": "node_organisation_reference_name_set_but_not_in_original",
-    "field": "physicalInfrastructureProvider"
-  },
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "phase_id": "1",
-    "type": "phase_organisation_reference_name_set_but_not_in_original"
-  },
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "span_id": "1",
-    "type": "span_organisation_reference_name_set_but_not_in_original",
-    "field": "networkProvider"
-  },
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "span_id": "1",
-    "type": "span_organisation_reference_name_set_but_not_in_original",
-    "field": "physicalInfrastructureProvider"
-  },
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "span_id": "1",
-    "type": "span_organisation_reference_name_set_but_not_in_original",
-    "field": "supplier"
-  }
+    {
+        "type": "node_organisation_reference_name_set_but_not_in_original",
+        "node_id": "1",
+        "field": "physicalInfrastructureProvider",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "node_organisation_reference_name_set_but_not_in_original",
+        "node_id": "1",
+        "field": "networkProvider",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "span_organisation_reference_name_set_but_not_in_original",
+        "span_id": "1",
+        "field": "physicalInfrastructureProvider",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "span_organisation_reference_name_set_but_not_in_original",
+        "span_id": "1",
+        "field": "networkProvider",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "span_organisation_reference_name_set_but_not_in_original",
+        "span_id": "1",
+        "field": "supplier",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "phase_organisation_reference_name_set_but_not_in_original",
+        "phase_id": "1",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    }
 ]
