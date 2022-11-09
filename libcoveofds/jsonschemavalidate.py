@@ -30,9 +30,12 @@ class ValidationError:
         self._path = json_schema_exceptions_validation_error.path
         self._schema_path = json_schema_exceptions_validation_error.schema_path
         self._validator = json_schema_exceptions_validation_error.validator
+        self._validator_value = json_schema_exceptions_validation_error.validator_value
         self._data_ids = schema.extract_data_ids_from_data_and_path(
             json_data, self._path
         )
+        self._context = json_schema_exceptions_validation_error.context
+        self._instance = json_schema_exceptions_validation_error.instance
 
     def json(self):
         return {
@@ -41,4 +44,7 @@ class ValidationError:
             "schema_path": list(self._schema_path),
             "validator": self._validator,
             "data_ids": self._data_ids,
+            "validator_value": self._validator_value,
+            "context": self._context,
+            "instance": self._instance,
         }

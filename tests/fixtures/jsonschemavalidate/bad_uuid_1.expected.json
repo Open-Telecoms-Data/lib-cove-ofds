@@ -17,6 +17,9 @@
         "validator": "format",
         "data_ids": {
             "network_id": "1"
-        }
+        },
+        "validator_value": "uuid",
+        "context": [],
+        "instance": "1"
     }
 ]

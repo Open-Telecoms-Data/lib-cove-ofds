@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - JSONSchema validate:
   - Add format checkers
+  - Add more fields to output object
 
 ## [0.3.0] - 2022-11-08
 

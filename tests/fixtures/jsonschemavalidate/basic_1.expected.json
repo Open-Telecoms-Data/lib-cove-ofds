@@ -23,6 +23,9 @@
         "data_ids": {
             "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
             "node_id": "1"
-        }
+        },
+        "validator_value": "object",
+        "context": [],
+        "instance": "Somewhere, idunno"
     }
 ]
