@@ -1,37 +1,43 @@
 [
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "node_id": "1",
-    "type": "node_organisation_reference_id_not_found",
-    "field": "networkProvider"
-  },
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "node_id": "1",
-    "type": "node_organisation_reference_id_not_found",
-    "field": "physicalInfrastructureProvider"
-  },
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "phase_id": "1",
-    "type": "phase_organisation_reference_id_not_found"
-  },
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "span_id": "1",
-    "type": "span_organisation_reference_id_not_found",
-    "field": "networkProvider"
-  },
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "span_id": "1",
-    "type": "span_organisation_reference_id_not_found",
-    "field": "physicalInfrastructureProvider"
-  },
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "span_id": "1",
-    "type": "span_organisation_reference_id_not_found",
-    "field": "supplier"
-  }
+    {
+        "type": "node_organisation_reference_id_not_found",
+        "node_id": "1",
+        "field": "physicalInfrastructureProvider",
+        "organisation_id_not_found": "2",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "node_organisation_reference_id_not_found",
+        "node_id": "1",
+        "field": "networkProvider",
+        "organisation_id_not_found": "3",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "span_organisation_reference_id_not_found",
+        "span_id": "1",
+        "field": "physicalInfrastructureProvider",
+        "organisation_id_not_found": "4",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "span_organisation_reference_id_not_found",
+        "span_id": "1",
+        "field": "networkProvider",
+        "organisation_id_not_found": "5",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "span_organisation_reference_id_not_found",
+        "span_id": "1",
+        "field": "supplier",
+        "organisation_id_not_found": "6",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "phase_organisation_reference_id_not_found",
+        "phase_id": "1",
+        "organisation_id_not_found": "7",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    }
 ]

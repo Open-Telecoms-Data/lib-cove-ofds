@@ -55,7 +55,8 @@ def test_basic_1(filename):
     validate = PythonValidate(schema)
     output = validate.validate(input_data)
 
-    # Library is not meant to return these in any special order, so sort by type to get something we can check.
+    # Library is not meant to return these in any special order, so sort to get something we can check.
     output = sorted(output, key=lambda d: d["type"] + d.get("field", ""))
+    expected_data = sorted(expected_data, key=lambda d: d["type"] + d.get("field", ""))
 
     assert expected_data == output

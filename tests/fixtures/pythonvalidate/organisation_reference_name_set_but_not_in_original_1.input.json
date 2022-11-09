@@ -9,11 +9,11 @@
           "name": "Accra",
           "physicalInfrastructureProvider": {
             "id": "1",
-            "name": "Nothing Nowhere"
+            "name": "Nothing Nowhere A"
           },
           "networkProvider": {
             "id": "1",
-            "name": "Nothing Nowhere"
+            "name": "Nothing Nowhere B"
           }
         },
         {
@@ -27,15 +27,15 @@
           "name": "Accra to Kumasi",
           "physicalInfrastructureProvider": {
             "id": "1",
-            "name": "Nothing Nowhere"
+            "name": "Nothing Nowhere C"
           },
           "networkProvider": {
             "id": "1",
-            "name": "Nothing Nowhere"
+            "name": "Nothing Nowhere D"
           },
           "supplier": {
             "id": "1",
-            "name": "Nothing Nowhere"
+            "name": "Nothing Nowhere E"
           },
           "start": "1",
           "end": "2"
@@ -49,7 +49,7 @@
           "funders": [
             {
               "id": "1",
-              "name": "Nothing Nowhere"
+              "name": "Nothing Nowhere F"
             }
           ]
         }

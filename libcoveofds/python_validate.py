@@ -87,13 +87,18 @@ class NodesLocationAndSpansRouteAdditionalCheckForNetwork(AdditionalCheckForNetw
             type = location.get("type")
             if type != "Point":
                 self._additional_check_results.append(
-                    {"type": "node_location_type_incorrect", "node_id": node.get("id")}
+                    {
+                        "type": "node_location_type_incorrect",
+                        "node_id": node.get("id"),
+                        "incorrect_type": type,
+                    }
                 )
             if not self._is_json_coordinates(location.get("coordinates")):
                 self._additional_check_results.append(
                     {
                         "type": "node_location_coordinates_incorrect",
                         "node_id": node.get("id"),
+                        "incorrect_coordinates": location.get("coordinates"),
                     }
                 )
 
@@ -103,13 +108,18 @@ class NodesLocationAndSpansRouteAdditionalCheckForNetwork(AdditionalCheckForNetw
             type = location.get("type")
             if type != "LineString":
                 self._additional_check_results.append(
-                    {"type": "span_route_type_incorrect", "span_id": span.get("id")}
+                    {
+                        "type": "span_route_type_incorrect",
+                        "span_id": span.get("id"),
+                        "incorrect_type": type,
+                    }
                 )
             if not self._is_json_list_coordinates(location.get("coordinates")):
                 self._additional_check_results.append(
                     {
                         "type": "span_route_coordinates_incorrect",
                         "span_id": span.get("id"),
+                        "incorrect_coordinates": location.get("coordinates"),
                     }
                 )
 
@@ -212,14 +222,19 @@ class PhaseReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
             if id in self._phases:
                 # check - if name is set on reference but not on original
                 if name and not self._phases[id]:
+                    name_set_but_not_in_original_result.update(
+                        {"name_in_reference": name}
+                    )
                     self._additional_check_results.append(
                         name_set_but_not_in_original_result
                     )
                 # check - if names are both set, do they match?
                 if name and self._phases[id] and name != self._phases[id]:
+                    name_not_match_result.update({"name_in_reference": name})
                     self._additional_check_results.append(name_not_match_result)
             else:
                 # check failed - id is not known
+                id_not_found_result.update({"phase_id_not_found": id})
                 self._additional_check_results.append(id_not_found_result)
 
 
@@ -372,14 +387,19 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
             if id in self._organisations:
                 # check - if name is set on reference but not on original
                 if name and not self._organisations[id]:
+                    name_set_but_not_in_original_result.update(
+                        {"name_in_reference": name}
+                    )
                     self._additional_check_results.append(
                         name_set_but_not_in_original_result
                     )
                 # check - if names are both set, do they match?
                 if name and self._organisations[id] and name != self._organisations[id]:
+                    name_not_match_result.update({"name_in_reference": name})
                     self._additional_check_results.append(name_not_match_result)
             else:
                 # check failed - id is not known
+                id_not_found_result.update({"organisation_id_not_found": id})
                 self._additional_check_results.append(id_not_found_result)
 
 

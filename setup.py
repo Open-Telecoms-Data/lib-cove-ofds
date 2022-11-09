@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="libcoveofds",
-    version="0.3.0",
+    version="0.4.0",
     author="Open Data Services",
     author_email="code@opendataservices.coop",
     url="https://github.com/Open-Telecoms-Data/lib-cove-ofds",
@@ -15,7 +15,7 @@ setup(
     packages=find_packages(),
     long_description="A data review library",
     python_requires=">=3.8",
-    install_requires=["jsonschema", "requests", "jsonref"],
+    install_requires=["jsonschema", "requests", "jsonref", "json-merge-patch"],
     extras_require={
         "dev": ["pytest", "flake8", "black==22.3.0", "isort", "mypy", "Sphinx"]
     },

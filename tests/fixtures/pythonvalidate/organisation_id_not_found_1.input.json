@@ -11,7 +11,7 @@
             "id": "2"
           },
           "networkProvider": {
-            "id": "2"
+            "id": "3"
           }
         },
         {
@@ -24,13 +24,13 @@
           "id": "1",
           "name": "Accra to Kumasi",
           "physicalInfrastructureProvider": {
-            "id": "2"
+            "id": "4"
           },
           "networkProvider": {
-            "id": "2"
+            "id": "5"
           },
           "supplier": {
-            "id": "2"
+            "id": "6"
           },
           "start": "1",
           "end": "2"
@@ -43,7 +43,7 @@
           "description": "The first phase of the Ghana Fibre Network NextGen roll-out.",
           "funders": [
             {
-              "id": "2"
+              "id": "7"
             }
           ]
         }

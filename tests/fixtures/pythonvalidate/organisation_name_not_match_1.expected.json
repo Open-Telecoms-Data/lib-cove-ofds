@@ -1,37 +1,43 @@
 [
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "node_id": "1",
-    "type": "node_organisation_reference_name_does_not_match",
-    "field": "networkProvider"
-  },
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "node_id": "1",
-    "type": "node_organisation_reference_name_does_not_match",
-    "field": "physicalInfrastructureProvider"
-  },
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "phase_id": "1",
-    "type": "phase_organisation_reference_name_does_not_match"
-  },
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "span_id": "1",
-    "type": "span_organisation_reference_name_does_not_match",
-    "field": "networkProvider"
-  },
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "span_id": "1",
-    "type": "span_organisation_reference_name_does_not_match",
-    "field": "physicalInfrastructureProvider"
-  },
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "span_id": "1",
-    "type": "span_organisation_reference_name_does_not_match",
-    "field": "supplier"
-  }
+    {
+        "type": "node_organisation_reference_name_does_not_match",
+        "node_id": "1",
+        "field": "physicalInfrastructureProvider",
+        "name_in_reference": "Nothing Nowhere A",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "node_organisation_reference_name_does_not_match",
+        "node_id": "1",
+        "field": "networkProvider",
+        "name_in_reference": "Nothing Nowhere B",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "span_organisation_reference_name_does_not_match",
+        "span_id": "1",
+        "field": "physicalInfrastructureProvider",
+        "name_in_reference": "Nothing Nowhere C",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "span_organisation_reference_name_does_not_match",
+        "span_id": "1",
+        "field": "networkProvider",
+        "name_in_reference": "Nothing Nowhere D",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "span_organisation_reference_name_does_not_match",
+        "span_id": "1",
+        "field": "supplier",
+        "name_in_reference": "Nothing Nowhere E",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "phase_organisation_reference_name_does_not_match",
+        "phase_id": "1",
+        "name_in_reference": "Nothing Nowhere F",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    }
 ]

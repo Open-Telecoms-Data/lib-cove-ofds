@@ -1,4 +1,7 @@
 import copy
+from collections import defaultdict
+
+from json_merge_patch import create_patch as json_diff_function
 
 from libcove2.common import fields_present_generator
 
@@ -66,6 +69,13 @@ class JSONToGeoJSONConverter:
                 out["spans_output_field_coverage"][key] = {"count": 1}
             else:
                 out["spans_output_field_coverage"][key]["count"] += 1
+        # Any geometries?
+        out["any_spans_with_geometry"] = bool(
+            [True for s in self._spans_geojson_features if s.get("geometry")]
+        )
+        out["any_nodes_with_geometry"] = bool(
+            [True for n in self._nodes_geojson_features if n.get("geometry")]
+        )
         # return
         return out
 
@@ -169,6 +179,10 @@ class JSONToGeoJSONConverter:
 class GeoJSONToJSONConverter:
     def __init__(self):
         self._networks: dict = {}
+        self._inconsistent_phase_ids_by_network_id: defaultdict = defaultdict(set)
+        self._inconsistent_organisation_ids_by_network_id: defaultdict = defaultdict(
+            set
+        )
 
     def process_data(self, nodes_data: dict, spans_data: dict) -> None:
         # Network
@@ -285,8 +299,11 @@ class GeoJSONToJSONConverter:
         phase_id = phase.get("id")
         if phase_id:
             if phase_id in self._networks[network_id]["phases"]:
-                # TODO check value is same, add error if not
-                pass
+                # Is it inconsistent with what we have seen before?
+                if json_diff_function(
+                    self._networks[network_id]["phases"][phase_id], phase
+                ):
+                    self._inconsistent_phase_ids_by_network_id[network_id].add(phase_id)
             else:
                 self._networks[network_id]["phases"][phase_id] = phase
             return phase_id
@@ -296,8 +313,14 @@ class GeoJSONToJSONConverter:
         organisation_id = organisation.get("id")
         if organisation_id:
             if organisation_id in self._networks[network_id]["organisations"]:
-                # TODO check value is same, add error if not
-                pass
+                # Is it inconsistent with what we have seen before?
+                if json_diff_function(
+                    self._networks[network_id]["organisations"][organisation_id],
+                    organisation,
+                ):
+                    self._inconsistent_organisation_ids_by_network_id[network_id].add(
+                        organisation_id
+                    )
             else:
                 self._networks[network_id]["organisations"][
                     organisation_id
@@ -329,5 +352,14 @@ class GeoJSONToJSONConverter:
                 out["output_field_coverage"][key] = {"count": 1}
             else:
                 out["output_field_coverage"][key]["count"] += 1
+        # inconsistent
+        out["inconsistent_phases_by_network_id"] = {
+            k: {"phase_ids": sorted(list(v))}
+            for k, v in self._inconsistent_phase_ids_by_network_id.items()
+        }
+        out["inconsistent_organisations_by_network_id"] = {
+            k: {"organisation_ids": sorted(list(v))}
+            for k, v in self._inconsistent_organisation_ids_by_network_id.items()
+        }
         # return
         return out

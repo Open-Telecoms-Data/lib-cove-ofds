@@ -21,7 +21,7 @@
           "id": "1",
           "name": "Accra to Kumasi",
           "phase": {
-            "id": "2"
+            "id": "3"
           },
           "start": "1",
           "end": "2"
@@ -40,7 +40,7 @@
           "title": "NextGen Phase 1 Construction Contract",
           "relatedPhases": [
             {
-              "id": "2"
+              "id": "4"
             }
           ]
         }

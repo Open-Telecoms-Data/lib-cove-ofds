@@ -36,5 +36,7 @@
         "/networks/spans/end": {
             "count": 1
         }
-    }
+    },
+    "inconsistent_phases_by_network_id": {},
+    "inconsistent_organisations_by_network_id": {}
 }

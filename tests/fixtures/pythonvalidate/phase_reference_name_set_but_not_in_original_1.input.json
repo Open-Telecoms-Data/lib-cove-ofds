@@ -17,7 +17,7 @@
           "name": "Kumasi",
           "phase": {
             "id": "1",
-            "name": "I forget"
+            "name": "I forget again"
           }
         }
       ],
@@ -27,7 +27,7 @@
           "name": "Accra to Kumasi",
           "phase": {
             "id": "1",
-            "name": "I forget"
+            "name": "I forget more"
           },
           "start": "1",
           "end": "2"
@@ -45,7 +45,7 @@
           "relatedPhases": [
             {
               "id": "1",
-              "name": "I forget"
+              "name": "I forget, did I even know?"
             }
           ]
         }

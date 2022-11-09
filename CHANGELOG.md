@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.4.0] - 2022-11-09
+
+### Added
+
+- JSONSchema validate:
+  - Add format checkers
+  - Add more fields to output object
+- GeoJSON to JSON:
+  - meta information includes inconsistent ids on organisations and phases
+- JSON to GeoJSON:
+  - add any_spans_with_geometry and any_nodes_with_geometry to meta
+- Python Validate:
+  - add more information to errors
+
 ## [0.3.0] - 2022-11-08
 
 ### Added

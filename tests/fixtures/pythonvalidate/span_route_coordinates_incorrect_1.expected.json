@@ -1,7 +1,11 @@
 [
-  {
-    "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
-    "span_id": "1",
-    "type": "span_route_coordinates_incorrect"
-  }
+    {
+        "type": "span_route_coordinates_incorrect",
+        "span_id": "1",
+        "incorrect_coordinates": [
+            -1.628,
+            6.711
+        ],
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    }
 ]

@@ -18,14 +18,11 @@ pip install -e .
 
 ### Running the command line tool
 
-Call `libcoveofds` and pass the filename of some JSON data.
+Call `libcoveofds` and pass --help to see options.
 
-    libcoveofds tests/fixtures/0.1/basic_1.json
+    libcoveofds --help 
+    libcoveofds jsontogeojson --help
     
-You can also pass the raw option to see the JSON as it originally came out of the library.
-
-    libcoveofds --raw tests/fixtures/0.1/basic_1.json
-
 ### Running tests
 
     python -m pytest
