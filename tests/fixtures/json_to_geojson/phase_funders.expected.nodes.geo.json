@@ -1,0 +1,37 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": null,
+            "properties": {
+                "id": "1",
+                "phase": {
+                    "id": "1",
+                    "funders": [
+                        {
+                            "id": "1",
+                            "name": "Ghana Infrastructure Investment Fund",
+                            "country": "GH",
+                            "roles": [
+                                "funder"
+                            ],
+                            "roleDetails": "The Ghana Infrastructure Investment Fund provided equity financing for the construction of phase 1 of the NextGen network.",
+                            "website": "https://www.example.com",
+                            "logo": "https://www.example.com/logo.png"
+                        }
+                    ]
+                },
+                "network": {
+                    "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+                    "links": [
+                        {
+                            "rel": "describedby",
+                            "href": "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/0__1__0__beta/schema/network-schema.json"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

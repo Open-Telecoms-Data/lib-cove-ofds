@@ -1,0 +1,77 @@
+{
+    "nodes_output_field_coverage": {
+        "/type": {
+            "count": 1
+        },
+        "/features": {
+            "count": 1
+        },
+        "/features/type": {
+            "count": 1
+        },
+        "/features/geometry": {
+            "count": 1
+        },
+        "/features/properties": {
+            "count": 1
+        },
+        "/features/properties/id": {
+            "count": 1
+        },
+        "/features/properties/phase": {
+            "count": 1
+        },
+        "/features/properties/phase/id": {
+            "count": 1
+        },
+        "/features/properties/phase/funders": {
+            "count": 1
+        },
+        "/features/properties/phase/funders/id": {
+            "count": 1
+        },
+        "/features/properties/phase/funders/name": {
+            "count": 1
+        },
+        "/features/properties/phase/funders/country": {
+            "count": 1
+        },
+        "/features/properties/phase/funders/roles": {
+            "count": 1
+        },
+        "/features/properties/phase/funders/roleDetails": {
+            "count": 1
+        },
+        "/features/properties/phase/funders/website": {
+            "count": 1
+        },
+        "/features/properties/phase/funders/logo": {
+            "count": 1
+        },
+        "/features/properties/network": {
+            "count": 1
+        },
+        "/features/properties/network/id": {
+            "count": 1
+        },
+        "/features/properties/network/links": {
+            "count": 1
+        },
+        "/features/properties/network/links/rel": {
+            "count": 1
+        },
+        "/features/properties/network/links/href": {
+            "count": 1
+        }
+    },
+    "spans_output_field_coverage": {
+        "/type": {
+            "count": 1
+        },
+        "/features": {
+            "count": 1
+        }
+    },
+    "any_spans_with_geometry": false,
+    "any_nodes_with_geometry": false
+}

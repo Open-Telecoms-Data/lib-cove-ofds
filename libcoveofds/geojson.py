@@ -21,6 +21,14 @@ class JSONToGeoJSONConverter:
         phases = network_data.pop("phases", [])
         organisations = network_data.pop("organisations", [])
 
+        # Dereference `phases.funders`
+        for phase in phases:
+            if "funders" in phase and isinstance(phase["funders"], list):
+                phase["funders"] = [
+                    self._dereference_object(organisation, organisations)
+                    for organisation in phase["funders"]
+                ]
+
         # Dereference `contracts.relatedPhases`
         if "contracts" in network_data and isinstance(network_data["contracts"], list):
             for contract in network_data["contracts"]:

@@ -10,6 +10,7 @@ JSON_TO_GEOJSON_FILES = [
     ("basic_1"),
     # with phases - check dereffed
     ("phases_1"),
+    ("phase_funders"),
     # Organisations derefed
     ("organisations_1"),
     # no locations / route set
