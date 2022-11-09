@@ -2,6 +2,7 @@
     {
         "type": "node_location_type_incorrect",
         "node_id": "1",
+        "incorrect_type": "LineString",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     }
 ]

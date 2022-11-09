@@ -2,16 +2,19 @@
     {
         "type": "node_phase_reference_id_not_found",
         "node_id": "1",
+        "phase_id_not_found": "2",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     },
     {
         "type": "span_phase_reference_id_not_found",
         "span_id": "1",
+        "phase_id_not_found": "3",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     },
     {
         "type": "contract_related_phase_reference_id_not_found",
         "contract_id": "1",
+        "phase_id_not_found": "4",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     }
 ]

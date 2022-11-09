@@ -2,16 +2,19 @@
     {
         "type": "node_phase_reference_name_does_not_match",
         "node_id": "1",
+        "name_in_reference": "I forget",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     },
     {
         "type": "span_phase_reference_name_does_not_match",
         "span_id": "1",
+        "name_in_reference": "I forget again",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     },
     {
         "type": "contract_related_phase_reference_name_does_not_match",
         "contract_id": "1",
+        "name_in_reference": "I forget, really I'm so bad",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     }
 ]
