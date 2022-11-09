@@ -9,6 +9,8 @@ from libcoveofds.schema import OFDSSchema
 JSONSCHEMAVALIDATE_FILES = [
     # basic example
     ("basic_1"),
+    # Bad data
+    ("bad_uuid_1"),
 ]
 
 

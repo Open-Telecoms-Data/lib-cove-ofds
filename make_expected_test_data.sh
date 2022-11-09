@@ -25,6 +25,7 @@ libcoveofds jtogj --outputmetafilename tests/fixtures/json_to_geojson/no_geometr
 
 # JSON Schema validate
 libcoveofds jsv  tests/fixtures/jsonschemavalidate/basic_1.input.json > tests/fixtures/jsonschemavalidate/basic_1.expected.json
+libcoveofds jsv  tests/fixtures/jsonschemavalidate/bad_uuid_1.input.json > tests/fixtures/jsonschemavalidate/bad_uuid_1.expected.json
 
 # Python validate
 # TODO

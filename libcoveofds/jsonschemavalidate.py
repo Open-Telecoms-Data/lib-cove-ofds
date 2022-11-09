@@ -1,3 +1,4 @@
+from jsonschema import FormatChecker
 from jsonschema.exceptions import ValidationError as JSONSchemaExceptionsValidationError
 from jsonschema.validators import Draft202012Validator
 
@@ -9,7 +10,9 @@ class JSONSchemaValidator:
         self._schema = schema
 
     def validate(self, json_data: dict) -> list:
-        validator = Draft202012Validator(schema=self._schema.get_package_schema())
+        validator = Draft202012Validator(
+            schema=self._schema.get_package_schema(), format_checker=FormatChecker()
+        )
         output = []
         for e in validator.iter_errors(json_data):
             output.append(ValidationError(e, json_data, self._schema))
