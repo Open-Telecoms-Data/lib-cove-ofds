@@ -69,6 +69,13 @@ class JSONToGeoJSONConverter:
                 out["spans_output_field_coverage"][key] = {"count": 1}
             else:
                 out["spans_output_field_coverage"][key]["count"] += 1
+        # Any geometries?
+        out["any_spans_with_geometry"] = bool(
+            [True for s in self._spans_geojson_features if s.get("geometry")]
+        )
+        out["any_nodes_with_geometry"] = bool(
+            [True for n in self._nodes_geojson_features if n.get("geometry")]
+        )
         # return
         return out
 

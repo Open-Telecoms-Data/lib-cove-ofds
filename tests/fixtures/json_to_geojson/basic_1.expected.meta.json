@@ -116,5 +116,7 @@
         "/features/properties/network/name": {
             "count": 1
         }
-    }
+    },
+    "any_spans_with_geometry": true,
+    "any_nodes_with_geometry": true
 }
