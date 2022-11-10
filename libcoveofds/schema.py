@@ -6,9 +6,8 @@ from libcove2.common import schema_dict_fields_generator
 
 class OFDSSchema:
 
-    # The latest commit hash from https://github.com/Open-Telecoms-Data/open-fibre-data-standard/commits/0.1-dev
-    package_schema_url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/b4dbea4705039610d893c12e688fd2a1f9b877ca/schema/network-package-schema.json"
-    data_schema_url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/b4dbea4705039610d893c12e688fd2a1f9b877ca/schema/network-schema.json"
+    package_schema_url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/0__1__0__beta/schema/network-package-schema.json"
+    data_schema_url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/0__1__0__beta/schema/network-schema.json"
 
     def get_package_schema(self):
         r = requests.get(self.package_schema_url)
