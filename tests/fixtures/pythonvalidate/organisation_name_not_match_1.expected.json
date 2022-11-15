@@ -4,6 +4,7 @@
         "node_id": "1",
         "field": "physicalInfrastructureProvider",
         "name_in_reference": "Nothing Nowhere A",
+        "name_should_be": "Everything Everywhere",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     },
     {
@@ -11,6 +12,7 @@
         "node_id": "1",
         "field": "networkProvider",
         "name_in_reference": "Nothing Nowhere B",
+        "name_should_be": "Everything Everywhere",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     },
     {
@@ -18,6 +20,7 @@
         "span_id": "1",
         "field": "physicalInfrastructureProvider",
         "name_in_reference": "Nothing Nowhere C",
+        "name_should_be": "Everything Everywhere",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     },
     {
@@ -25,6 +28,7 @@
         "span_id": "1",
         "field": "networkProvider",
         "name_in_reference": "Nothing Nowhere D",
+        "name_should_be": "Everything Everywhere",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     },
     {
@@ -32,12 +36,14 @@
         "span_id": "1",
         "field": "supplier",
         "name_in_reference": "Nothing Nowhere E",
+        "name_should_be": "Everything Everywhere",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     },
     {
         "type": "phase_organisation_reference_name_does_not_match",
         "phase_id": "1",
         "name_in_reference": "Nothing Nowhere F",
+        "name_should_be": "Everything Everywhere",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     }
 ]
