@@ -230,7 +230,9 @@ class PhaseReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                     )
                 # check - if names are both set, do they match?
                 if name and self._phases[id] and name != self._phases[id]:
-                    name_not_match_result.update({"name_in_reference": name})
+                    name_not_match_result.update(
+                        {"name_in_reference": name, "name_should_be": self._phases[id]}
+                    )
                     self._additional_check_results.append(name_not_match_result)
             else:
                 # check failed - id is not known
@@ -395,7 +397,12 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                     )
                 # check - if names are both set, do they match?
                 if name and self._organisations[id] and name != self._organisations[id]:
-                    name_not_match_result.update({"name_in_reference": name})
+                    name_not_match_result.update(
+                        {
+                            "name_in_reference": name,
+                            "name_should_be": self._organisations[id],
+                        }
+                    )
                     self._additional_check_results.append(name_not_match_result)
             else:
                 # check failed - id is not known
