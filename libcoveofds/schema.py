@@ -6,6 +6,8 @@ from libcove2.common import schema_dict_fields_generator
 
 class OFDSSchema:
 
+    # Please lock to a specific tag or commit hash - never a branch name!
+    # This prevents changes to the standard suddenly breaking previously working software/tests etc.
     package_schema_url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/0__1__0__beta/schema/network-package-schema.json"
     data_schema_url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/0__1__0__beta/schema/network-schema.json"
 
