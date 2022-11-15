@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Updated schema to 0__1__0__beta
 
+### Added
+
+- JSON to GeoJSON:
+  - [#31](https://github.com/Open-Telecoms-Data/lib-cove-ofds/pull/31) - `jsontogeojson`: Dereference funders
+
 ## [0.4.0] - 2022-11-09
 
 ### Added
