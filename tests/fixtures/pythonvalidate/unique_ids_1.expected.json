@@ -1,0 +1,27 @@
+[
+    {
+        "type": "duplicate_node_id",
+        "node_id": "2",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "duplicate_span_id",
+        "span_id": "1",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "duplicate_phase_id",
+        "phase_id": "2",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "duplicate_organisation_id",
+        "organisation_id": "2",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "duplicate_contract_id",
+        "contract_id": "2",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    }
+]
