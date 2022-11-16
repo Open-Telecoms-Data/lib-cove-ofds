@@ -459,6 +459,93 @@ class IsNodeUsedInSpanAdditionalCheckForNetwork(AdditionalCheckForNetwork):
         return True
 
 
+class UniqueIDsAdditionalCheckForNetwork(AdditionalCheckForNetwork):
+    def __init__(self, schema_object: OFDSSchema):
+        super().__init__(schema_object)
+        self._node_ids_seen: list = []
+        self._span_ids_seen: list = []
+        self._phase_ids_seen: list = []
+        self._organisation_ids_seen: list = []
+        self._contract_ids_seen: list = []
+
+    def check_node_first_pass(self, node: dict):
+        id = node.get("id")
+        if id and isinstance(id, str):
+            if id in self._node_ids_seen:
+                self._additional_check_results.append(
+                    {
+                        "type": "duplicate_node_id",
+                        "node_id": id,
+                    }
+                )
+            else:
+                self._node_ids_seen.append(id)
+
+        pass
+
+    def check_span_first_pass(self, span: dict):
+        id = span.get("id")
+        if id and isinstance(id, str):
+            if id in self._span_ids_seen:
+                self._additional_check_results.append(
+                    {
+                        "type": "duplicate_span_id",
+                        "span_id": id,
+                    }
+                )
+            else:
+                self._span_ids_seen.append(id)
+
+    def check_phase_first_pass(self, phase: dict):
+        id = phase.get("id")
+        if id and isinstance(id, str):
+            if id in self._phase_ids_seen:
+                self._additional_check_results.append(
+                    {
+                        "type": "duplicate_phase_id",
+                        "phase_id": id,
+                    }
+                )
+            else:
+                self._phase_ids_seen.append(id)
+
+        pass
+
+    def check_organisation_first_pass(self, organisation: dict):
+        id = organisation.get("id")
+        if id and isinstance(id, str):
+            if id in self._organisation_ids_seen:
+                self._additional_check_results.append(
+                    {
+                        "type": "duplicate_organisation_id",
+                        "organisation_id": id,
+                    }
+                )
+            else:
+                self._organisation_ids_seen.append(id)
+
+        pass
+
+    def check_contract_first_pass(self, contract: dict):
+        id = contract.get("id")
+        if id and isinstance(id, str):
+            if id in self._contract_ids_seen:
+                self._additional_check_results.append(
+                    {
+                        "type": "duplicate_contract_id",
+                        "contract_id": id,
+                    }
+                )
+            else:
+                self._contract_ids_seen.append(id)
+
+    def skip_if_any_links_have_external_node_data(self) -> bool:
+        return False
+
+    def skip_if_any_links_have_external_span_data(self) -> bool:
+        return False
+
+
 ADDITIONAL_CHECK_CLASSES_FOR_NETWORK = [
     SpansMustHaveValidNodesAdditionalCheckForNetwork,
     NodesLocationAndSpansRouteAdditionalCheckForNetwork,
@@ -466,6 +553,7 @@ ADDITIONAL_CHECK_CLASSES_FOR_NETWORK = [
     OrganisationReferenceAdditionalCheckForNetwork,
     NodeInternationalConnectionCountryAdditionalCheckForNetwork,
     IsNodeUsedInSpanAdditionalCheckForNetwork,
+    UniqueIDsAdditionalCheckForNetwork,
 ]
 
 

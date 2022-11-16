@@ -23,6 +23,7 @@ PYTHONVALIDATE_FILES = [
     ("span_route_type_incorrect_1"),
     ("start_node_not_found_1"),
     ("start_node_not_found_but_has_external_nodes_1"),
+    ("unique_ids_1"),
 ]
 
 
