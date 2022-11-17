@@ -2,6 +2,7 @@
     {
         "type": "node_international_connections_country_not_set",
         "node_id": "1",
+        "path": "/networks/0/nodes/0/internationalConnections/0",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     }
 ]

@@ -3,6 +3,7 @@
         "type": "span_start_node_not_found",
         "missing_node_id": "167",
         "span_id": "1",
+        "path": "/networks/0/spans/0/start",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     }
 ]

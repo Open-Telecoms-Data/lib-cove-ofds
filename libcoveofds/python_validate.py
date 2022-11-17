@@ -8,34 +8,34 @@ class AdditionalCheckForNetwork:
         self._additional_check_results: list = []
         self._schema_object: OFDSSchema = schema_object
 
-    def check_node_first_pass(self, node: dict):
+    def check_node_first_pass(self, node: dict, path: str):
         pass
 
-    def check_span_first_pass(self, span: dict):
+    def check_span_first_pass(self, span: dict, path: str):
         pass
 
-    def check_phase_first_pass(self, phase: dict):
+    def check_phase_first_pass(self, phase: dict, path: str):
         pass
 
-    def check_organisation_first_pass(self, organisation: dict):
+    def check_organisation_first_pass(self, organisation: dict, path: str):
         pass
 
-    def check_contract_first_pass(self, contract: dict):
+    def check_contract_first_pass(self, contract: dict, path: str):
         pass
 
-    def check_node_second_pass(self, node: dict):
+    def check_node_second_pass(self, node: dict, path: str):
         pass
 
-    def check_span_second_pass(self, span: dict):
+    def check_span_second_pass(self, span: dict, path: str):
         pass
 
-    def check_phase_second_pass(self, phase: dict):
+    def check_phase_second_pass(self, phase: dict, path: str):
         pass
 
-    def check_organisation_second_pass(self, organisation: dict):
+    def check_organisation_second_pass(self, organisation: dict, path: str):
         pass
 
-    def check_contract_second_pass(self, contract: dict):
+    def check_contract_second_pass(self, contract: dict, path: str):
         pass
 
     def get_additional_check_results(self):
@@ -53,24 +53,32 @@ class SpansMustHaveValidNodesAdditionalCheckForNetwork(AdditionalCheckForNetwork
         super().__init__(schema_object)
         self._node_ids_seen: list = []
 
-    def check_node_first_pass(self, node: dict):
+    def check_node_first_pass(self, node: dict, path: str):
         id = node.get("id")
         if id:
             self._node_ids_seen.append(id)
 
-    def check_span_second_pass(self, span: dict):
+    def check_span_second_pass(self, span: dict, path: str):
         span_id = span.get("id")
         start = span.get("start")
-        if start:
-            self._check_node_id_valid(start, "span_start_node_not_found", span_id)
-        end = span.get("end")
-        if end:
-            self._check_node_id_valid(end, "span_end_node_not_found", span_id)
-
-    def _check_node_id_valid(self, node_id, error_type, span_id):
-        if not node_id in self._node_ids_seen:
+        if start and isinstance(start, str) and not start in self._node_ids_seen:
             self._additional_check_results.append(
-                {"type": error_type, "missing_node_id": node_id, "span_id": span_id}
+                {
+                    "type": "span_start_node_not_found",
+                    "missing_node_id": start,
+                    "span_id": span_id,
+                    "path": path + "/start",
+                }
+            )
+        end = span.get("end")
+        if end and isinstance(end, str) and not end in self._node_ids_seen:
+            self._additional_check_results.append(
+                {
+                    "type": "span_end_node_not_found",
+                    "missing_node_id": end,
+                    "span_id": span_id,
+                    "path": path + "/end",
+                }
             )
 
     def skip_if_any_links_have_external_node_data(self) -> bool:
@@ -81,7 +89,7 @@ class SpansMustHaveValidNodesAdditionalCheckForNetwork(AdditionalCheckForNetwork
 
 
 class NodesLocationAndSpansRouteAdditionalCheckForNetwork(AdditionalCheckForNetwork):
-    def check_node_first_pass(self, node: dict):
+    def check_node_first_pass(self, node: dict, path: str):
         location = node.get("location")
         if location:
             type = location.get("type")
@@ -91,6 +99,7 @@ class NodesLocationAndSpansRouteAdditionalCheckForNetwork(AdditionalCheckForNetw
                         "type": "node_location_type_incorrect",
                         "node_id": node.get("id"),
                         "incorrect_type": type,
+                        "path": path + "/location/type",
                     }
                 )
             if not self._is_json_coordinates(location.get("coordinates")):
@@ -99,10 +108,11 @@ class NodesLocationAndSpansRouteAdditionalCheckForNetwork(AdditionalCheckForNetw
                         "type": "node_location_coordinates_incorrect",
                         "node_id": node.get("id"),
                         "incorrect_coordinates": location.get("coordinates"),
+                        "path": path + "/location/coordinates",
                     }
                 )
 
-    def check_span_first_pass(self, span: dict):
+    def check_span_first_pass(self, span: dict, path: str):
         location = span.get("route")
         if location:
             type = location.get("type")
@@ -112,6 +122,7 @@ class NodesLocationAndSpansRouteAdditionalCheckForNetwork(AdditionalCheckForNetw
                         "type": "span_route_type_incorrect",
                         "span_id": span.get("id"),
                         "incorrect_type": type,
+                        "path": path + "/route/type",
                     }
                 )
             if not self._is_json_list_coordinates(location.get("coordinates")):
@@ -120,6 +131,7 @@ class NodesLocationAndSpansRouteAdditionalCheckForNetwork(AdditionalCheckForNetw
                         "type": "span_route_coordinates_incorrect",
                         "span_id": span.get("id"),
                         "incorrect_coordinates": location.get("coordinates"),
+                        "path": path + "/route/coordinates",
                     }
                 )
 
@@ -145,65 +157,85 @@ class PhaseReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
         super().__init__(schema_object)
         self._phases: dict = {}
 
-    def check_phase_first_pass(self, phase: dict):
+    def check_phase_first_pass(self, phase: dict, path: str):
         id = phase.get("id")
         name = phase.get("name")
         if id:
             self._phases[id] = name
 
-    def check_node_second_pass(self, node: dict):
+    def check_node_second_pass(self, node: dict, path: str):
         if "phase" in node and isinstance(node["phase"], dict):
             self._check_related_phase_object(
                 node["phase"],
                 {
                     "type": "node_phase_reference_id_not_found",
                     "node_id": node.get("id"),
+                    "path": path + "/phase/id",
                 },
                 {
                     "type": "node_phase_reference_name_does_not_match",
                     "node_id": node.get("id"),
+                    "path": path + "/phase/name",
                 },
                 {
                     "type": "node_phase_reference_name_set_but_not_in_original",
                     "node_id": node.get("id"),
+                    "path": path + "/phase/name",
                 },
             )
 
-    def check_span_second_pass(self, span: dict):
+    def check_span_second_pass(self, span: dict, path: str):
         if "phase" in span and isinstance(span["phase"], dict):
             self._check_related_phase_object(
                 span["phase"],
                 {
                     "type": "span_phase_reference_id_not_found",
                     "span_id": span.get("id"),
+                    "path": path + "/phase/id",
                 },
                 {
                     "type": "span_phase_reference_name_does_not_match",
                     "span_id": span.get("id"),
+                    "path": path + "/phase/name",
                 },
                 {
                     "type": "span_phase_reference_name_set_but_not_in_original",
                     "span_id": span.get("id"),
+                    "path": path + "/phase/name",
                 },
             )
 
-    def check_contract_second_pass(self, contract: dict):
+    def check_contract_second_pass(self, contract: dict, path: str):
         if "relatedPhases" in contract and isinstance(contract["relatedPhases"], list):
-            for related_phase in contract["relatedPhases"]:
+            for related_phase_idx, related_phase in enumerate(
+                contract["relatedPhases"]
+            ):
                 if isinstance(related_phase, dict):
                     self._check_related_phase_object(
                         related_phase,
                         {
                             "type": "contract_related_phase_reference_id_not_found",
                             "contract_id": contract.get("id"),
+                            "path": path
+                            + "/relatedPhases/"
+                            + str(related_phase_idx)
+                            + "/id",
                         },
                         {
                             "type": "contract_related_phase_reference_name_does_not_match",
                             "contract_id": contract.get("id"),
+                            "path": path
+                            + "/relatedPhases/"
+                            + str(related_phase_idx)
+                            + "/name",
                         },
                         {
                             "type": "contract_related_phase_reference_name_set_but_not_in_original",
                             "contract_id": contract.get("id"),
+                            "path": path
+                            + "/relatedPhases/"
+                            + str(related_phase_idx)
+                            + "/name",
                         },
                     )
 
@@ -245,13 +277,13 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
         super().__init__(schema_object)
         self._organisations: dict = {}
 
-    def check_organisation_first_pass(self, organisation: dict):
+    def check_organisation_first_pass(self, organisation: dict, path: str):
         id = organisation.get("id")
         name = organisation.get("name")
         if id:
             self._organisations[id] = name
 
-    def check_node_second_pass(self, node: dict):
+    def check_node_second_pass(self, node: dict, path: str):
         if "physicalInfrastructureProvider" in node and isinstance(
             node["physicalInfrastructureProvider"], dict
         ):
@@ -261,16 +293,19 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                     "type": "node_organisation_reference_id_not_found",
                     "node_id": node.get("id"),
                     "field": "physicalInfrastructureProvider",
+                    "path": path + "/physicalInfrastructureProvider/id",
                 },
                 {
                     "type": "node_organisation_reference_name_does_not_match",
                     "node_id": node.get("id"),
                     "field": "physicalInfrastructureProvider",
+                    "path": path + "/physicalInfrastructureProvider/name",
                 },
                 {
                     "type": "node_organisation_reference_name_set_but_not_in_original",
                     "node_id": node.get("id"),
                     "field": "physicalInfrastructureProvider",
+                    "path": path + "/physicalInfrastructureProvider/name",
                 },
             )
         if "networkProvider" in node and isinstance(node["networkProvider"], dict):
@@ -280,20 +315,23 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                     "type": "node_organisation_reference_id_not_found",
                     "node_id": node.get("id"),
                     "field": "networkProvider",
+                    "path": path + "/networkProvider/id",
                 },
                 {
                     "type": "node_organisation_reference_name_does_not_match",
                     "node_id": node.get("id"),
                     "field": "networkProvider",
+                    "path": path + "/networkProvider/name",
                 },
                 {
                     "type": "node_organisation_reference_name_set_but_not_in_original",
                     "node_id": node.get("id"),
                     "field": "networkProvider",
+                    "path": path + "/networkProvider/name",
                 },
             )
 
-    def check_span_second_pass(self, span: dict):
+    def check_span_second_pass(self, span: dict, path: str):
         if "physicalInfrastructureProvider" in span and isinstance(
             span["physicalInfrastructureProvider"], dict
         ):
@@ -303,16 +341,19 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                     "type": "span_organisation_reference_id_not_found",
                     "span_id": span.get("id"),
                     "field": "physicalInfrastructureProvider",
+                    "path": path + "/physicalInfrastructureProvider/id",
                 },
                 {
                     "type": "span_organisation_reference_name_does_not_match",
                     "span_id": span.get("id"),
                     "field": "physicalInfrastructureProvider",
+                    "path": path + "/physicalInfrastructureProvider/name",
                 },
                 {
                     "type": "span_organisation_reference_name_set_but_not_in_original",
                     "span_id": span.get("id"),
                     "field": "physicalInfrastructureProvider",
+                    "path": path + "/physicalInfrastructureProvider/name",
                 },
             )
         if "networkProvider" in span and isinstance(span["networkProvider"], dict):
@@ -322,16 +363,19 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                     "type": "span_organisation_reference_id_not_found",
                     "span_id": span.get("id"),
                     "field": "networkProvider",
+                    "path": path + "/networkProvider/id",
                 },
                 {
                     "type": "span_organisation_reference_name_does_not_match",
                     "span_id": span.get("id"),
                     "field": "networkProvider",
+                    "path": path + "/networkProvider/name",
                 },
                 {
                     "type": "span_organisation_reference_name_set_but_not_in_original",
                     "span_id": span.get("id"),
                     "field": "networkProvider",
+                    "path": path + "/networkProvider/name",
                 },
             )
         if "supplier" in span and isinstance(span["supplier"], dict):
@@ -341,36 +385,42 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                     "type": "span_organisation_reference_id_not_found",
                     "span_id": span.get("id"),
                     "field": "supplier",
+                    "path": path + "/supplier/id",
                 },
                 {
                     "type": "span_organisation_reference_name_does_not_match",
                     "span_id": span.get("id"),
                     "field": "supplier",
+                    "path": path + "/supplier/name",
                 },
                 {
                     "type": "span_organisation_reference_name_set_but_not_in_original",
                     "span_id": span.get("id"),
                     "field": "supplier",
+                    "path": path + "/supplier/name",
                 },
             )
 
-    def check_phase_second_pass(self, phase: dict):
+    def check_phase_second_pass(self, phase: dict, path: str):
         if "funders" in phase and isinstance(phase["funders"], list):
-            for funder in phase["funders"]:
+            for funder_idx, funder in enumerate(phase["funders"]):
                 if isinstance(funder, dict):
                     self._check_related_organisation_object(
                         funder,
                         {
                             "type": "phase_organisation_reference_id_not_found",
                             "phase_id": phase.get("id"),
+                            "path": path + "/funders/" + str(funder_idx) + "/id",
                         },
                         {
                             "type": "phase_organisation_reference_name_does_not_match",
                             "phase_id": phase.get("id"),
+                            "path": path + "/funders/" + str(funder_idx) + "/name",
                         },
                         {
                             "type": "phase_organisation_reference_name_set_but_not_in_original",
                             "phase_id": phase.get("id"),
+                            "path": path + "/funders/" + str(funder_idx) + "/name",
                         },
                     )
 
@@ -413,11 +463,13 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
 class NodeInternationalConnectionCountryAdditionalCheckForNetwork(
     AdditionalCheckForNetwork
 ):
-    def check_node_first_pass(self, node: dict):
+    def check_node_first_pass(self, node: dict, path: str):
         if "internationalConnections" in node and isinstance(
             node["internationalConnections"], list
         ):
-            for international_connection in node["internationalConnections"]:
+            for international_connection_idx, international_connection in enumerate(
+                node["internationalConnections"]
+            ):
                 if isinstance(
                     international_connection, dict
                 ) and not international_connection.get("country"):
@@ -425,6 +477,9 @@ class NodeInternationalConnectionCountryAdditionalCheckForNetwork(
                         {
                             "type": "node_international_connections_country_not_set",
                             "node_id": node.get("id"),
+                            "path": path
+                            + "/internationalConnections/"
+                            + str(international_connection_idx),
                         }
                     )
 
@@ -434,7 +489,7 @@ class IsNodeUsedInSpanAdditionalCheckForNetwork(AdditionalCheckForNetwork):
         super().__init__(schema_object)
         self._node_ids_used_in_spans: list = []
 
-    def check_span_first_pass(self, span: dict):
+    def check_span_first_pass(self, span: dict, path: str):
         start = span.get("start")
         if start and start not in self._node_ids_used_in_spans:
             self._node_ids_used_in_spans.append(start)
@@ -442,13 +497,14 @@ class IsNodeUsedInSpanAdditionalCheckForNetwork(AdditionalCheckForNetwork):
         if end and end not in self._node_ids_used_in_spans:
             self._node_ids_used_in_spans.append(end)
 
-    def check_node_second_pass(self, node: dict):
+    def check_node_second_pass(self, node: dict, path: str):
         id = node.get("id")
         if id and id not in self._node_ids_used_in_spans:
             self._additional_check_results.append(
                 {
                     "type": "node_not_used_in_any_spans",
                     "node_id": node.get("id"),
+                    "path": path,
                 }
             )
 
@@ -468,50 +524,41 @@ class UniqueIDsAdditionalCheckForNetwork(AdditionalCheckForNetwork):
         self._organisation_ids_seen: list = []
         self._contract_ids_seen: list = []
 
-    def check_node_first_pass(self, node: dict):
+    def check_node_first_pass(self, node: dict, path: str):
         id = node.get("id")
         if id and isinstance(id, str):
             if id in self._node_ids_seen:
                 self._additional_check_results.append(
-                    {
-                        "type": "duplicate_node_id",
-                        "node_id": id,
-                    }
+                    {"type": "duplicate_node_id", "node_id": id, "path": path}
                 )
             else:
                 self._node_ids_seen.append(id)
 
         pass
 
-    def check_span_first_pass(self, span: dict):
+    def check_span_first_pass(self, span: dict, path: str):
         id = span.get("id")
         if id and isinstance(id, str):
             if id in self._span_ids_seen:
                 self._additional_check_results.append(
-                    {
-                        "type": "duplicate_span_id",
-                        "span_id": id,
-                    }
+                    {"type": "duplicate_span_id", "span_id": id, "path": path}
                 )
             else:
                 self._span_ids_seen.append(id)
 
-    def check_phase_first_pass(self, phase: dict):
+    def check_phase_first_pass(self, phase: dict, path: str):
         id = phase.get("id")
         if id and isinstance(id, str):
             if id in self._phase_ids_seen:
                 self._additional_check_results.append(
-                    {
-                        "type": "duplicate_phase_id",
-                        "phase_id": id,
-                    }
+                    {"type": "duplicate_phase_id", "phase_id": id, "path": path}
                 )
             else:
                 self._phase_ids_seen.append(id)
 
         pass
 
-    def check_organisation_first_pass(self, organisation: dict):
+    def check_organisation_first_pass(self, organisation: dict, path: str):
         id = organisation.get("id")
         if id and isinstance(id, str):
             if id in self._organisation_ids_seen:
@@ -519,6 +566,7 @@ class UniqueIDsAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                     {
                         "type": "duplicate_organisation_id",
                         "organisation_id": id,
+                        "path": path,
                     }
                 )
             else:
@@ -526,15 +574,12 @@ class UniqueIDsAdditionalCheckForNetwork(AdditionalCheckForNetwork):
 
         pass
 
-    def check_contract_first_pass(self, contract: dict):
+    def check_contract_first_pass(self, contract: dict, path: str):
         id = contract.get("id")
         if id and isinstance(id, str):
             if id in self._contract_ids_seen:
                 self._additional_check_results.append(
-                    {
-                        "type": "duplicate_contract_id",
-                        "contract_id": id,
-                    }
+                    {"type": "duplicate_contract_id", "contract_id": id, "path": path}
                 )
             else:
                 self._contract_ids_seen.append(id)
@@ -568,7 +613,7 @@ class PythonValidate:
         # For each Network
         networks = json_data.get("networks")
         if isinstance(networks, list):
-            for network in networks:
+            for network_idx, network in enumerate(networks):
                 if isinstance(network, dict):
                     additional_check_instances = [
                         x(self._schema) for x in ADDITIONAL_CHECK_CLASSES_FOR_NETWORK
@@ -591,6 +636,7 @@ class PythonValidate:
                             {
                                 "network_id": network.get("id"),
                                 "type": "has_links_with_external_node_data",
+                                "path": "/networks/" + str(network_idx),
                             }
                         )
                     links_with_external_spans = [
@@ -610,6 +656,7 @@ class PythonValidate:
                             {
                                 "network_id": network.get("id"),
                                 "type": "has_links_with_external_span_data",
+                                "path": "/networks/" + str(network_idx),
                             }
                         )
                     nodes = network.get("nodes", [])
@@ -626,35 +673,87 @@ class PythonValidate:
                     contracts = contracts if isinstance(contracts, list) else []
                     # First pass
                     for additional_check_instance in additional_check_instances:
-                        for node in nodes:
-                            additional_check_instance.check_node_first_pass(node)
-                        for span in spans:
-                            additional_check_instance.check_span_first_pass(span)
-                        for phase in phases:
-                            additional_check_instance.check_phase_first_pass(phase)
-                        for organisation in organisations:
-                            additional_check_instance.check_organisation_first_pass(
-                                organisation
+                        for node_idx, node in enumerate(nodes):
+                            additional_check_instance.check_node_first_pass(
+                                node,
+                                "/networks/"
+                                + str(network_idx)
+                                + "/nodes/"
+                                + str(node_idx),
                             )
-                        for contract in contracts:
+                        for span_idx, span in enumerate(spans):
+                            additional_check_instance.check_span_first_pass(
+                                span,
+                                "/networks/"
+                                + str(network_idx)
+                                + "/spans/"
+                                + str(span_idx),
+                            )
+                        for phase_idx, phase in enumerate(phases):
+                            additional_check_instance.check_phase_first_pass(
+                                phase,
+                                "/networks/"
+                                + str(network_idx)
+                                + "/phases/"
+                                + str(phase_idx),
+                            )
+                        for organisation_idx, organisation in enumerate(organisations):
+                            additional_check_instance.check_organisation_first_pass(
+                                organisation,
+                                "/networks/"
+                                + str(network_idx)
+                                + "/organisations/"
+                                + str(organisation_idx),
+                            )
+                        for contract_idx, contract in enumerate(contracts):
                             additional_check_instance.check_contract_first_pass(
-                                contract
+                                contract,
+                                "/networks/"
+                                + str(network_idx)
+                                + "/contracts/"
+                                + str(contract_idx),
                             )
                     # Second pass
                     for additional_check_instance in additional_check_instances:
-                        for node in nodes:
-                            additional_check_instance.check_node_second_pass(node)
-                        for span in spans:
-                            additional_check_instance.check_span_second_pass(span)
-                        for phase in phases:
-                            additional_check_instance.check_phase_second_pass(phase)
-                        for organisation in organisations:
-                            additional_check_instance.check_organisation_second_pass(
-                                organisation
+                        for node_idx, node in enumerate(nodes):
+                            additional_check_instance.check_node_second_pass(
+                                node,
+                                "/networks/"
+                                + str(network_idx)
+                                + "/nodes/"
+                                + str(node_idx),
                             )
-                        for contract in contracts:
+                        for span_idx, span in enumerate(spans):
+                            additional_check_instance.check_span_second_pass(
+                                span,
+                                "/networks/"
+                                + str(network_idx)
+                                + "/spans/"
+                                + str(span_idx),
+                            )
+                        for phase_idx, phase in enumerate(phases):
+                            additional_check_instance.check_phase_second_pass(
+                                phase,
+                                "/networks/"
+                                + str(network_idx)
+                                + "/phases/"
+                                + str(phase_idx),
+                            )
+                        for organisation_idx, organisation in enumerate(organisations):
+                            additional_check_instance.check_organisation_second_pass(
+                                organisation,
+                                "/networks/"
+                                + str(network_idx)
+                                + "/organisations/"
+                                + str(organisation_idx),
+                            )
+                        for contract_idx, contract in enumerate(contracts):
                             additional_check_instance.check_contract_second_pass(
-                                contract
+                                contract,
+                                "/networks/"
+                                + str(network_idx)
+                                + "/contracts/"
+                                + str(contract_idx),
                             )
                     # Results
                     for additional_check_instance in additional_check_instances:

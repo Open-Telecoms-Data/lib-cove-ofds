@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Python Validate:
   - add more information to errors
   - Add unique ID checks
+  - Add path to output
 
 ## [0.4.0] - 2022-11-09
 

@@ -2,6 +2,7 @@
     {
         "type": "node_not_used_in_any_spans",
         "node_id": "3",
+        "path": "/networks/0/nodes/2",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     }
 ]
