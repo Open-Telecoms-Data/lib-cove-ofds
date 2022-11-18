@@ -3,6 +3,7 @@
         "type": "node_location_type_incorrect",
         "node_id": "1",
         "incorrect_type": "LineString",
+        "path": "/networks/0/nodes/0/location/type",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     }
 ]

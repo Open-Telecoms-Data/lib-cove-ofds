@@ -3,6 +3,7 @@
         "type": "span_route_type_incorrect",
         "span_id": "1",
         "incorrect_type": "Point",
+        "path": "/networks/0/spans/0/route/type",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     }
 ]

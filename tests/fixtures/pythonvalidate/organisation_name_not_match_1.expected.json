@@ -3,6 +3,7 @@
         "type": "node_organisation_reference_name_does_not_match",
         "node_id": "1",
         "field": "physicalInfrastructureProvider",
+        "path": "/networks/0/nodes/0/physicalInfrastructureProvider/name",
         "name_in_reference": "Nothing Nowhere A",
         "name_should_be": "Everything Everywhere",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
@@ -11,6 +12,7 @@
         "type": "node_organisation_reference_name_does_not_match",
         "node_id": "1",
         "field": "networkProvider",
+        "path": "/networks/0/nodes/0/networkProvider/name",
         "name_in_reference": "Nothing Nowhere B",
         "name_should_be": "Everything Everywhere",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
@@ -19,6 +21,7 @@
         "type": "span_organisation_reference_name_does_not_match",
         "span_id": "1",
         "field": "physicalInfrastructureProvider",
+        "path": "/networks/0/spans/0/physicalInfrastructureProvider/name",
         "name_in_reference": "Nothing Nowhere C",
         "name_should_be": "Everything Everywhere",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
@@ -27,6 +30,7 @@
         "type": "span_organisation_reference_name_does_not_match",
         "span_id": "1",
         "field": "networkProvider",
+        "path": "/networks/0/spans/0/networkProvider/name",
         "name_in_reference": "Nothing Nowhere D",
         "name_should_be": "Everything Everywhere",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
@@ -35,6 +39,7 @@
         "type": "span_organisation_reference_name_does_not_match",
         "span_id": "1",
         "field": "supplier",
+        "path": "/networks/0/spans/0/supplier/name",
         "name_in_reference": "Nothing Nowhere E",
         "name_should_be": "Everything Everywhere",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
@@ -42,6 +47,7 @@
     {
         "type": "phase_organisation_reference_name_does_not_match",
         "phase_id": "1",
+        "path": "/networks/0/phases/0/funders/0/name",
         "name_in_reference": "Nothing Nowhere F",
         "name_should_be": "Everything Everywhere",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"

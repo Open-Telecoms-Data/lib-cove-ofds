@@ -94,3 +94,13 @@ Node not used in any spans
 Produces additional checks of type:
 
 * `node_not_used_in_any_spans`
+
+Unique ID's
+-----------
+
+* `duplicate_node_id`
+* `duplicate_span_id`
+* `duplicate_phase_id`
+* `duplicate_organisation_id`
+* `duplicate_contract_id`
+

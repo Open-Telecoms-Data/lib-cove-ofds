@@ -2,6 +2,7 @@
     {
         "type": "node_phase_reference_name_does_not_match",
         "node_id": "1",
+        "path": "/networks/0/nodes/0/phase/name",
         "name_in_reference": "I forget",
         "name_should_be": "NextGen Phase 1",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
@@ -9,6 +10,7 @@
     {
         "type": "span_phase_reference_name_does_not_match",
         "span_id": "1",
+        "path": "/networks/0/spans/0/phase/name",
         "name_in_reference": "I forget again",
         "name_should_be": "NextGen Phase 1",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
@@ -16,6 +18,7 @@
     {
         "type": "contract_related_phase_reference_name_does_not_match",
         "contract_id": "1",
+        "path": "/networks/0/contracts/0/relatedPhases/0/name",
         "name_in_reference": "I forget, really I'm so bad",
         "name_should_be": "NextGen Phase 1",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
