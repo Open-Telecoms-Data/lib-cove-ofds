@@ -65,24 +65,6 @@ def get_additional_fields_info(json_data, schema_fields, fields_regex=False):
     return additional_fields
 
 
-def get_counts_additional_fields(
-    json_data,
-    schema_fields,
-    additional_fields_info=None,
-):
-
-    if not additional_fields_info:
-        additional_fields_info = get_additional_fields_info(
-            json_data, schema_fields, fields_regex=False
-        )
-
-    return [
-        [field_info["path"], field_info["field_name"], field_info["count"]]
-        for field, field_info in additional_fields_info.items()
-        if field_info["root_additional_field"]
-    ]
-
-
 def get_fields_present_with_examples(*args, **kwargs):
     counter = {}
     for key, value in fields_present_generator(*args, **kwargs):

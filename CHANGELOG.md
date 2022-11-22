@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
 - Updated schema to 0__1__0__beta
+- Additional Fields 
+  - return more information, in different structure 
 
 ### Added
 
