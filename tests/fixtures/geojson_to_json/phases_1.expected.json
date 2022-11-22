@@ -10,7 +10,8 @@
                     "description": "Contract for the construction of phase 1 of the NextGen network.",
                     "relatedPhases": [
                         {
-                            "id": "1"
+                            "id": "1",
+                            "name": "NextGen Phase 1"
                         }
                     ]
                 }
@@ -20,7 +21,8 @@
                     "id": "1",
                     "name": "Accra",
                     "phase": {
-                        "id": "1"
+                        "id": "1",
+                        "name": "NextGen Phase 1"
                     },
                     "location": {
                         "type": "Point",
@@ -35,7 +37,8 @@
                     "name": "Kumasi",
                     "status": "operational",
                     "phase": {
-                        "id": "1"
+                        "id": "1",
+                        "name": "NextGen Phase 1"
                     },
                     "location": {
                         "type": "Point",
@@ -53,7 +56,8 @@
                     "start": "1",
                     "end": "2",
                     "phase": {
-                        "id": "1"
+                        "id": "1",
+                        "name": "NextGen Phase 1"
                     },
                     "route": {
                         "type": "LineString",

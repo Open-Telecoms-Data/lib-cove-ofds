@@ -1,5 +1,6 @@
 import copy
 from collections import defaultdict
+from typing import Optional
 
 from json_merge_patch import create_patch as json_diff_function
 
@@ -231,11 +232,11 @@ class GeoJSONToJSONConverter:
                         ):
                             out: list = []
                             for phase_reference in contract["relatedPhases"]:
-                                phase_id = self._process_phase(
+                                phase_data = self._process_phase(
                                     network.get("id"), phase_reference
                                 )
-                                if phase_id:
-                                    out.append({"id": phase_id})
+                                if phase_data:
+                                    out.append(phase_data)
                                 else:
                                     out.append(phase_reference)
                             contract["relatedPhases"] = out
@@ -255,15 +256,15 @@ class GeoJSONToJSONConverter:
         # sort organisations
         for field in ["physicalInfrastructureProvider", "networkProvider"]:
             if isinstance(node.get(field), dict) and node.get(field):
-                organisation_id = self._process_organisation(network_id, node[field])
-                if organisation_id:
-                    node[field] = {"id": organisation_id}
+                organisation_data = self._process_organisation(network_id, node[field])
+                if organisation_data:
+                    node[field] = organisation_data
 
         # sort phase
         if isinstance(node.get("phase"), dict) and node.get("phase"):
-            phase_id = self._process_phase(network_id, node["phase"])
-            if phase_id:
-                node["phase"] = {"id": phase_id}
+            phase_data = self._process_phase(network_id, node["phase"])
+            if phase_data:
+                node["phase"] = phase_data
 
         if geojson_feature_node.get("geometry"):
             node["location"] = geojson_feature_node["geometry"]
@@ -285,15 +286,15 @@ class GeoJSONToJSONConverter:
         # sort organisations
         for field in ["physicalInfrastructureProvider", "networkProvider", "supplier"]:
             if isinstance(span.get(field), dict) and span.get(field):
-                organisation_id = self._process_organisation(network_id, span[field])
-                if organisation_id:
-                    span[field] = {"id": organisation_id}
+                organisation_data = self._process_organisation(network_id, span[field])
+                if organisation_data:
+                    span[field] = organisation_data
 
         # sort phase
         if isinstance(span.get("phase"), dict) and span.get("phase"):
-            phase_id = self._process_phase(network_id, span["phase"])
-            if phase_id:
-                span["phase"] = {"id": phase_id}
+            phase_data = self._process_phase(network_id, span["phase"])
+            if phase_data:
+                span["phase"] = phase_data
 
         if geojson_feature_span.get("geometry"):
             span["route"] = geojson_feature_span["geometry"]
@@ -303,38 +304,58 @@ class GeoJSONToJSONConverter:
 
         self._networks[network_id]["spans"].append(span)
 
-    def _process_phase(self, network_id: str, phase: dict) -> str:
+    def _process_phase(self, network_id: str, phase: dict) -> Optional[dict]:
         phase_id = phase.get("id")
-        if phase_id:
-            if phase_id in self._networks[network_id]["phases"]:
-                # Is it inconsistent with what we have seen before?
-                if json_diff_function(
-                    self._networks[network_id]["phases"][phase_id], phase
-                ):
-                    self._inconsistent_phase_ids_by_network_id[network_id].add(phase_id)
-            else:
-                self._networks[network_id]["phases"][phase_id] = phase
-            return phase_id
-        return ""
+        # If no id, can't do anything. TODO log somewhere?
+        if not phase_id or not isinstance(phase_id, str):
+            return None
+        # Check data
+        if phase_id in self._networks[network_id]["phases"]:
+            # Is it inconsistent with what we have seen before?
+            if json_diff_function(
+                self._networks[network_id]["phases"][phase_id], phase
+            ):
+                self._inconsistent_phase_ids_by_network_id[network_id].add(phase_id)
+        else:
+            # Not seen this before; store it
+            self._networks[network_id]["phases"][phase_id] = phase
+        # Make output
+        out: dict = {"id": phase_id}
+        # Take name from data on network, not data that is passed to this function.
+        # This means that if inconsistent names are in input, we'll have consistent names in the output.
+        name = self._networks[network_id]["phases"][phase_id].get("name")
+        if name:
+            out["name"] = name
+        return out
 
-    def _process_organisation(self, network_id: str, organisation: dict) -> str:
+    def _process_organisation(
+        self, network_id: str, organisation: dict
+    ) -> Optional[dict]:
         organisation_id = organisation.get("id")
-        if organisation_id:
-            if organisation_id in self._networks[network_id]["organisations"]:
-                # Is it inconsistent with what we have seen before?
-                if json_diff_function(
-                    self._networks[network_id]["organisations"][organisation_id],
-                    organisation,
-                ):
-                    self._inconsistent_organisation_ids_by_network_id[network_id].add(
-                        organisation_id
-                    )
-            else:
-                self._networks[network_id]["organisations"][
+        # If no id, can't do anything. TODO log somewhere?
+        if not organisation_id or not isinstance(organisation_id, str):
+            return None
+        # Check data
+        if organisation_id in self._networks[network_id]["organisations"]:
+            # Is it inconsistent with what we have seen before?
+            if json_diff_function(
+                self._networks[network_id]["organisations"][organisation_id],
+                organisation,
+            ):
+                self._inconsistent_organisation_ids_by_network_id[network_id].add(
                     organisation_id
-                ] = organisation
-            return organisation_id
-        return ""
+                )
+        else:
+            # Not seen this before; store it
+            self._networks[network_id]["organisations"][organisation_id] = organisation
+        # Make output
+        out: dict = {"id": organisation_id}
+        # Take name from data on network, not data that is passed to this function.
+        # This means that if inconsistent names are in input, we'll have consistent names in the output.
+        name = self._networks[network_id]["organisations"][organisation_id].get("name")
+        if name:
+            out["name"] = name
+        return out
 
     def get_json(self) -> dict:
         out: dict = {"networks": []}

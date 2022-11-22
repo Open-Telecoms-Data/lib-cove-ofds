@@ -15,11 +15,13 @@
                 "name": "Accra",
                 "physicalInfrastructureProvider": {
                     "id": "GH-RGD-CS111111111",
-                    "name": "FibreCo"
+                    "name": "FibreCo",
+                    "country": "IE"
                 },
                 "networkProvider": {
                     "id": "GH-RGD-CS222222222",
-                    "name": "FastWeb"
+                    "name": "FastWeb",
+                    "country": "IE"
                 },
                 "network": {
                     "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
@@ -42,11 +44,13 @@
                 "status": "operational",
                 "physicalInfrastructureProvider": {
                     "id": "GH-RGD-CS111111111",
-                    "name": "FibreCo"
+                    "name": "FibreCo",
+                    "country": "IE"
                 },
                 "networkProvider": {
                     "id": "GH-RGD-CS222222222",
-                    "name": "FastWeb"
+                    "name": "FastWeb",
+                    "country": "IE"
                 },
                 "network": {
                     "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
