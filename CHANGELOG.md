@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
 - Updated schema to 0__1__0__beta
+- Additional Fields 
+  - return more information, in different structure 
 
 ### Added
 
@@ -17,6 +21,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - add more information to errors
   - Add unique ID checks
   - Add path to output
+- GeoJSON to JSON:
+  - Include name in organisation and phase references
 
 ## [0.4.0] - 2022-11-09
 

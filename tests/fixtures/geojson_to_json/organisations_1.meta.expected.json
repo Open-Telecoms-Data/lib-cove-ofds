@@ -24,10 +24,16 @@
         "/networks/nodes/physicalInfrastructureProvider/id": {
             "count": 2
         },
+        "/networks/nodes/physicalInfrastructureProvider/name": {
+            "count": 2
+        },
         "/networks/nodes/networkProvider": {
             "count": 2
         },
         "/networks/nodes/networkProvider/id": {
+            "count": 2
+        },
+        "/networks/nodes/networkProvider/name": {
             "count": 2
         },
         "/networks/nodes/location": {
@@ -63,10 +69,16 @@
         "/networks/spans/physicalInfrastructureProvider/id": {
             "count": 1
         },
+        "/networks/spans/physicalInfrastructureProvider/name": {
+            "count": 1
+        },
         "/networks/spans/networkProvider": {
             "count": 1
         },
         "/networks/spans/networkProvider/id": {
+            "count": 1
+        },
+        "/networks/spans/networkProvider/name": {
             "count": 1
         },
         "/networks/spans/route": {
@@ -85,6 +97,9 @@
             "count": 2
         },
         "/networks/organisations/name": {
+            "count": 2
+        },
+        "/networks/organisations/country": {
             "count": 2
         }
     },

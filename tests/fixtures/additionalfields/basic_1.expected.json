@@ -1,12 +1,50 @@
-[
-    [
-        "/networks",
-        "extra_field_1",
-        1
-    ],
-    [
-        "/networks/nodes",
-        "extra_field_2",
-        2
-    ]
-]
+{
+    "/networks/extra_field_1": {
+        "count": 1,
+        "examples": [
+            true
+        ],
+        "root_additional_field": true,
+        "additional_field_descendance": {},
+        "path": "/networks",
+        "field_name": "extra_field_1"
+    },
+    "/networks/nodes/extra_field_2": {
+        "count": 2,
+        "examples": [
+            true,
+            true
+        ],
+        "root_additional_field": true,
+        "additional_field_descendance": {},
+        "path": "/networks/nodes",
+        "field_name": "extra_field_2"
+    },
+    "/networks/nodes/extra_dict_1": {
+        "count": 1,
+        "examples": [],
+        "root_additional_field": true,
+        "additional_field_descendance": {
+            "/networks/nodes/extra_dict_1/extra_field_3": {
+                "count": 1,
+                "examples": [
+                    true
+                ],
+                "root_additional_field": false,
+                "path": "/networks/nodes/extra_dict_1",
+                "field_name": "extra_field_3"
+            }
+        },
+        "path": "/networks/nodes",
+        "field_name": "extra_dict_1"
+    },
+    "/networks/nodes/extra_dict_1/extra_field_3": {
+        "count": 1,
+        "examples": [
+            true
+        ],
+        "root_additional_field": false,
+        "path": "/networks/nodes/extra_dict_1",
+        "field_name": "extra_field_3"
+    }
+}

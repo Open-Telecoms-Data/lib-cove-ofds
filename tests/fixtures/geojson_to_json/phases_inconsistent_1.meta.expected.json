@@ -27,6 +27,9 @@
         "/networks/contracts/relatedPhases/id": {
             "count": 1
         },
+        "/networks/contracts/relatedPhases/name": {
+            "count": 1
+        },
         "/networks/nodes": {
             "count": 1
         },
@@ -40,6 +43,9 @@
             "count": 2
         },
         "/networks/nodes/phase/id": {
+            "count": 2
+        },
+        "/networks/nodes/phase/name": {
             "count": 2
         },
         "/networks/nodes/location": {
@@ -73,6 +79,9 @@
             "count": 1
         },
         "/networks/spans/phase/id": {
+            "count": 1
+        },
+        "/networks/spans/phase/name": {
             "count": 1
         },
         "/networks/spans/route": {
