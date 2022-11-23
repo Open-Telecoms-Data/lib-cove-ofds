@@ -6,10 +6,13 @@ from libcoveofds.schema import OFDSSchema
 
 
 class JSONSchemaValidator:
+    """Validates data using the JSON Schema method"""
+
     def __init__(self, schema: OFDSSchema):
         self._schema = schema
 
     def validate(self, json_data: dict) -> list:
+        """Call with data. Results are returned."""
         validator = Draft202012Validator(
             schema=self._schema.get_package_schema(), format_checker=FormatChecker()
         )
@@ -20,6 +23,8 @@ class JSONSchemaValidator:
 
 
 class ValidationError:
+    """Any problems found in data are returned as an instance of this class."""
+
     def __init__(
         self,
         json_schema_exceptions_validation_error: JSONSchemaExceptionsValidationError,
@@ -38,6 +43,7 @@ class ValidationError:
         self._instance = json_schema_exceptions_validation_error.instance
 
     def json(self):
+        """Return representation of this error in JSON."""
         return {
             "message": self._message,
             "path": list(self._path),

@@ -8,11 +8,14 @@ from libcove2.common import fields_present_generator
 
 
 class JSONToGeoJSONConverter:
+    """Converts JSON data to GeoJSON."""
+
     def __init__(self):
         self._nodes_geojson_features: list = []
         self._spans_geojson_features: list = []
 
     def process_package(self, package_data: dict) -> None:
+        """Process network package. Pass in data. Results are stored on object to get with other methods."""
         for network in package_data.get("networks", []):
             self._process_network(network)
 
@@ -56,12 +59,15 @@ class JSONToGeoJSONConverter:
             )
 
     def get_nodes_geojson(self) -> dict:
+        """After processing, call to get nodes GeoJSON output."""
         return {"type": "FeatureCollection", "features": self._nodes_geojson_features}
 
     def get_spans_geojson(self) -> dict:
+        """After processing, call to get spans GeoJSON output."""
         return {"type": "FeatureCollection", "features": self._spans_geojson_features}
 
     def get_meta_json(self) -> dict:
+        """After processing, call to get meta information on the conversion."""
         out: dict = {
             "nodes_output_field_coverage": {},
             "spans_output_field_coverage": {},
@@ -186,6 +192,8 @@ class JSONToGeoJSONConverter:
 
 
 class GeoJSONToJSONConverter:
+    """Converts GeoJSON data to JSON."""
+
     def __init__(self):
         self._networks: dict = {}
         self._inconsistent_phase_ids_by_network_id: defaultdict = defaultdict(set)
@@ -194,6 +202,7 @@ class GeoJSONToJSONConverter:
         )
 
     def process_data(self, nodes_data: dict, spans_data: dict) -> None:
+        """Process data. Results are stored on object to get with other methods."""
         # Network
         for geojson_feature in nodes_data.get("features", []):
             self._process_network(geojson_feature)
@@ -358,6 +367,7 @@ class GeoJSONToJSONConverter:
         return out
 
     def get_json(self) -> dict:
+        """After processing, call to get JSON output."""
         out: dict = {"networks": []}
         for network in self._networks.values():
             # We are going to change network, so we need to take a copy
@@ -374,6 +384,7 @@ class GeoJSONToJSONConverter:
         return out
 
     def get_meta_json(self) -> dict:
+        """After processing, call to get meta information on conversion."""
         out: dict = {"output_field_coverage": {}}
         # field coverage
         for key, value in fields_present_generator(self.get_json()):
