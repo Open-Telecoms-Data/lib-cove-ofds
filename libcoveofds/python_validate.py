@@ -603,10 +603,13 @@ ADDITIONAL_CHECK_CLASSES_FOR_NETWORK = [
 
 
 class PythonValidate:
+    """Validates data using additional checks custom written in Python"""
+
     def __init__(self, schema: OFDSSchema):
         self._schema = schema
 
     def validate(self, json_data: dict) -> list:
+        """Call with data. Results are returned."""
 
         additional_checks: list = []
 

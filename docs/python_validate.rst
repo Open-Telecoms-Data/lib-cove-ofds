@@ -1,5 +1,21 @@
-Additional Checks
-=================
+Python Validate
+===============
+
+
+Use via CLI
+-----------
+
+To see options, run:
+
+.. code-block:: bash
+
+    libcoveofds  pythonvalidate  --help
+
+Use via Python
+--------------
+
+.. autoclass:: libcoveofds.python_validate.PythonValidate
+  :members:
 
 
 Spans must have valid start and end nodes
