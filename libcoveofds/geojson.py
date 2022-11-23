@@ -318,6 +318,15 @@ class GeoJSONToJSONConverter:
         # If no id, can't do anything. TODO log somewhere?
         if not phase_id or not isinstance(phase_id, str):
             return None
+        # Check funders
+        funders = phase.get("funders")
+        if isinstance(funders, list) and funders:
+            new_funders = []
+            for funder in funders:
+                funder_data = self._process_organisation(network_id, funder)
+                if funder_data:
+                    new_funders.append(funder_data)
+            phase["funders"] = new_funders
         # Check data
         if phase_id in self._networks[network_id]["phases"]:
             # Is it inconsistent with what we have seen before?

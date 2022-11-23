@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Add path to output
 - GeoJSON to JSON:
   - Include name in organisation and phase references
+  - Process funders/organisations in phases correctly, including spotting inconsistent funders/organisations
 
 ## [0.4.0] - 2022-11-09
 

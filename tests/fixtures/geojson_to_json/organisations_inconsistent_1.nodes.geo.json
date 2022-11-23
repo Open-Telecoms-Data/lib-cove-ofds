@@ -24,6 +24,22 @@
                 "network": {
                     "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
                     "name": "Ghana Fibre Network"
+                },
+                "phase": {
+                    "id": "1",
+                    "name": "First Phase",
+                    "funders": [
+                        {
+                            "id": "GH-RGD-CS333333333",
+                            "name": "Third organisation",
+                            "country": "GH",
+                            "roles": [
+                                "funder"
+                            ],
+                            "website": "https://www.example.com",
+                            "logo": "https://www.example.com/logo.png"
+                        }
+                    ]
                 }
             }
         },
@@ -51,6 +67,22 @@
                 "network": {
                     "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
                     "name": "Ghana Fibre Network"
+                },
+                "phase": {
+                    "id": "1",
+                    "name": "First Phase",
+                    "funders": [
+                        {
+                            "id": "GH-RGD-CS333333333",
+                            "name": "Third org",
+                            "country": "GH",
+                            "roles": [
+                                "funder"
+                            ],
+                            "website": "https://www.example.com",
+                            "logo": "https://www.example.com/logo.png"
+                        }
+                    ]
                 }
             }
         }

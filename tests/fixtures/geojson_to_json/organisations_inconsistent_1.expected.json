@@ -15,6 +15,10 @@
                         "id": "GH-RGD-CS222222222",
                         "name": "FastWeb"
                     },
+                    "phase": {
+                        "id": "1",
+                        "name": "First Phase"
+                    },
                     "location": {
                         "type": "Point",
                         "coordinates": [
@@ -34,6 +38,10 @@
                     "networkProvider": {
                         "id": "GH-RGD-CS222222222",
                         "name": "FastWeb"
+                    },
+                    "phase": {
+                        "id": "1",
+                        "name": "First Phase"
                     },
                     "location": {
                         "type": "Point",
@@ -117,6 +125,18 @@
                     }
                 }
             ],
+            "phases": [
+                {
+                    "id": "1",
+                    "name": "First Phase",
+                    "funders": [
+                        {
+                            "id": "GH-RGD-CS333333333",
+                            "name": "Third organisation"
+                        }
+                    ]
+                }
+            ],
             "organisations": [
                 {
                     "id": "GH-RGD-CS111111111",
@@ -125,6 +145,16 @@
                 {
                     "id": "GH-RGD-CS222222222",
                     "name": "FastWeb"
+                },
+                {
+                    "id": "GH-RGD-CS333333333",
+                    "name": "Third organisation",
+                    "country": "GH",
+                    "roles": [
+                        "funder"
+                    ],
+                    "website": "https://www.example.com",
+                    "logo": "https://www.example.com/logo.png"
                 }
             ]
         }

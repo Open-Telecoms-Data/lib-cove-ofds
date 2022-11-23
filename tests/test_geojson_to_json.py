@@ -12,6 +12,7 @@ GEOJSON_TO_JSON_FILES = [
     ("no_geometry_1"),
     # sort references to things correctly
     ("phases_1"),
+    ("phase_funders_1"),
     ("organisations_1"),
     # Check for errors in meta
     ("phases_inconsistent_1"),

@@ -36,6 +36,15 @@
         "/networks/nodes/networkProvider/name": {
             "count": 2
         },
+        "/networks/nodes/phase": {
+            "count": 2
+        },
+        "/networks/nodes/phase/id": {
+            "count": 2
+        },
+        "/networks/nodes/phase/name": {
+            "count": 2
+        },
         "/networks/nodes/location": {
             "count": 2
         },
@@ -90,14 +99,44 @@
         "/networks/spans/route/coordinates": {
             "count": 1
         },
+        "/networks/phases": {
+            "count": 1
+        },
+        "/networks/phases/id": {
+            "count": 1
+        },
+        "/networks/phases/name": {
+            "count": 1
+        },
+        "/networks/phases/funders": {
+            "count": 1
+        },
+        "/networks/phases/funders/id": {
+            "count": 1
+        },
+        "/networks/phases/funders/name": {
+            "count": 1
+        },
         "/networks/organisations": {
             "count": 1
         },
         "/networks/organisations/id": {
-            "count": 2
+            "count": 3
         },
         "/networks/organisations/name": {
-            "count": 2
+            "count": 3
+        },
+        "/networks/organisations/country": {
+            "count": 1
+        },
+        "/networks/organisations/roles": {
+            "count": 1
+        },
+        "/networks/organisations/website": {
+            "count": 1
+        },
+        "/networks/organisations/logo": {
+            "count": 1
         }
     },
     "inconsistent_phases_by_network_id": {},
@@ -105,7 +144,8 @@
         "a096d627-72e1-4f9b-b129-951b1737bff4": {
             "organisation_ids": [
                 "GH-RGD-CS111111111",
-                "GH-RGD-CS222222222"
+                "GH-RGD-CS222222222",
+                "GH-RGD-CS333333333"
             ]
         }
     }
