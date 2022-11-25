@@ -101,7 +101,7 @@ class JSONToGeoJSONConverter:
 
         if "id" in ref:
             for item in list:
-                if item.get("id") == ref["id"]:
+                if isinstance(item, dict) and item.get("id") == ref["id"]:
                     return item
 
         return ref

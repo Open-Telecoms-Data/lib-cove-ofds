@@ -1,0 +1,24 @@
+{
+  "networks": [
+    {
+      "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+      "name": "Ghana Fibre Network",
+      "organisations": [
+        "my mate down the pub"
+      ],
+      "phases": [
+        {
+          "funders": [
+            {"id":  "1"}
+          ]
+        }
+      ],
+      "links": [
+        {
+          "rel": "describedby",
+          "href": "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/0__1__0__beta/schema/network-schema.json"
+        }
+      ]
+    }
+  ]
+}
