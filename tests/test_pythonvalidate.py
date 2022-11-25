@@ -61,3 +61,21 @@ def test_basic_1(filename):
     expected_data = sorted(expected_data, key=lambda d: d["type"] + d.get("field", ""))
 
     assert expected_data == output
+
+
+def test_dont_crash_1():
+    """Just put as much bad stuff as possible in the input and make sure it doesn't crash!
+    We don't care about testing output. Other tests can do that."""
+    input_filename = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        "fixtures",
+        "pythonvalidate",
+        "dont_crash_1.input.json",
+    )
+
+    with open(input_filename) as fp:
+        input_data = json.load(fp)
+
+    schema = OFDSSchema()
+    validate = PythonValidate(schema)
+    validate.validate(input_data)

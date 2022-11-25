@@ -91,7 +91,7 @@ class SpansMustHaveValidNodesAdditionalCheckForNetwork(AdditionalCheckForNetwork
 class NodesLocationAndSpansRouteAdditionalCheckForNetwork(AdditionalCheckForNetwork):
     def check_node_first_pass(self, node: dict, path: str):
         location = node.get("location")
-        if location:
+        if isinstance(location, dict) and location:
             type = location.get("type")
             if type != "Point":
                 self._additional_check_results.append(
@@ -114,7 +114,7 @@ class NodesLocationAndSpansRouteAdditionalCheckForNetwork(AdditionalCheckForNetw
 
     def check_span_first_pass(self, span: dict, path: str):
         location = span.get("route")
-        if location:
+        if isinstance(location, dict) and location:
             type = location.get("type")
             if type != "LineString":
                 self._additional_check_results.append(
