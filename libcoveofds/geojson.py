@@ -241,7 +241,7 @@ class GeoJSONToJSONConverter:
 
                             # Check references to phases in contracts are consistent with what we have seen before.
                             # This will give a more specific error on the phase_id.
-                            # (However, 2 errors will be recorded - one for network_id and one for phrase_id!
+                            # (However, 2 errors will be recorded - one for network_id and one for phase_id!
                             #  Can we make that tidier?
                             #  Suspect as we work to make errors more informative that will happen anyway #TODO)
                             if "contracts" in self._networks[network_id][
