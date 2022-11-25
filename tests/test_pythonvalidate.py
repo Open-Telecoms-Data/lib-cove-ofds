@@ -50,8 +50,6 @@ def test_basic_1(filename):
     with open(expected_filename) as fp:
         expected_data = json.load(fp)
 
-    print(expected_data)
-
     schema = OFDSSchema()
     validate = PythonValidate(schema)
     output = validate.validate(input_data)
