@@ -17,6 +17,7 @@ GEOJSON_TO_JSON_FILES = [
     # Check for errors in meta
     ("phases_inconsistent_1"),
     ("organisations_inconsistent_1"),
+    ("network_inconsistent_1"),
 ]
 
 

@@ -74,5 +74,6 @@
         }
     },
     "inconsistent_phases_by_network_id": {},
-    "inconsistent_organisations_by_network_id": {}
+    "inconsistent_organisations_by_network_id": {},
+    "inconsistent_network_ids": []
 }
