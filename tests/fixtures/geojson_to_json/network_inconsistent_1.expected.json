@@ -7,18 +7,6 @@
                 {
                     "id": "1",
                     "name": "Accra",
-                    "physicalInfrastructureProvider": {
-                        "id": "GH-RGD-CS111111111",
-                        "name": "FibreCo"
-                    },
-                    "networkProvider": {
-                        "id": "GH-RGD-CS222222222",
-                        "name": "FastWeb"
-                    },
-                    "phase": {
-                        "id": "1",
-                        "name": "First Phase"
-                    },
                     "location": {
                         "type": "Point",
                         "coordinates": [
@@ -31,18 +19,6 @@
                     "id": "2",
                     "name": "Kumasi",
                     "status": "operational",
-                    "physicalInfrastructureProvider": {
-                        "id": "GH-RGD-CS111111111",
-                        "name": "FibreCo"
-                    },
-                    "networkProvider": {
-                        "id": "GH-RGD-CS222222222",
-                        "name": "FastWeb"
-                    },
-                    "phase": {
-                        "id": "1",
-                        "name": "First Phase"
-                    },
                     "location": {
                         "type": "Point",
                         "coordinates": [
@@ -58,14 +34,6 @@
                     "name": "Accra to Kumasi",
                     "start": "1",
                     "end": "2",
-                    "physicalInfrastructureProvider": {
-                        "id": "GH-RGD-CS111111111",
-                        "name": "FibreCo"
-                    },
-                    "networkProvider": {
-                        "id": "GH-RGD-CS222222222",
-                        "name": "FastWeb"
-                    },
                     "route": {
                         "type": "LineString",
                         "coordinates": [
@@ -123,38 +91,6 @@
                             ]
                         ]
                     }
-                }
-            ],
-            "phases": [
-                {
-                    "id": "1",
-                    "name": "First Phase",
-                    "funders": [
-                        {
-                            "id": "GH-RGD-CS333333333",
-                            "name": "Third organisation"
-                        }
-                    ]
-                }
-            ],
-            "organisations": [
-                {
-                    "id": "GH-RGD-CS111111111",
-                    "name": "FibreCo"
-                },
-                {
-                    "id": "GH-RGD-CS222222222",
-                    "name": "FastWeb"
-                },
-                {
-                    "id": "GH-RGD-CS333333333",
-                    "name": "Third organisation",
-                    "country": "GH",
-                    "roles": [
-                        "funder"
-                    ],
-                    "website": "https://www.example.com",
-                    "logo": "https://www.example.com/logo.png"
                 }
             ]
         }

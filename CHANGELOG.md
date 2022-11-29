@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.5.0] - 2022-11-29
+
 ### Changed
 
 - Updated schema to 0__1__0__beta
@@ -23,6 +25,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   - Add path to output
 - GeoJSON to JSON:
   - Include name in organisation and phase references
+  - Process funders/organisations in phases correctly, including spotting inconsistent funders/organisations
+  - Report on inconsistent networks
 
 ## [0.4.0] - 2022-11-09
 

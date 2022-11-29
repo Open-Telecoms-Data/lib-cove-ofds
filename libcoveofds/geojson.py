@@ -101,7 +101,7 @@ class JSONToGeoJSONConverter:
 
         if "id" in ref:
             for item in list:
-                if item.get("id") == ref["id"]:
+                if isinstance(item, dict) and item.get("id") == ref["id"]:
                     return item
 
         return ref
@@ -200,6 +200,7 @@ class GeoJSONToJSONConverter:
         self._inconsistent_organisation_ids_by_network_id: defaultdict = defaultdict(
             set
         )
+        self._inconsistent_network_ids_seen: set = set()
 
     def process_data(self, nodes_data: dict, spans_data: dict) -> None:
         """Process data. Results are stored on object to get with other methods."""
@@ -223,32 +224,86 @@ class GeoJSONToJSONConverter:
             and "network" in geojson_feature_node_or_span["properties"]
         ):
             network = geojson_feature_node_or_span["properties"]["network"]
-            if network.get("id"):
-                # TODO check for inconsistent data here!
-                self._networks[network.get("id")] = copy.deepcopy(network)
-                self._networks[network.get("id")]["nodes"] = []
-                self._networks[network.get("id")]["spans"] = []
-                self._networks[network.get("id")]["phases"] = {}
-                self._networks[network.get("id")]["organisations"] = {}
+            if isinstance(network, dict):
+                network_id = network.get("id")
+                if isinstance(network_id, str) and network_id:
 
-                # Sort references to phases in contracts
-                if "contracts" in self._networks[network.get("id")] and isinstance(
-                    self._networks[network.get("id")]["contracts"], list
-                ):
-                    for contract in self._networks[network.get("id")]["contracts"]:
-                        if "relatedPhases" in contract and isinstance(
-                            contract["relatedPhases"], list
+                    # TODO nodes/spans/phases/organisations should not be set in network - check this and warn if so
+
+                    # Is data already seen?
+                    if network_id in self._networks:
+                        # Is it inconsistent with what we have seen before?
+                        if json_diff_function(
+                            self._networks[network_id]["network_data_original"], network
                         ):
-                            out: list = []
-                            for phase_reference in contract["relatedPhases"]:
-                                phase_data = self._process_phase(
-                                    network.get("id"), phase_reference
-                                )
-                                if phase_data:
-                                    out.append(phase_data)
-                                else:
-                                    out.append(phase_reference)
-                            contract["relatedPhases"] = out
+                            # record error for later
+                            self._inconsistent_network_ids_seen.add(network_id)
+
+                            # Check references to phases in contracts are consistent with what we have seen before.
+                            # This will give a more specific error on the phase_id.
+                            # (However, 2 errors will be recorded - one for network_id and one for phase_id!
+                            #  Can we make that tidier?
+                            #  Suspect as we work to make errors more informative that will happen anyway #TODO)
+                            if "contracts" in self._networks[network_id][
+                                "network_data_output"
+                            ] and isinstance(
+                                self._networks[network_id]["network_data_output"][
+                                    "contracts"
+                                ],
+                                list,
+                            ):
+                                for contract in self._networks[network_id][
+                                    "network_data_output"
+                                ]["contracts"]:
+                                    if "relatedPhases" in contract and isinstance(
+                                        contract["relatedPhases"], list
+                                    ):
+                                        for phase_reference in contract[
+                                            "relatedPhases"
+                                        ]:
+                                            self._process_phase(
+                                                network_id, phase_reference
+                                            )
+                    else:
+
+                        # Not seen this before!
+
+                        # Store it
+                        self._networks[network_id] = {
+                            "network_data_original": copy.deepcopy(network),
+                            "network_data_output": copy.deepcopy(network),
+                            "nodes": [],
+                            "spans": [],
+                            "phases": {},
+                            "organisations": {},
+                        }
+
+                        # Sort references to phases in contracts
+                        # (Must do after storing, as this writes data to the stored network)
+                        if "contracts" in self._networks[network_id][
+                            "network_data_output"
+                        ] and isinstance(
+                            self._networks[network_id]["network_data_output"][
+                                "contracts"
+                            ],
+                            list,
+                        ):
+                            for contract in self._networks[network_id][
+                                "network_data_output"
+                            ]["contracts"]:
+                                if "relatedPhases" in contract and isinstance(
+                                    contract["relatedPhases"], list
+                                ):
+                                    out: list = []
+                                    for phase_reference in contract["relatedPhases"]:
+                                        phase_data = self._process_phase(
+                                            network_id, phase_reference
+                                        )
+                                        if phase_data:
+                                            out.append(phase_data)
+                                        else:
+                                            out.append(phase_reference)
+                                    contract["relatedPhases"] = out
 
     def _process_node(self, geojson_feature_node: dict) -> None:
         node = copy.deepcopy(geojson_feature_node.get("properties", {}))
@@ -318,6 +373,15 @@ class GeoJSONToJSONConverter:
         # If no id, can't do anything. TODO log somewhere?
         if not phase_id or not isinstance(phase_id, str):
             return None
+        # Check funders
+        funders = phase.get("funders")
+        if isinstance(funders, list) and funders:
+            new_funders = []
+            for funder in funders:
+                funder_data = self._process_organisation(network_id, funder)
+                if funder_data:
+                    new_funders.append(funder_data)
+            phase["funders"] = new_funders
         # Check data
         if phase_id in self._networks[network_id]["phases"]:
             # Is it inconsistent with what we have seen before?
@@ -371,16 +435,17 @@ class GeoJSONToJSONConverter:
         out: dict = {"networks": []}
         for network in self._networks.values():
             # We are going to change network, so we need to take a copy
-            network = copy.deepcopy(network)
-            # Arrays have minItems: 1 set - so if no content, remove the empty array
-            for key in ["nodes", "spans", "phases", "organisations", "contracts"]:
-                if key in network and not network[key]:
-                    del network[key]
-            # Sometimes we store these things in dicts - turn to lists
+            network_data = copy.deepcopy(network["network_data_output"])
+            # Copy other data we have built to network_data
+            # Arrays have minItems: 1 set - so only add if we actually have content
+            for key in ["nodes", "spans"]:
+                if network[key]:
+                    network_data[key] = network[key]
             for key in ["phases", "organisations"]:
-                if key in network:
-                    network[key] = list(network[key].values())
-            out["networks"].append(network)
+                if network[key]:
+                    network_data[key] = list(network[key].values())
+            # build return
+            out["networks"].append(network_data)
         return out
 
     def get_meta_json(self) -> dict:
@@ -401,5 +466,6 @@ class GeoJSONToJSONConverter:
             k: {"organisation_ids": sorted(list(v))}
             for k, v in self._inconsistent_organisation_ids_by_network_id.items()
         }
+        out["inconsistent_network_ids"] = list(self._inconsistent_network_ids_seen)
         # return
         return out

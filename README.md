@@ -20,12 +20,16 @@ pip install -e .
 
 Call `libcoveofds` and pass --help to see options.
 
-    libcoveofds --help 
-    libcoveofds jsontogeojson --help
+```bash
+libcoveofds --help 
+libcoveofds jsontogeojson --help
+```
     
 ### Running tests
 
-    python -m pytest
+```bash
+python -m pytest
+```
 
 For writing tests, look in `make_expected_test_data.sh` for a helper script.
 
@@ -33,12 +37,15 @@ For writing tests, look in `make_expected_test_data.sh` for a helper script.
 
 Make sure dev dependencies are installed in your virtual environment:
 
-    pip install -e .[dev]
+```bash
+pip install -e .[dev]
+```
 
 Then run:
 
-    isort libcoveofds/ libcove2/ tests/ setup.py
-    black libcoveofds/ libcove2/ tests/ setup.py
-    flake8 libcoveofds/ libcove2/ tests/ setup.py
-    mypy --install-types --non-interactive -p  libcoveofds
-
+```bash
+isort libcoveofds/ libcove2/ tests/ setup.py
+black libcoveofds/ libcove2/ tests/ setup.py
+flake8 libcoveofds/ libcove2/ tests/ setup.py
+mypy --install-types --non-interactive -p  libcoveofds
+```

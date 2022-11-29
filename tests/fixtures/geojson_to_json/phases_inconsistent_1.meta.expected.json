@@ -97,21 +97,25 @@
             "count": 1
         },
         "/networks/phases/id": {
-            "count": 1
+            "count": 2
         },
         "/networks/phases/name": {
-            "count": 1
+            "count": 2
         },
         "/networks/phases/description": {
-            "count": 1
+            "count": 2
         }
     },
     "inconsistent_phases_by_network_id": {
         "a096d627-72e1-4f9b-b129-951b1737bff4": {
             "phase_ids": [
-                "1"
+                "1",
+                "2"
             ]
         }
     },
-    "inconsistent_organisations_by_network_id": {}
+    "inconsistent_organisations_by_network_id": {},
+    "inconsistent_network_ids": [
+        "a096d627-72e1-4f9b-b129-951b1737bff4"
+    ]
 }

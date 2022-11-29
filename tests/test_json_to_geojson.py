@@ -65,3 +65,20 @@ def test_json_to_geojson(filename):
     with open(meta_expected_filename) as fp:
         meta_expected_data = json.load(fp)
     assert meta_expected_data == converter.get_meta_json()
+
+
+def test_dont_crash_1():
+    """Just put as much bad stuff as possible in the input and make sure it doesn't crash!
+    We don't care about testing output. Other tests can do that."""
+    json_filename = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        "fixtures",
+        "json_to_geojson",
+        "dont_crash_1.json",
+    )
+
+    with open(json_filename) as fp:
+        json_data = json.load(fp)
+
+    converter = JSONToGeoJSONConverter()
+    converter.process_package(json_data)

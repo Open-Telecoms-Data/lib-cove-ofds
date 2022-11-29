@@ -1,0 +1,79 @@
+{
+    "output_field_coverage": {
+        "/networks": {
+            "count": 1
+        },
+        "/networks/id": {
+            "count": 1
+        },
+        "/networks/links": {
+            "count": 1
+        },
+        "/networks/links/rel": {
+            "count": 1
+        },
+        "/networks/links/href": {
+            "count": 1
+        },
+        "/networks/nodes": {
+            "count": 1
+        },
+        "/networks/nodes/id": {
+            "count": 1
+        },
+        "/networks/nodes/phase": {
+            "count": 1
+        },
+        "/networks/nodes/phase/id": {
+            "count": 1
+        },
+        "/networks/nodes/phase/name": {
+            "count": 1
+        },
+        "/networks/phases": {
+            "count": 1
+        },
+        "/networks/phases/id": {
+            "count": 1
+        },
+        "/networks/phases/name": {
+            "count": 1
+        },
+        "/networks/phases/funders": {
+            "count": 1
+        },
+        "/networks/phases/funders/id": {
+            "count": 1
+        },
+        "/networks/phases/funders/name": {
+            "count": 1
+        },
+        "/networks/organisations": {
+            "count": 1
+        },
+        "/networks/organisations/id": {
+            "count": 1
+        },
+        "/networks/organisations/name": {
+            "count": 1
+        },
+        "/networks/organisations/country": {
+            "count": 1
+        },
+        "/networks/organisations/roles": {
+            "count": 1
+        },
+        "/networks/organisations/roleDetails": {
+            "count": 1
+        },
+        "/networks/organisations/website": {
+            "count": 1
+        },
+        "/networks/organisations/logo": {
+            "count": 1
+        }
+    },
+    "inconsistent_phases_by_network_id": {},
+    "inconsistent_organisations_by_network_id": {},
+    "inconsistent_network_ids": []
+}

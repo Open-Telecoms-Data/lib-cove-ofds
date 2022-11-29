@@ -10,8 +10,8 @@
                     "description": "Contract for the construction of phase 1 of the NextGen network.",
                     "relatedPhases": [
                         {
-                            "id": "1",
-                            "name": "NextGen Phase 1"
+                            "id": "2",
+                            "name": "NextGen Phase 2"
                         }
                     ]
                 }
@@ -119,6 +119,11 @@
                 }
             ],
             "phases": [
+                {
+                    "id": "2",
+                    "name": "NextGen Phase 2",
+                    "description": "The second phase of the Ghana Fibre Network NextGen roll-out."
+                },
                 {
                     "id": "1",
                     "name": "NextGen Phase 1",
