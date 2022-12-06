@@ -15,7 +15,13 @@ setup(
     packages=find_packages(),
     long_description="A data review library",
     python_requires=">=3.8",
-    install_requires=["jsonschema", "requests", "jsonref", "json-merge-patch"],
+    install_requires=[
+        "jsonschema",
+        "requests",
+        "jsonref",
+        "json-merge-patch",
+        "rfc3987",
+    ],
     extras_require={
         "dev": ["pytest", "flake8", "black==22.3.0", "isort", "mypy", "Sphinx"]
     },

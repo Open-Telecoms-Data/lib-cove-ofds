@@ -11,6 +11,7 @@ JSONSCHEMAVALIDATE_FILES = [
     ("basic_1"),
     # Bad data
     ("bad_uuid_1"),
+    ("bad_iri_1"),
 ]
 
 

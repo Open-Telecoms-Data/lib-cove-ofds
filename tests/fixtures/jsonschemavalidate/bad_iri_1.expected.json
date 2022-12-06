@@ -1,0 +1,25 @@
+[
+    {
+        "message": "'example.com' is not a 'iri'",
+        "path": [
+            "networks",
+            0,
+            "website"
+        ],
+        "schema_path": [
+            "properties",
+            "networks",
+            "items",
+            "properties",
+            "website",
+            "format"
+        ],
+        "validator": "format",
+        "data_ids": {
+            "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+        },
+        "validator_value": "iri",
+        "context": [],
+        "instance": "example.com"
+    }
+]
