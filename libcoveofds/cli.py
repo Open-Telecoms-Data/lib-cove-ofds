@@ -12,24 +12,36 @@ def main():
     parser = argparse.ArgumentParser(description="Lib Cove OFDS CLI")
     subparsers = parser.add_subparsers(dest="subparser_name")
 
-    python_validate_parser = subparsers.add_parser("pythonvalidate", aliases=["pv"])
+    python_validate_parser = subparsers.add_parser(
+        "pythonvalidate",
+        aliases=["pv"],
+        help="Check that data conforms to normative rules specified in OFDS",
+    )
     python_validate_parser.add_argument(
         "inputfilename", help="File name of an input JSON data file"
     )
 
-    additional_fields_parser = subparsers.add_parser("additionalfields", aliases=["af"])
+    additional_fields_parser = subparsers.add_parser(
+        "additionalfields",
+        aliases=["af"],
+        help="Report additional fields not specified in the schema",
+    )
     additional_fields_parser.add_argument(
         "inputfilename", help="File name of an input JSON data file"
     )
 
     json_schema_validate_parser = subparsers.add_parser(
-        "jsonschemavalidate", aliases=["jsv"]
+        "jsonschemavalidate", aliases=["jsv"], help="Validate data against the schema"
     )
     json_schema_validate_parser.add_argument(
         "inputfilename", help="File name of an input JSON data file"
     )
 
-    json_to_geojson_parser = subparsers.add_parser("jsontogeojson", aliases=["jtogj"])
+    json_to_geojson_parser = subparsers.add_parser(
+        "jsontogeojson",
+        aliases=["jtogj"],
+        help="Convert data from JSON format to GeoJSON format",
+    )
     json_to_geojson_parser.add_argument(
         "inputfilename", help="File name of an input JSON data file"
     )
@@ -45,7 +57,11 @@ def main():
         required=False,
     )
 
-    geojson_to_json_parser = subparsers.add_parser("geojsontojson", aliases=["gjtoj"])
+    geojson_to_json_parser = subparsers.add_parser(
+        "geojsontojson",
+        aliases=["gjtoj"],
+        help="Convert data from GeoJSON to JSON format",
+    )
     geojson_to_json_parser.add_argument(
         "inputnodesfilename", help="File name of an input Nodes GeoJSON data file"
     )
