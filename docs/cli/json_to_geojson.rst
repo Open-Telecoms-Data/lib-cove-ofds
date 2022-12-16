@@ -9,3 +9,9 @@ To see options, run:
 
     libcoveofds  jsontogeojson  --help
 
+
+You can also use a shorter alias:
+
+.. code-block:: bash
+
+    libcoveofds jtogj --help

@@ -7,3 +7,9 @@ To see options, run:
 
     libcoveofds geojsontojson --help
 
+
+You can also use a shorter alias:
+
+.. code-block:: bash
+
+    libcoveofds gjtoj --help
