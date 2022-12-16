@@ -1,21 +1,11 @@
 Python Validate
 ===============
 
+This function checks that data conforms to normative rules specified in OFDS.
 
-Use via CLI
------------
+To use via the CLI, see - :doc:`cli/python_validate`
 
-To see options, run:
-
-.. code-block:: bash
-
-    libcoveofds  pythonvalidate  --help
-
-Use via Python
---------------
-
-.. autoclass:: libcoveofds.python_validate.PythonValidate
-  :members:
+To use via Python, see - :doc:`api/python_validate`
 
 
 Spans must have valid start and end nodes

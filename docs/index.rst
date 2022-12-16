@@ -22,4 +22,6 @@ Contents
    additional_fields.rst
    json_to_geojson.rst
    geojson_to_json.rst
+   api/index.rst
+   cli/index.rst
    contributing.rst

@@ -1,19 +1,9 @@
 GeoJSON to JSON conversion
 ==========================
 
+This function converts data from GeoJSON to JSON format.
 
-Use via CLI
------------
+To use via the CLI, see - :doc:`cli/geojson_to_json`
 
-To see options, run:
+To use via Python, see - :doc:`api/geojson_to_json`
 
-.. code-block:: bash
-
-    libcoveofds geojsontojson --help
-
-
-Use via Python
---------------
-
-.. autoclass:: libcoveofds.geojson.GeoJSONToJSONConverter
-  :members:

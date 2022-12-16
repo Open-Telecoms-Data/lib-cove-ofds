@@ -1,17 +1,9 @@
 Additional Fields
 =================
 
-Use via CLI
------------
+This function reports additional fields not specified in the schema.
 
-To see options, run:
+To use via the CLI, see - :doc:`cli/additional_fields`
 
-.. code-block:: bash
+To use via Python, see - :doc:`api/additional_fields`
 
-    libcoveofds additionalfields --help
-
-Use via Python
---------------
-
-.. autoclass:: libcoveofds.additionalfields.AdditionalFields
-  :members:

@@ -1,20 +1,9 @@
 JSON Schema Validate
 ====================
 
-Use via CLI
------------
+This function validates data against the schema.
 
-To see options, run:
+To use via the CLI, see - :doc:`cli/json_schema_validate`
 
-.. code-block:: bash
+To use via Python, see - :doc:`api/json_schema_validate`
 
-    libcoveofds  jsonschemavalidate   --help
-
-Use via Python
---------------
-
-.. autoclass:: libcoveofds.jsonschemavalidate.JSONSchemaValidator
-  :members:
-
-.. autoclass:: libcoveofds.jsonschemavalidate.ValidationError
-  :members:
