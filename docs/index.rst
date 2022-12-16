@@ -10,9 +10,6 @@ A command-line tool and Python library for to convert, validate and explore Open
 - Convert data from GeoJSON to JSON format
 
 
-Contents
-~~~~~~~~
-
 .. toctree::
    :maxdepth: 2
 
