@@ -13,4 +13,4 @@ If you are viewing this on GitHub or PyPI, open the `full documentation <https:/
 .. |PyPI Version| image:: https://img.shields.io/pypi/v/ocdskit.svg
    :target: https://pypi.org/project/libcoveofds
 .. |Python Version| image:: https://img.shields.io/pypi/pyversions/ocdskit.svg
-   :target: https://pypi.org/project/ocdskit/
+   :target: https://pypi.org/project/libcoveofds/
