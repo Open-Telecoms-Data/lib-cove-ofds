@@ -1,0 +1,94 @@
+{
+  "networks": [
+    {
+      "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+      "name": "Ghana Fibre Network",
+      "nodes": [
+        {
+          "id": "1",
+          "name": "Accra"
+        },
+        {
+          "id": "2",
+          "name": "Kumasi"
+        },
+        {
+          "id": "2",
+          "name": "Another place"
+        },
+        {
+          "id": "2",
+          "name": "Another place"
+        }
+      ],
+      "spans": [
+        {
+          "id": "1",
+          "name": "Accra to Kumasi",
+          "start": "1",
+          "end": "2"
+        },
+        {
+          "id": "1",
+          "name": "Accra to Another Place",
+          "start": "1",
+          "end": "2"
+        },
+        {
+          "id": "1",
+          "name": "Accra to Another Place",
+          "start": "1",
+          "end": "2"
+        }
+      ],
+      "phases": [
+        {
+          "id": "2",
+          "name": "NextGen Phase 2"
+        },
+        {
+          "id": "2",
+          "name": "NextGen Phase the second"
+        },
+        {
+          "id": "2",
+          "name": "NextGen Phase the second"
+        }
+      ],
+      "organisations": [
+        {
+          "id": "2",
+          "name": "We strive to be second best at everything!"
+        },
+        {
+          "id": "2",
+          "name": "We strive to be 2nd best at everything!"
+        },
+        {
+          "id": "2",
+          "name": "We strive to be 2nd best at everything!"
+        }
+      ],
+      "contracts": [
+        {
+          "id": "2",
+          "title": "NextGen Phase 2 Construction Contract"
+        },
+        {
+          "id": "2",
+          "title": "NextGen Phase 2nd Construction Contract"
+        },
+        {
+          "id": "2",
+          "title": "NextGen Phase 2nd Construction Contract"
+        }
+      ],
+      "links": [
+        {
+          "rel": "describedby",
+          "href": "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/0__1__0__beta/schema/network-schema.json"
+        }
+      ]
+    }
+  ]
+}

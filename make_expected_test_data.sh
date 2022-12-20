@@ -51,4 +51,5 @@ libcoveofds pv tests/fixtures/pythonvalidate/span_route_type_incorrect_1.input.j
 libcoveofds pv tests/fixtures/pythonvalidate/start_node_not_found_1.input.json  > tests/fixtures/pythonvalidate/start_node_not_found_1.expected.json
 libcoveofds pv tests/fixtures/pythonvalidate/start_node_not_found_but_has_external_nodes_1.input.json  > tests/fixtures/pythonvalidate/start_node_not_found_but_has_external_nodes_1.expected.json
 libcoveofds pv tests/fixtures/pythonvalidate/unique_ids_1.input.json  > tests/fixtures/pythonvalidate/unique_ids_1.expected.json
+libcoveofds pv tests/fixtures/pythonvalidate/unique_ids_2.input.json  > tests/fixtures/pythonvalidate/unique_ids_2.expected.json
 
