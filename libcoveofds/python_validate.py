@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from libcoveofds.schema import OFDSSchema
 
 
@@ -38,7 +40,7 @@ class AdditionalCheckForNetwork:
     def check_contract_second_pass(self, contract: dict, path: str):
         pass
 
-    def get_additional_check_results(self):
+    def get_additional_check_results(self) -> list:
         return self._additional_check_results
 
     def skip_if_any_links_have_external_node_data(self) -> bool:
@@ -518,71 +520,78 @@ class IsNodeUsedInSpanAdditionalCheckForNetwork(AdditionalCheckForNetwork):
 class UniqueIDsAdditionalCheckForNetwork(AdditionalCheckForNetwork):
     def __init__(self, schema_object: OFDSSchema):
         super().__init__(schema_object)
-        self._node_ids_seen: list = []
-        self._span_ids_seen: list = []
-        self._phase_ids_seen: list = []
-        self._organisation_ids_seen: list = []
-        self._contract_ids_seen: list = []
+        self._node_ids_seen: defaultdict = defaultdict(list)
+        self._span_ids_seen: defaultdict = defaultdict(list)
+        self._phase_ids_seen: defaultdict = defaultdict(list)
+        self._organisation_ids_seen: defaultdict = defaultdict(list)
+        self._contract_ids_seen: defaultdict = defaultdict(list)
 
     def check_node_first_pass(self, node: dict, path: str):
         id = node.get("id")
         if id and isinstance(id, str):
-            if id in self._node_ids_seen:
-                self._additional_check_results.append(
-                    {"type": "duplicate_node_id", "node_id": id, "path": path}
-                )
-            else:
-                self._node_ids_seen.append(id)
-
-        pass
+            self._node_ids_seen[id].append(path)
 
     def check_span_first_pass(self, span: dict, path: str):
         id = span.get("id")
         if id and isinstance(id, str):
-            if id in self._span_ids_seen:
-                self._additional_check_results.append(
-                    {"type": "duplicate_span_id", "span_id": id, "path": path}
-                )
-            else:
-                self._span_ids_seen.append(id)
+            self._span_ids_seen[id].append(path)
 
     def check_phase_first_pass(self, phase: dict, path: str):
         id = phase.get("id")
         if id and isinstance(id, str):
-            if id in self._phase_ids_seen:
-                self._additional_check_results.append(
-                    {"type": "duplicate_phase_id", "phase_id": id, "path": path}
-                )
-            else:
-                self._phase_ids_seen.append(id)
-
-        pass
+            self._phase_ids_seen[id].append(path)
 
     def check_organisation_first_pass(self, organisation: dict, path: str):
         id = organisation.get("id")
         if id and isinstance(id, str):
-            if id in self._organisation_ids_seen:
-                self._additional_check_results.append(
-                    {
-                        "type": "duplicate_organisation_id",
-                        "organisation_id": id,
-                        "path": path,
-                    }
-                )
-            else:
-                self._organisation_ids_seen.append(id)
-
-        pass
+            self._organisation_ids_seen[id].append(path)
 
     def check_contract_first_pass(self, contract: dict, path: str):
         id = contract.get("id")
         if id and isinstance(id, str):
-            if id in self._contract_ids_seen:
-                self._additional_check_results.append(
-                    {"type": "duplicate_contract_id", "contract_id": id, "path": path}
-                )
-            else:
-                self._contract_ids_seen.append(id)
+            self._contract_ids_seen[id].append(path)
+
+    def get_additional_check_results(self) -> list:
+        out: list = []
+        for id, paths in self._node_ids_seen.items():
+            if len(paths) > 1:
+                for path in paths:
+                    out.append(
+                        {"type": "duplicate_node_id", "node_id": id, "path": path}
+                    )
+        for id, paths in self._span_ids_seen.items():
+            if len(paths) > 1:
+                for path in paths:
+                    out.append(
+                        {"type": "duplicate_span_id", "span_id": id, "path": path}
+                    )
+        for id, paths in self._phase_ids_seen.items():
+            if len(paths) > 1:
+                for path in paths:
+                    out.append(
+                        {"type": "duplicate_phase_id", "phase_id": id, "path": path}
+                    )
+        for id, paths in self._organisation_ids_seen.items():
+            if len(paths) > 1:
+                for path in paths:
+                    out.append(
+                        {
+                            "type": "duplicate_organisation_id",
+                            "organisation_id": id,
+                            "path": path,
+                        }
+                    )
+        for id, paths in self._contract_ids_seen.items():
+            if len(paths) > 1:
+                for path in paths:
+                    out.append(
+                        {
+                            "type": "duplicate_contract_id",
+                            "contract_id": id,
+                            "path": path,
+                        }
+                    )
+        return out
 
     def skip_if_any_links_have_external_node_data(self) -> bool:
         return False

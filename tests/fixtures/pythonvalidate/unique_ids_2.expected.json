@@ -12,6 +12,12 @@
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     },
     {
+        "type": "duplicate_node_id",
+        "node_id": "2",
+        "path": "/networks/0/nodes/3",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
         "type": "duplicate_span_id",
         "span_id": "1",
         "path": "/networks/0/spans/0",
@@ -21,6 +27,12 @@
         "type": "duplicate_span_id",
         "span_id": "1",
         "path": "/networks/0/spans/1",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "duplicate_span_id",
+        "span_id": "1",
+        "path": "/networks/0/spans/2",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     },
     {
@@ -36,6 +48,12 @@
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     },
     {
+        "type": "duplicate_phase_id",
+        "phase_id": "2",
+        "path": "/networks/0/phases/2",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
         "type": "duplicate_organisation_id",
         "organisation_id": "2",
         "path": "/networks/0/organisations/0",
@@ -48,6 +66,12 @@
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     },
     {
+        "type": "duplicate_organisation_id",
+        "organisation_id": "2",
+        "path": "/networks/0/organisations/2",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
         "type": "duplicate_contract_id",
         "contract_id": "2",
         "path": "/networks/0/contracts/0",
@@ -57,6 +81,12 @@
         "type": "duplicate_contract_id",
         "contract_id": "2",
         "path": "/networks/0/contracts/1",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "duplicate_contract_id",
+        "contract_id": "2",
+        "path": "/networks/0/contracts/2",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     }
 ]

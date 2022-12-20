@@ -23,7 +23,10 @@ PYTHONVALIDATE_FILES = [
     ("span_route_type_incorrect_1"),
     ("start_node_not_found_1"),
     ("start_node_not_found_but_has_external_nodes_1"),
+    # ID's are repeated twice here - make sure we get 2 errors, one for each use
     ("unique_ids_1"),
+    # ID's are repeated three times here - make sure we get 3 errors, one for each use
+    ("unique_ids_2"),
 ]
 
 
