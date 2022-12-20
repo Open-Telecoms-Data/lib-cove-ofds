@@ -9,9 +9,9 @@ This page describes the checks performed by the ``pythonvalidate`` CLI command a
 
 The CLI command and Python API return a list of check failures, each represented by a JSON object with at least the following properties:
 
-- ``type`` the type of check failure
-- ``network_id`` the ``.id`` of the network that failed the check
-- ``path`` the JSON path to the field that failed the check
+- ``type``: the type of check failure
+- ``network_id``: the ``.id`` of the network that failed the check
+- ``path``: the JSON path to the field that failed the check
 
 Some check failures include additional properties with further details of the failure, specific to the nature of the check.
 
