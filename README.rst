@@ -10,7 +10,7 @@ A command-line tool and Python library to convert, validate and explore `Open Fi
 
 If you are viewing this on GitHub or PyPI, open the `full documentation <https://libcoveofds.readthedocs.io>`__ for additional details.
 
-.. |PyPI Version| image:: https://img.shields.io/pypi/v/ocdskit.svg
+.. |PyPI Version| image:: https://img.shields.io/pypi/v/libcoveofds.svg
    :target: https://pypi.org/project/libcoveofds
-.. |Python Version| image:: https://img.shields.io/pypi/pyversions/ocdskit.svg
+.. |Python Version| image:: https://img.shields.io/pypi/pyversions/libcoveofds.svg
    :target: https://pypi.org/project/libcoveofds/
