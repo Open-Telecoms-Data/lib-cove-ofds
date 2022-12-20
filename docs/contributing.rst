@@ -16,9 +16,6 @@ For instance, to checkout the repository, create a virtual environment and insta
     source .ve/bin/activate
     pip install -e .[dev]
 
-
-
-
 Running tests
 -------------
 

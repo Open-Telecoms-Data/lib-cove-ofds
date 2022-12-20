@@ -6,7 +6,7 @@ This page describes the Python API.
 OFDSSchema
 ----------
 
-Before instantiating the other classes on this page, you first need to create an `OFDSSchema` object:
+Before instantiating the other classes on this page, you first need to create an ``OFDSSchema`` object:
 
 .. autoclass:: libcoveofds.schema.OFDSSchema
   :members:
@@ -85,7 +85,7 @@ AdditionalFields
 .. autoclass:: libcoveofds.additionalfields.AdditionalFields
   :members:
 
-For more information on the results format, see :doc: `additional_fields`.
+For more information on the results format, see :doc:`additional_fields`.
 
 Example
 ~~~~~~~

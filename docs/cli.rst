@@ -8,9 +8,6 @@ To see all commands, run:
     libcoveofds --help
 
 
-Commands
-~~~~~~~~
-
 To see the options for each command, run:
 
 .. code-block:: bash
@@ -29,7 +26,7 @@ For more information, see `handling validation errors <https://python-jsonschema
 
 Mandatory positional arguments:
 
-- `inputfilename` File name of an input JSON data file
+- ``inputfilename`` File name of an input JSON data file
 
 .. code-block:: bash
 
@@ -44,7 +41,7 @@ For more information on the checks and failures, see :doc:`checks`.
 
 Mandatory positional arguments:
 
-- `inputfilename` File name of an input JSON data file
+- ``inputfilename`` File name of an input JSON data file
 
 .. code-block:: bash
 
@@ -59,7 +56,7 @@ For more information on the output format returned by the command, see :doc: `ad
 
 Mandatory positional arguments:
 
-- `inputfilename` File name of an input JSON data file
+- ``inputfilename`` File name of an input JSON data file
 
 .. code-block:: bash
 
@@ -74,9 +71,9 @@ For more information on the input and output formats, see the `JSON publication 
 
 Mandatory positional arguments:
 
-- `inputfilename` File name of an input JSON data file
-- `outputnodesfilename` Output filename to write Nodes GeoJSON data to
-- `outputspansfilename` Output filename to write Spans GeoJSON data to
+- ``inputfilename`` File name of an input JSON data file
+- ``outputnodesfilename`` Output filename to write Nodes GeoJSON data to
+- ``outputspansfilename`` Output filename to write Spans GeoJSON data to
 
 .. code-block:: bash
 
@@ -91,9 +88,9 @@ For more information on the input and output formats, see the `GeoJSON publicati
 
 Mandatory positional arguments:
 
-- `inputnodesfilename` File name of an input Nodes GeoJSON data file
-- `inputspansfilename` File name of an input Spans GeoJSON data file
-- `outputfilename` Output filename to write JSON data to
+- ``inputnodesfilename`` File name of an input Nodes GeoJSON data file
+- ``inputspansfilename`` File name of an input Spans GeoJSON data file
+- ``outputfilename`` Output filename to write JSON data to
 
 .. code-block:: bash
 
