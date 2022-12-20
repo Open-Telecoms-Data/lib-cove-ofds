@@ -5,6 +5,7 @@ from libcove2.common import schema_dict_fields_generator
 
 
 class OFDSSchema:
+    """Represents and provides information about the schema."""
 
     # Please lock to a specific tag or commit hash - never a branch name!
     # This prevents changes to the standard suddenly breaking previously working software/tests etc.
