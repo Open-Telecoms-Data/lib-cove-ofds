@@ -557,19 +557,31 @@ class UniqueIDsAdditionalCheckForNetwork(AdditionalCheckForNetwork):
             if len(paths) > 1:
                 for path in paths:
                     out.append(
-                        {"type": "duplicate_node_id", "node_id": id, "path": path}
+                        {
+                            "type": "duplicate_node_id",
+                            "node_id": id,
+                            "path": path + "/id",
+                        }
                     )
         for id, paths in self._span_ids_seen.items():
             if len(paths) > 1:
                 for path in paths:
                     out.append(
-                        {"type": "duplicate_span_id", "span_id": id, "path": path}
+                        {
+                            "type": "duplicate_span_id",
+                            "span_id": id,
+                            "path": path + "/id",
+                        }
                     )
         for id, paths in self._phase_ids_seen.items():
             if len(paths) > 1:
                 for path in paths:
                     out.append(
-                        {"type": "duplicate_phase_id", "phase_id": id, "path": path}
+                        {
+                            "type": "duplicate_phase_id",
+                            "phase_id": id,
+                            "path": path + "/id",
+                        }
                     )
         for id, paths in self._organisation_ids_seen.items():
             if len(paths) > 1:
@@ -578,7 +590,7 @@ class UniqueIDsAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                         {
                             "type": "duplicate_organisation_id",
                             "organisation_id": id,
-                            "path": path,
+                            "path": path + "/id",
                         }
                     )
         for id, paths in self._contract_ids_seen.items():
@@ -588,7 +600,7 @@ class UniqueIDsAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                         {
                             "type": "duplicate_contract_id",
                             "contract_id": id,
-                            "path": path,
+                            "path": path + "/id",
                         }
                     )
         return out
