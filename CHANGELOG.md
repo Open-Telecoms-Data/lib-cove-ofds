@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - Python Validate:
   - [#51](https://github.com/Open-Telecoms-Data/lib-cove-ofds/issues/51) - unique ID checks return all places the non-unique ID is used. (Previously would not return first one)
+  - [#60](https://github.com/Open-Telecoms-Data/lib-cove-ofds/issues/60) - unique ID checks return a path with "id" at the end.
   
 ## [0.6.0] - 2022-12-07
 
