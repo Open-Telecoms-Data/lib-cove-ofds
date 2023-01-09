@@ -9,9 +9,9 @@ This page describes the checks performed by the ``pythonvalidate`` CLI command a
 
 The CLI command and Python API return a list of check failures, each represented by a JSON object with at least the following properties:
 
-- ``type``: the type of check failure
-- ``network_id``: the ``.id`` of the network that failed the check
-- ``path``: the JSON path to the field that failed the check
+* ``type``: the type of check failure
+* ``network_id``: the ``.id`` of the network that failed the check
+* ``path``: the JSON path to the field that failed the check
 
 Some check failures include additional properties with further details of the failure, specific to the nature of the check.
 
@@ -42,8 +42,8 @@ Failure ``type``: ``node_location_type_incorrect``
 
 Additional properties:
 
-- ``node_id``: The ``.id`` of the node that failed the check
-- ``incorrect_type``: The ``.location.type`` of the node that failed the check
+* ``node_id``: The ``.id`` of the node that failed the check
+* ``incorrect_type``: The ``.location.type`` of the node that failed the check
 
 Node location coordinates format is a single position
 -----------------------------------------------------
@@ -54,8 +54,8 @@ Failure ``type``: ``node_location_coordinates_incorrect``
 
 Additional properties:
 
-- ``node_id``: The ``.id`` of the node that failed the check
-- ``incorrect_coordinates``: The ``.location.coordinates`` of the node that failed the check
+* ``node_id``: The ``.id`` of the node that failed the check
+* ``incorrect_coordinates``: The ``.location.coordinates`` of the node that failed the check
 
 Span route type is 'LineString'
 -------------------------------
@@ -66,8 +66,8 @@ Failure ``type``: ``span_route_type_incorrect``
 
 Additional properties:
 
-- ``span_id``: The ``.id`` of the span that failed the check
-- ``incorrect_type``: The ``.location.type`` of the node that failed the check
+* ``span_id``: The ``.id`` of the span that failed the check
+* ``incorrect_type``: The ``.location.type`` of the node that failed the check
 
 Span route coordinates is an array of positions
 -----------------------------------------------
@@ -78,8 +78,8 @@ Failure ``type``: ``span_route_coordinates_incorrect``
 
 Additional properties:
 
-- ``span_id``: The ``.id`` of the span that failed the check
-- ``incorrect_coordinates``: The ``.route.coordinates`` of the span that failed the check
+* ``span_id``: The ``.id`` of the span that failed the check
+* ``incorrect_coordinates``: The ``.route.coordinates`` of the span that failed the check
 
 Phase reference is resolvable
 -----------------------------
@@ -94,8 +94,8 @@ Failure ``type``:
 
 Additional properties:
 
-- ``node_id``, ``span_id`` or ``contract_id``: The ``.id`` of the node, span or contract that failed the check
-- ``phase_id_not_found`` the ``.id`` of the phase reference that could not be resolved
+* ``node_id``, ``span_id`` or ``contract_id``: The ``.id`` of the node, span or contract that failed the check
+* ``phase_id_not_found`` the ``.id`` of the phase reference that could not be resolved
 
 Phase reference name is consistent
 ----------------------------------
@@ -110,9 +110,9 @@ Failure ``type``:
 
 Additional properties:
 
-- ``node_id``, ``span_id`` or ``contract_id``: The ``.id`` of the node, span or contract that failed the check
-- ``name_in_reference``: The ``.name`` of the phase reference
-- ``name_should_be``: The ``.name`` of the referenced phrase
+* ``node_id``, ``span_id`` or ``contract_id``: The ``.id`` of the node, span or contract that failed the check
+* ``name_in_reference``: The ``.name`` of the phase reference
+* ``name_should_be``: The ``.name`` of the referenced phrase
 
 Organisation reference is resolvable
 ------------------------------------
@@ -134,9 +134,9 @@ Failure ``type``:
 
 Additional properties:
 
-- ``node_id``, ``span_id`` or ``contract_id``: The ``.id`` of the node, span or contract that failed the check
-- ``field``: The organisation reference that could not be resolved
-- ``organisation_id_not_found``: The ``.id`` of the organisation reference that could not be resolved
+* ``node_id``, ``span_id`` or ``contract_id``: The ``.id`` of the node, span or contract that failed the check
+* ``field``: The organisation reference that could not be resolved
+* ``organisation_id_not_found``: The ``.id`` of the organisation reference that could not be resolved
 
 Organisation reference name is consistent
 -----------------------------------------
@@ -158,10 +158,10 @@ Failure ``type``:
 
 Additional properties:
 
-- ``node_id``, ``span_id`` or ``phase_id``: The ``.id`` of the node, span or phase that failed the check
-- ``field``: The organisation reference whose ``.name`` is inconsistent
-- ``name_in_reference``: The ``.name`` of the organisation reference
-- ``name_should_be``: The ``.name`` of the referenced organisation
+* ``node_id``, ``span_id`` or ``phase_id``: The ``.id`` of the node, span or phase that failed the check
+* ``field``: The organisation reference whose ``.name`` is inconsistent
+* ``name_in_reference``: The ``.name`` of the organisation reference
+* ``name_should_be``: The ``.name`` of the referenced organisation
 
 Node international connections country is set
 -------------------------------------------------
@@ -195,7 +195,7 @@ Failure ``type``:
 
 Additional properties:
 
-- ``node_id``, ``span_id``, ``phase_id``, ``organisation_id`` or ``contract_id``: The ``.id`` of the node, span, phase, organisation or contract that failed the check
+* ``node_id``, ``span_id``, ``phase_id``, ``organisation_id`` or ``contract_id``: The ``.id`` of the node, span, phase, organisation or contract that failed the check
 
 Quality checks
 ~~~~~~~~~~~~~~
@@ -209,7 +209,7 @@ Failure ``type``: ``node_not_used_in_any_spans``
 
 Additional properties:
 
-- ``node_id``: The ``.id`` of the node that failed the span
+* ``node_id``: The ``.id`` of the node that failed the span
 
 Informational checks
 ~~~~~~~~~~~~~~~~~~~~
