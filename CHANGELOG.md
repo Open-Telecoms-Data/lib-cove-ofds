@@ -7,12 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- [#64](https://github.com/Open-Telecoms-Data/lib-cove-ofds/issues/64) Support for schema 0__2__0__beta, including networkProvider -> networkProviders
+  - Changes to JSON Validate [TODO]
+  - Changes to Python Validate (Organisation reference checks)
+  - Changes to JSON/GeoJSON conversions [TODO]
+  - Note library supports 0.2 beta only - it does not support 0.1 beta now.
+
+### Removed
+
+- Support for 0.1 beta (Supports 0.2 beta instead)
+
 ### Changed
 
 - Python Validate:
   - [#51](https://github.com/Open-Telecoms-Data/lib-cove-ofds/issues/51) - unique ID checks return all places the non-unique ID is used. (Previously would not return first one)
   - [#60](https://github.com/Open-Telecoms-Data/lib-cove-ofds/issues/60) - unique ID checks return a path with "id" at the end.
-  
+
 ## [0.6.0] - 2022-12-07
 
 ### Added

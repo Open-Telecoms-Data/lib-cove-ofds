@@ -310,28 +310,41 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                     "path": path + "/physicalInfrastructureProvider/name",
                 },
             )
-        if "networkProvider" in node and isinstance(node["networkProvider"], dict):
-            self._check_related_organisation_object(
-                node["networkProvider"],
-                {
-                    "type": "node_organisation_reference_id_not_found",
-                    "node_id": node.get("id"),
-                    "field": "networkProvider",
-                    "path": path + "/networkProvider/id",
-                },
-                {
-                    "type": "node_organisation_reference_name_does_not_match",
-                    "node_id": node.get("id"),
-                    "field": "networkProvider",
-                    "path": path + "/networkProvider/name",
-                },
-                {
-                    "type": "node_organisation_reference_name_set_but_not_in_original",
-                    "node_id": node.get("id"),
-                    "field": "networkProvider",
-                    "path": path + "/networkProvider/name",
-                },
-            )
+        if "networkProviders" in node and isinstance(node["networkProviders"], list):
+            for network_provider_idx, network_provider in enumerate(
+                node["networkProviders"]
+            ):
+                if isinstance(network_provider, dict):
+                    self._check_related_organisation_object(
+                        network_provider,
+                        {
+                            "type": "node_organisation_reference_id_not_found",
+                            "node_id": node.get("id"),
+                            "field": "networkProvider",
+                            "path": path
+                            + "/networkProviders/"
+                            + str(network_provider_idx)
+                            + "/id",
+                        },
+                        {
+                            "type": "node_organisation_reference_name_does_not_match",
+                            "node_id": node.get("id"),
+                            "field": "networkProvider",
+                            "path": path
+                            + "/networkProviders/"
+                            + str(network_provider_idx)
+                            + "/name",
+                        },
+                        {
+                            "type": "node_organisation_reference_name_set_but_not_in_original",
+                            "node_id": node.get("id"),
+                            "field": "networkProvider",
+                            "path": path
+                            + "/networkProviders/"
+                            + str(network_provider_idx)
+                            + "/name",
+                        },
+                    )
 
     def check_span_second_pass(self, span: dict, path: str):
         if "physicalInfrastructureProvider" in span and isinstance(
@@ -358,28 +371,41 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                     "path": path + "/physicalInfrastructureProvider/name",
                 },
             )
-        if "networkProvider" in span and isinstance(span["networkProvider"], dict):
-            self._check_related_organisation_object(
-                span["networkProvider"],
-                {
-                    "type": "span_organisation_reference_id_not_found",
-                    "span_id": span.get("id"),
-                    "field": "networkProvider",
-                    "path": path + "/networkProvider/id",
-                },
-                {
-                    "type": "span_organisation_reference_name_does_not_match",
-                    "span_id": span.get("id"),
-                    "field": "networkProvider",
-                    "path": path + "/networkProvider/name",
-                },
-                {
-                    "type": "span_organisation_reference_name_set_but_not_in_original",
-                    "span_id": span.get("id"),
-                    "field": "networkProvider",
-                    "path": path + "/networkProvider/name",
-                },
-            )
+        if "networkProviders" in span and isinstance(span["networkProviders"], list):
+            for network_provider_idx, network_provider in enumerate(
+                span["networkProviders"]
+            ):
+                if isinstance(network_provider, dict):
+                    self._check_related_organisation_object(
+                        network_provider,
+                        {
+                            "type": "span_organisation_reference_id_not_found",
+                            "span_id": span.get("id"),
+                            "field": "networkProvider",
+                            "path": path
+                            + "/networkProviders/"
+                            + str(network_provider_idx)
+                            + "/id",
+                        },
+                        {
+                            "type": "span_organisation_reference_name_does_not_match",
+                            "span_id": span.get("id"),
+                            "field": "networkProvider",
+                            "path": path
+                            + "/networkProviders/"
+                            + str(network_provider_idx)
+                            + "/name",
+                        },
+                        {
+                            "type": "span_organisation_reference_name_set_but_not_in_original",
+                            "span_id": span.get("id"),
+                            "field": "networkProvider",
+                            "path": path
+                            + "/networkProviders/"
+                            + str(network_provider_idx)
+                            + "/name",
+                        },
+                    )
         if "supplier" in span and isinstance(span["supplier"], dict):
             self._check_related_organisation_object(
                 span["supplier"],
