@@ -76,9 +76,11 @@
                     "physicalInfrastructureProvider": {
                         "id": "GH-RGD-CS111111111"
                     },
-                    "networkProvider": {
-                        "id": "GH-RGD-CS222222222"
-                    }
+                    "networkProviders": [
+                        {
+                            "id": "GH-RGD-CS222222222"
+                        }
+                    ]
                 },
                 "end": {
                     "id": "2",
@@ -94,18 +96,27 @@
                     "physicalInfrastructureProvider": {
                         "id": "GH-RGD-CS111111111"
                     },
-                    "networkProvider": {
-                        "id": "GH-RGD-CS222222222"
-                    }
+                    "networkProviders": [
+                        {
+                            "id": "GH-RGD-CS222222222"
+                        }
+                    ]
                 },
                 "physicalInfrastructureProvider": {
                     "id": "GH-RGD-CS111111111",
                     "name": "FibreCo"
                 },
-                "networkProvider": {
-                    "id": "GH-RGD-CS222222222",
-                    "name": "FastWeb"
-                },
+                "networkProviders": [
+                    {
+                        "id": "GH-RGD-CS222222222",
+                        "name": "FastWeb"
+                    },
+                    {
+                        "id": "GH-RGD-C3333333333",
+                        "name": "SpeedyLtd",
+                        "country": "IE"
+                    }
+                ],
                 "network": {
                     "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
                     "name": "Ghana Fibre Network"

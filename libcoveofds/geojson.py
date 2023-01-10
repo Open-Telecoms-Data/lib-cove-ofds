@@ -124,14 +124,18 @@ class JSONToGeoJSONConverter:
         }
 
         # Dereference organisation references
-        for organisationReference in [
-            "physicalInfrastructureProvider",
-            "networkProvider",
-        ]:
-            if organisationReference in reduced_node_data:
-                reduced_node_data[organisationReference] = self._dereference_object(
-                    reduced_node_data[organisationReference], organisations
-                )
+        if isinstance(reduced_node_data.get("physicalInfrastructureProvider"), dict):
+            reduced_node_data[
+                "physicalInfrastructureProvider"
+            ] = self._dereference_object(
+                reduced_node_data["physicalInfrastructureProvider"], organisations
+            )
+        if isinstance(reduced_node_data.get("networkProviders"), list):
+            reduced_node_data["networkProviders"] = [
+                self._dereference_object(i, organisations)
+                for i in reduced_node_data["networkProviders"]
+                if isinstance(i, dict)
+            ]
 
         # Dereference phase references
         if "phase" in reduced_node_data:
@@ -163,14 +167,18 @@ class JSONToGeoJSONConverter:
         }
 
         # Dereference organisation references
-        for organisationReference in [
-            "physicalInfrastructureProvider",
-            "networkProvider",
-        ]:
-            if organisationReference in reduced_span_data:
-                reduced_span_data[organisationReference] = self._dereference_object(
-                    reduced_span_data[organisationReference], organisations
-                )
+        if isinstance(reduced_span_data.get("physicalInfrastructureProvider"), dict):
+            reduced_span_data[
+                "physicalInfrastructureProvider"
+            ] = self._dereference_object(
+                reduced_span_data["physicalInfrastructureProvider"], organisations
+            )
+        if isinstance(reduced_span_data.get("networkProviders"), list):
+            reduced_span_data["networkProviders"] = [
+                self._dereference_object(i, organisations)
+                for i in reduced_span_data["networkProviders"]
+                if isinstance(i, dict)
+            ]
 
         # Dereference phase references
         if "phase" in reduced_span_data:
@@ -318,11 +326,16 @@ class GeoJSONToJSONConverter:
             return
 
         # sort organisations
-        for field in ["physicalInfrastructureProvider", "networkProvider"]:
-            if isinstance(node.get(field), dict) and node.get(field):
-                organisation_data = self._process_organisation(network_id, node[field])
-                if organisation_data:
-                    node[field] = organisation_data
+        if isinstance(node.get("physicalInfrastructureProvider"), dict):
+            node["physicalInfrastructureProvider"] = self._process_organisation(
+                network_id, node["physicalInfrastructureProvider"]
+            )
+        if isinstance(node.get("networkProviders"), list):
+            node["networkProviders"] = [
+                self._process_organisation(network_id, i)
+                for i in node["networkProviders"]
+                if isinstance(i, dict)
+            ]
 
         # sort phase
         if isinstance(node.get("phase"), dict) and node.get("phase"):
@@ -348,11 +361,16 @@ class GeoJSONToJSONConverter:
             return
 
         # sort organisations
-        for field in ["physicalInfrastructureProvider", "networkProvider", "supplier"]:
-            if isinstance(span.get(field), dict) and span.get(field):
-                organisation_data = self._process_organisation(network_id, span[field])
-                if organisation_data:
-                    span[field] = organisation_data
+        if isinstance(span.get("physicalInfrastructureProvider"), dict):
+            span["physicalInfrastructureProvider"] = self._process_organisation(
+                network_id, span["physicalInfrastructureProvider"]
+            )
+        if isinstance(span.get("networkProviders"), list):
+            span["networkProviders"] = [
+                self._process_organisation(network_id, i)
+                for i in span["networkProviders"]
+                if isinstance(i, dict)
+            ]
 
         # sort phase
         if isinstance(span.get("phase"), dict) and span.get("phase"):
@@ -401,13 +419,11 @@ class GeoJSONToJSONConverter:
             out["name"] = name
         return out
 
-    def _process_organisation(
-        self, network_id: str, organisation: dict
-    ) -> Optional[dict]:
+    def _process_organisation(self, network_id: str, organisation: dict) -> dict:
         organisation_id = organisation.get("id")
         # If no id, can't do anything. TODO log somewhere?
         if not organisation_id or not isinstance(organisation_id, str):
-            return None
+            return organisation
         # Check data
         if organisation_id in self._networks[network_id]["organisations"]:
             # Is it inconsistent with what we have seen before?

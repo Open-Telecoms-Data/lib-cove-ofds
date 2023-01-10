@@ -36,13 +36,13 @@
         "/features/properties/physicalInfrastructureProvider/name": {
             "count": 2
         },
-        "/features/properties/networkProvider": {
+        "/features/properties/networkProviders": {
             "count": 2
         },
-        "/features/properties/networkProvider/id": {
+        "/features/properties/networkProviders/id": {
             "count": 2
         },
-        "/features/properties/networkProvider/name": {
+        "/features/properties/networkProviders/name": {
             "count": 2
         },
         "/features/properties/network": {
@@ -110,10 +110,10 @@
         "/features/properties/start/physicalInfrastructureProvider/id": {
             "count": 1
         },
-        "/features/properties/start/networkProvider": {
+        "/features/properties/start/networkProviders": {
             "count": 1
         },
-        "/features/properties/start/networkProvider/id": {
+        "/features/properties/start/networkProviders/id": {
             "count": 1
         },
         "/features/properties/end": {
@@ -143,10 +143,10 @@
         "/features/properties/end/physicalInfrastructureProvider/id": {
             "count": 1
         },
-        "/features/properties/end/networkProvider": {
+        "/features/properties/end/networkProviders": {
             "count": 1
         },
-        "/features/properties/end/networkProvider/id": {
+        "/features/properties/end/networkProviders/id": {
             "count": 1
         },
         "/features/properties/physicalInfrastructureProvider": {
@@ -158,13 +158,16 @@
         "/features/properties/physicalInfrastructureProvider/name": {
             "count": 1
         },
-        "/features/properties/networkProvider": {
+        "/features/properties/networkProviders": {
             "count": 1
         },
-        "/features/properties/networkProvider/id": {
-            "count": 1
+        "/features/properties/networkProviders/id": {
+            "count": 2
         },
-        "/features/properties/networkProvider/name": {
+        "/features/properties/networkProviders/name": {
+            "count": 2
+        },
+        "/features/properties/networkProviders/country": {
             "count": 1
         },
         "/features/properties/network": {

@@ -11,10 +11,16 @@
                         "id": "GH-RGD-CS111111111",
                         "name": "FibreCo"
                     },
-                    "networkProvider": {
-                        "id": "GH-RGD-CS222222222",
-                        "name": "FastWeb"
-                    },
+                    "networkProviders": [
+                        {
+                            "id": "GH-RGD-CS222222222",
+                            "name": "FastWeb"
+                        },
+                        {
+                            "id": "GH-RGD-CS444444444",
+                            "name": "Speedy Ltd"
+                        }
+                    ],
                     "phase": {
                         "id": "1",
                         "name": "First Phase"
@@ -35,10 +41,16 @@
                         "id": "GH-RGD-CS111111111",
                         "name": "FibreCo"
                     },
-                    "networkProvider": {
-                        "id": "GH-RGD-CS222222222",
-                        "name": "FastWeb"
-                    },
+                    "networkProviders": [
+                        {
+                            "id": "GH-RGD-CS222222222",
+                            "name": "FastWeb"
+                        },
+                        {
+                            "id": "GH-RGD-CS444444444",
+                            "name": "Speedy Ltd"
+                        }
+                    ],
                     "phase": {
                         "id": "1",
                         "name": "First Phase"
@@ -62,10 +74,12 @@
                         "id": "GH-RGD-CS111111111",
                         "name": "FibreCo"
                     },
-                    "networkProvider": {
-                        "id": "GH-RGD-CS222222222",
-                        "name": "FastWeb"
-                    },
+                    "networkProviders": [
+                        {
+                            "id": "GH-RGD-CS222222222",
+                            "name": "FastWeb"
+                        }
+                    ],
                     "route": {
                         "type": "LineString",
                         "coordinates": [
@@ -145,6 +159,10 @@
                 {
                     "id": "GH-RGD-CS222222222",
                     "name": "FastWeb"
+                },
+                {
+                    "id": "GH-RGD-CS444444444",
+                    "name": "Speedy Ltd"
                 },
                 {
                     "id": "GH-RGD-CS333333333",

@@ -17,10 +17,12 @@
                     "id": "GH-RGD-CS111111111",
                     "name": "FibreCo"
                 },
-                "networkProvider": {
-                    "id": "GH-RGD-CS222222222",
-                    "name": "FastWeb"
-                },
+                "networkProviders": [
+                    {
+                        "id": "GH-RGD-CS222222222",
+                        "name": "FastWeb"
+                    }
+                ],
                 "network": {
                     "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
                     "name": "Ghana Fibre Network"
@@ -44,10 +46,12 @@
                     "id": "GH-RGD-CS111111111",
                     "name": "FibreCo"
                 },
-                "networkProvider": {
-                    "id": "GH-RGD-CS222222222",
-                    "name": "FastWeb"
-                },
+                "networkProviders": [
+                    {
+                        "id": "GH-RGD-CS222222222",
+                        "name": "FastWeb"
+                    }
+                ],
                 "network": {
                     "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
                     "name": "Ghana Fibre Network"
