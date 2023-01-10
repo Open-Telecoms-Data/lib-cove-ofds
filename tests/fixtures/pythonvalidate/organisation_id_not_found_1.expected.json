@@ -11,8 +11,16 @@
         "type": "node_organisation_reference_id_not_found",
         "node_id": "1",
         "field": "networkProvider",
-        "path": "/networks/0/nodes/0/networkProvider/id",
+        "path": "/networks/0/nodes/0/networkProviders/0/id",
         "organisation_id_not_found": "3",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "node_organisation_reference_id_not_found",
+        "node_id": "1",
+        "field": "networkProvider",
+        "path": "/networks/0/nodes/0/networkProviders/1/id",
+        "organisation_id_not_found": "6",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     },
     {
@@ -27,8 +35,16 @@
         "type": "span_organisation_reference_id_not_found",
         "span_id": "1",
         "field": "networkProvider",
-        "path": "/networks/0/spans/0/networkProvider/id",
+        "path": "/networks/0/spans/0/networkProviders/0/id",
         "organisation_id_not_found": "5",
+        "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
+    },
+    {
+        "type": "span_organisation_reference_id_not_found",
+        "span_id": "1",
+        "field": "networkProvider",
+        "path": "/networks/0/spans/0/networkProviders/1/id",
+        "organisation_id_not_found": "9",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
     },
     {

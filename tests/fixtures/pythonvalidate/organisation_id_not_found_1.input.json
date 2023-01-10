@@ -10,9 +10,15 @@
           "physicalInfrastructureProvider": {
             "id": "2"
           },
-          "networkProvider": {
-            "id": "3"
-          }
+          "networkProviders":
+          [
+            {
+              "id": "3"
+            },
+            {
+              "id": "6"
+            }
+          ]
         },
         {
           "id": "2",
@@ -26,9 +32,14 @@
           "physicalInfrastructureProvider": {
             "id": "4"
           },
-          "networkProvider": {
-            "id": "5"
-          },
+          "networkProviders": [
+            {
+              "id": "5"
+            },
+            {
+              "id": "9"
+            }
+          ],
           "supplier": {
             "id": "6"
           },
