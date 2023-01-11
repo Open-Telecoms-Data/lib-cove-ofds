@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.7.0] - 2023-01-11
+
 ### Added
 
 - [#64](https://github.com/Open-Telecoms-Data/lib-cove-ofds/issues/64) Support for schema 0__2__0, including networkProvider -> networkProviders
