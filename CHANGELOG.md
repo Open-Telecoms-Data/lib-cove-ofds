@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - [#64](https://github.com/Open-Telecoms-Data/lib-cove-ofds/issues/64) Support for schema 0__2__0__beta, including networkProvider -> networkProviders
-  - Changes to JSON Validate [TODO]
+  - Changes to JSON Validate
   - Changes to Python Validate (Organisation reference checks)
   - Changes to JSON/GeoJSON conversions
   - Note library supports 0.2 beta only - it does not support 0.1 beta now.
