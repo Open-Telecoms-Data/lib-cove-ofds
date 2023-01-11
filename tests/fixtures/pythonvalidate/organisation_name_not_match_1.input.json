@@ -11,10 +11,12 @@
             "id": "1",
             "name": "Nothing Nowhere A"
           },
-          "networkProvider": {
-            "id": "1",
-            "name": "Nothing Nowhere B"
-          }
+          "networkProviders": [
+            {
+              "id": "1",
+              "name": "Nothing Nowhere B"
+            }
+          ]
         },
         {
           "id": "2",
@@ -29,10 +31,12 @@
             "id": "1",
             "name": "Nothing Nowhere C"
           },
-          "networkProvider": {
-            "id": "1",
-            "name": "Nothing Nowhere D"
-          },
+          "networkProviders": [
+            {
+              "id": "1",
+              "name": "Nothing Nowhere D"
+            }
+          ],
           "supplier": {
             "id": "1",
             "name": "Nothing Nowhere E"
