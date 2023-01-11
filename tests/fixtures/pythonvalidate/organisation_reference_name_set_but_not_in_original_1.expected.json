@@ -10,7 +10,7 @@
     {
         "type": "node_organisation_reference_name_set_but_not_in_original",
         "node_id": "1",
-        "field": "networkProvider",
+        "field": "networkProviders",
         "path": "/networks/0/nodes/0/networkProviders/0/name",
         "name_in_reference": "Nothing Nowhere B",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"
@@ -26,7 +26,7 @@
     {
         "type": "span_organisation_reference_name_set_but_not_in_original",
         "span_id": "1",
-        "field": "networkProvider",
+        "field": "networkProviders",
         "path": "/networks/0/spans/0/networkProviders/0/name",
         "name_in_reference": "Nothing Nowhere D",
         "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4"

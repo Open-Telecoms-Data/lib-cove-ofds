@@ -320,7 +320,7 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                         {
                             "type": "node_organisation_reference_id_not_found",
                             "node_id": node.get("id"),
-                            "field": "networkProvider",
+                            "field": "networkProviders",
                             "path": path
                             + "/networkProviders/"
                             + str(network_provider_idx)
@@ -329,7 +329,7 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                         {
                             "type": "node_organisation_reference_name_does_not_match",
                             "node_id": node.get("id"),
-                            "field": "networkProvider",
+                            "field": "networkProviders",
                             "path": path
                             + "/networkProviders/"
                             + str(network_provider_idx)
@@ -338,7 +338,7 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                         {
                             "type": "node_organisation_reference_name_set_but_not_in_original",
                             "node_id": node.get("id"),
-                            "field": "networkProvider",
+                            "field": "networkProviders",
                             "path": path
                             + "/networkProviders/"
                             + str(network_provider_idx)
@@ -381,7 +381,7 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                         {
                             "type": "span_organisation_reference_id_not_found",
                             "span_id": span.get("id"),
-                            "field": "networkProvider",
+                            "field": "networkProviders",
                             "path": path
                             + "/networkProviders/"
                             + str(network_provider_idx)
@@ -390,7 +390,7 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                         {
                             "type": "span_organisation_reference_name_does_not_match",
                             "span_id": span.get("id"),
-                            "field": "networkProvider",
+                            "field": "networkProviders",
                             "path": path
                             + "/networkProviders/"
                             + str(network_provider_idx)
@@ -399,7 +399,7 @@ class OrganisationReferenceAdditionalCheckForNetwork(AdditionalCheckForNetwork):
                         {
                             "type": "span_organisation_reference_name_set_but_not_in_original",
                             "span_id": span.get("id"),
-                            "field": "networkProvider",
+                            "field": "networkProviders",
                             "path": path
                             + "/networkProviders/"
                             + str(network_provider_idx)

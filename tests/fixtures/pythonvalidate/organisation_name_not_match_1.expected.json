@@ -11,7 +11,7 @@
     {
         "type": "node_organisation_reference_name_does_not_match",
         "node_id": "1",
-        "field": "networkProvider",
+        "field": "networkProviders",
         "path": "/networks/0/nodes/0/networkProviders/0/name",
         "name_in_reference": "Nothing Nowhere B",
         "name_should_be": "Everything Everywhere",
@@ -29,7 +29,7 @@
     {
         "type": "span_organisation_reference_name_does_not_match",
         "span_id": "1",
-        "field": "networkProvider",
+        "field": "networkProviders",
         "path": "/networks/0/spans/0/networkProviders/0/name",
         "name_in_reference": "Nothing Nowhere D",
         "name_should_be": "Everything Everywhere",

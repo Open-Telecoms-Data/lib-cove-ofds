@@ -27,14 +27,14 @@
         "/networks/nodes/physicalInfrastructureProvider/name": {
             "count": 2
         },
-        "/networks/nodes/networkProvider": {
+        "/networks/nodes/networkProviders": {
             "count": 2
         },
-        "/networks/nodes/networkProvider/id": {
-            "count": 2
+        "/networks/nodes/networkProviders/id": {
+            "count": 3
         },
-        "/networks/nodes/networkProvider/name": {
-            "count": 2
+        "/networks/nodes/networkProviders/name": {
+            "count": 3
         },
         "/networks/nodes/location": {
             "count": 2
@@ -72,13 +72,13 @@
         "/networks/spans/physicalInfrastructureProvider/name": {
             "count": 1
         },
-        "/networks/spans/networkProvider": {
+        "/networks/spans/networkProviders": {
             "count": 1
         },
-        "/networks/spans/networkProvider/id": {
+        "/networks/spans/networkProviders/id": {
             "count": 1
         },
-        "/networks/spans/networkProvider/name": {
+        "/networks/spans/networkProviders/name": {
             "count": 1
         },
         "/networks/spans/route": {
@@ -94,13 +94,13 @@
             "count": 1
         },
         "/networks/organisations/id": {
-            "count": 2
+            "count": 3
         },
         "/networks/organisations/name": {
-            "count": 2
+            "count": 3
         },
         "/networks/organisations/country": {
-            "count": 2
+            "count": 3
         }
     },
     "inconsistent_phases_by_network_id": {},

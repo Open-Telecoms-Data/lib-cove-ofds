@@ -11,10 +11,12 @@
                         "id": "GH-RGD-CS111111111",
                         "name": "FibreCo"
                     },
-                    "networkProvider": {
-                        "id": "GH-RGD-CS222222222",
-                        "name": "FastWeb"
-                    },
+                    "networkProviders": [
+                        {
+                            "id": "GH-RGD-CS222222222",
+                            "name": "FastWeb"
+                        }
+                    ],
                     "location": {
                         "type": "Point",
                         "coordinates": [
@@ -31,10 +33,16 @@
                         "id": "GH-RGD-CS111111111",
                         "name": "FibreCo"
                     },
-                    "networkProvider": {
-                        "id": "GH-RGD-CS222222222",
-                        "name": "FastWeb"
-                    },
+                    "networkProviders": [
+                        {
+                            "id": "GH-RGD-CS222222222",
+                            "name": "FastWeb"
+                        },
+                        {
+                            "id": "GH-RGD-C3333333333",
+                            "name": "SpeedyLtd"
+                        }
+                    ],
                     "location": {
                         "type": "Point",
                         "coordinates": [
@@ -54,10 +62,12 @@
                         "id": "GH-RGD-CS111111111",
                         "name": "FibreCo"
                     },
-                    "networkProvider": {
-                        "id": "GH-RGD-CS222222222",
-                        "name": "FastWeb"
-                    },
+                    "networkProviders": [
+                        {
+                            "id": "GH-RGD-CS222222222",
+                            "name": "FastWeb"
+                        }
+                    ],
                     "route": {
                         "type": "LineString",
                         "coordinates": [
@@ -126,6 +136,11 @@
                 {
                     "id": "GH-RGD-CS222222222",
                     "name": "FastWeb",
+                    "country": "IE"
+                },
+                {
+                    "id": "GH-RGD-C3333333333",
+                    "name": "SpeedyLtd",
                     "country": "IE"
                 }
             ]

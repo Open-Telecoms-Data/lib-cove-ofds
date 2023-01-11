@@ -18,11 +18,13 @@
                     "name": "FibreCo",
                     "country": "IE"
                 },
-                "networkProvider": {
-                    "id": "GH-RGD-CS222222222",
-                    "name": "FastWeb",
-                    "country": "IE"
-                },
+                "networkProviders": [
+                    {
+                        "id": "GH-RGD-CS222222222",
+                        "name": "FastWeb",
+                        "country": "IE"
+                    }
+                ],
                 "network": {
                     "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
                     "name": "Ghana Fibre Network"
@@ -47,11 +49,18 @@
                     "name": "FibreCo",
                     "country": "IE"
                 },
-                "networkProvider": {
-                    "id": "GH-RGD-CS222222222",
-                    "name": "FastWeb",
-                    "country": "IE"
-                },
+                "networkProviders": [
+                    {
+                        "id": "GH-RGD-CS222222222",
+                        "name": "FastWeb",
+                        "country": "IE"
+                    },
+                    {
+                        "id": "GH-RGD-C3333333333",
+                        "name": "SpeedyLtd",
+                        "country": "IE"
+                    }
+                ],
                 "network": {
                     "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
                     "name": "Ghana Fibre Network"

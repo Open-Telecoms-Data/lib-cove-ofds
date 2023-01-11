@@ -17,9 +17,11 @@
           "physicalInfrastructureProvider": {
             "id": "GH-RGD-CS111111111"
           },
-          "networkProvider": {
-            "id": "GH-RGD-CS222222222"
-          }
+          "networkProviders": [
+            {
+              "id": "GH-RGD-CS222222222"
+            }
+          ]
         },
         {
           "id": "2",
@@ -35,9 +37,11 @@
           "physicalInfrastructureProvider": {
             "id": "GH-RGD-CS111111111"
           },
-          "networkProvider": {
-            "id": "GH-RGD-CS222222222"
-          }
+          "networkProviders": [
+            {
+              "id": "GH-RGD-CS222222222"
+            }
+          ]
         }
       ],
       "spans": [
@@ -106,9 +110,14 @@
           "physicalInfrastructureProvider": {
             "id": "GH-RGD-CS111111111"
           },
-          "networkProvider": {
-            "id": "GH-RGD-CS222222222"
-          }
+          "networkProviders": [
+            {
+              "id": "GH-RGD-CS222222222"
+            },
+            {
+              "id": "GH-RGD-C3333333333"
+            }
+          ]
         }
       ],
       "organisations": [
@@ -119,6 +128,11 @@
         {
           "id": "GH-RGD-CS222222222",
           "name": "FastWeb"
+        },
+        {
+          "id": "GH-RGD-C3333333333",
+          "name": "SpeedyLtd",
+          "country": "IE"
         }
       ]
     }

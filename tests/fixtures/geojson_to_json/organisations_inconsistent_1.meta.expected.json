@@ -27,14 +27,14 @@
         "/networks/nodes/physicalInfrastructureProvider/name": {
             "count": 2
         },
-        "/networks/nodes/networkProvider": {
+        "/networks/nodes/networkProviders": {
             "count": 2
         },
-        "/networks/nodes/networkProvider/id": {
-            "count": 2
+        "/networks/nodes/networkProviders/id": {
+            "count": 4
         },
-        "/networks/nodes/networkProvider/name": {
-            "count": 2
+        "/networks/nodes/networkProviders/name": {
+            "count": 4
         },
         "/networks/nodes/phase": {
             "count": 2
@@ -81,13 +81,13 @@
         "/networks/spans/physicalInfrastructureProvider/name": {
             "count": 1
         },
-        "/networks/spans/networkProvider": {
+        "/networks/spans/networkProviders": {
             "count": 1
         },
-        "/networks/spans/networkProvider/id": {
+        "/networks/spans/networkProviders/id": {
             "count": 1
         },
-        "/networks/spans/networkProvider/name": {
+        "/networks/spans/networkProviders/name": {
             "count": 1
         },
         "/networks/spans/route": {
@@ -121,10 +121,10 @@
             "count": 1
         },
         "/networks/organisations/id": {
-            "count": 3
+            "count": 4
         },
         "/networks/organisations/name": {
-            "count": 3
+            "count": 4
         },
         "/networks/organisations/country": {
             "count": 1
@@ -145,7 +145,8 @@
             "organisation_ids": [
                 "GH-RGD-CS111111111",
                 "GH-RGD-CS222222222",
-                "GH-RGD-CS333333333"
+                "GH-RGD-CS333333333",
+                "GH-RGD-CS444444444"
             ]
         }
     },
