@@ -1,0 +1,2 @@
+# Install >1 by hand. If we don't, we get v0.5.1 and bullet points don't work.
+sphinx-rtd-theme>1
