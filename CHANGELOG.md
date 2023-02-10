@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- GeoJSON to JSON:
+  - [#69](https://github.com/Open-Telecoms-Data/lib-cove-ofds/issues/69) AttributeError: 'str' object has no attribute 'get'
+
+
 ## [0.7.0] - 2023-01-11
 
 ### Added
