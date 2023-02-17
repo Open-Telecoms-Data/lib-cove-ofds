@@ -381,8 +381,10 @@ class GeoJSONToJSONConverter:
         if geojson_feature_span.get("geometry"):
             span["route"] = geojson_feature_span["geometry"]
 
-        span["start"] = span.get("start", {}).get("id")
-        span["end"] = span.get("end", {}).get("id")
+        if isinstance(span.get("start"), dict):
+            span["start"] = span["start"].get("id")
+        if isinstance(span.get("end"), dict):
+            span["end"] = span["end"].get("id")
 
         self._networks[network_id]["spans"].append(span)
 

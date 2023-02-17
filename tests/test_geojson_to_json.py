@@ -18,6 +18,8 @@ GEOJSON_TO_JSON_FILES = [
     ("phases_inconsistent_1"),
     ("organisations_inconsistent_1"),
     ("network_inconsistent_1"),
+    # bad example
+    ("bad_1"),
 ]
 
 
