@@ -10,13 +10,13 @@ class OFDSSchema:
 
     # Please lock to a specific tag or commit hash - never a branch name!
     # This prevents changes to the standard suddenly breaking previously working software/tests etc.
-    package_schema_url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/216-json-schema-2012-12/schema/network-package-schema.json"
-    data_schema_url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/216-json-schema-2012-12/schema/network-schema.json"
+    package_schema_url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/216-json-schema-2012-12-with-ids-fixed/schema/network-package-schema.json"
+    data_schema_url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/216-json-schema-2012-12-with-ids-fixed/schema/network-schema.json"
 
     def get_package_schema(self):
         r = requests.get(self.package_schema_url)
         data = r.text
-        data = data.replace("0__2__0","216-json-schema-2012-12")
+        #data = data.replace("0__2__0","216-json-schema-2012-12")
         data = json.loads(data)
         #data['properties']['networks']['items'] = self.get_data_schema()
         return data
