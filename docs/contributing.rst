@@ -36,3 +36,17 @@ Then run:
     black libcoveofds/ libcove2/ tests/ setup.py
     flake8 libcoveofds/ libcove2/ tests/ setup.py
     mypy --install-types --non-interactive -p  libcoveofds
+
+Building new schema files
+-------------------------
+
+Check out the data standard repository. Make sure it is on the correct tag, branch or commit you want.
+
+Install https://pypi.org/project/compiletojsonschema/
+
+Change to the directory of the data standard repository, then run:
+
+.. code-block:: bash
+
+    compiletojsonschema -c codelists/closed/   schema/network-package-schema.json  >  compiled-schema.json
+

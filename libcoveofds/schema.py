@@ -1,28 +1,21 @@
 import jsonref
 import requests
+import os
+import json
 
 from libcove2.common import schema_dict_fields_generator
+
+_schema_folder = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data")
 
 
 class OFDSSchema:
     """Represents and provides information about the schema."""
 
-    # Please lock to a specific tag or commit hash - never a branch name!
-    # This prevents changes to the standard suddenly breaking previously working software/tests etc.
-    package_schema_url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/0__2__0/schema/network-package-schema.json"
-    data_schema_url: str = "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/0__2__0/schema/network-schema.json"
+    package_schema_url: str = os.path.join(_schema_folder, "schema-0-2-0.json")
 
     def get_package_schema(self):
-        r = requests.get(self.package_schema_url)
-        return r.json()
-
-    def get_package_schema_dereferenced(self):
-        r = requests.get(self.package_schema_url)
-        return jsonref.loads(r.text)
-
-    def get_data_schema(self):
-        r = requests.get(self.data_schema_url)
-        return r.json()
+        with open(self.package_schema_url) as fp:
+            return json.load(fp)
 
     def get_link_rels_for_external_nodes(self) -> list:
         return [
@@ -37,7 +30,7 @@ class OFDSSchema:
         ]
 
     def get_package_schema_fields(self) -> set:
-        return set(schema_dict_fields_generator(self.get_package_schema_dereferenced()))
+        return set(schema_dict_fields_generator(self.get_package_schema()))
 
     def extract_data_ids_from_data_and_path(self, data: dict, path: list) -> dict:
         out: dict = {}
