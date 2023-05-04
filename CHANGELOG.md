@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Schema files are now bundled with library instead of downloading on each use
+
+### Removed
+
+- OFDSSchema class no longer has get_data_schema - it was not used.
+- OFDSSchema class no longer has get_package_schema_dereferenced - the standard get_package_schema now returns a dereferenced schema.
+- Python dependencies that aren't needed any more, due to not fetching schemas
+
 ### Fixed
 
 - GeoJSON to JSON:
