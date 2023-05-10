@@ -17,8 +17,6 @@ setup(
     python_requires=">=3.8",
     install_requires=[
         "jsonschema",
-        "requests",
-        "jsonref",
         "json-merge-patch",
         "rfc3987",
     ],
