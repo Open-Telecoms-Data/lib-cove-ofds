@@ -62,6 +62,9 @@
         },
         "/features/properties/network/links/href": {
             "count": 1
+        },
+        "/features/properties/featureType": {
+            "count": 1
         }
     },
     "spans_output_field_coverage": {

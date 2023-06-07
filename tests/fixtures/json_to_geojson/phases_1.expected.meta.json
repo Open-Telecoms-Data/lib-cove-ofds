@@ -72,6 +72,9 @@
         "/features/properties/network/contracts/relatedPhases/description": {
             "count": 2
         },
+        "/features/properties/featureType": {
+            "count": 2
+        },
         "/features/properties/status": {
             "count": 1
         }
@@ -198,6 +201,9 @@
             "count": 1
         },
         "/features/properties/network/contracts/relatedPhases/description": {
+            "count": 1
+        },
+        "/features/properties/featureType": {
             "count": 1
         }
     },

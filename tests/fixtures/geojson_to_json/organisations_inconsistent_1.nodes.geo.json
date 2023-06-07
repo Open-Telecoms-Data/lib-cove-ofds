@@ -46,7 +46,8 @@
                             "logo": "https://www.example.com/logo.png"
                         }
                     ]
-                }
+                },
+                "featureType": "node"
             }
         },
         {
@@ -95,7 +96,8 @@
                             "logo": "https://www.example.com/logo.png"
                         }
                     ]
-                }
+                },
+                "featureType": "node"
             }
         }
     ]
