@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Schema files are now bundled with library instead of downloading on each use
+- Update Schema file to 0.3.0 of schema (There is no version detection and automatic switching yet.)
 - GeoJSONToJSONConverter.process_data has changed API to accommodate featureType
 
 ### Removed
