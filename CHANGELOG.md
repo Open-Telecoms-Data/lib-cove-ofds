@@ -7,9 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Support for featureType in JSON to GeoJSON and GeoJSON to JSON
+
 ### Changed
 
 - Schema files are now bundled with library instead of downloading on each use
+- GeoJSONToJSONConverter.process_data has changed API to accommodate featureType
 
 ### Removed
 

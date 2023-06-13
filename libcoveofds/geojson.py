@@ -1,10 +1,16 @@
 import copy
 from collections import defaultdict
+from enum import Enum
 from typing import Optional
 
 from json_merge_patch import create_patch as json_diff_function
 
 from libcove2.common import fields_present_generator
+
+
+class GeoJSONAssumeFeatureType(Enum):
+    NODE = "node"
+    SPAN = "span"
 
 
 class JSONToGeoJSONConverter:
@@ -145,6 +151,7 @@ class JSONToGeoJSONConverter:
 
         feature["properties"] = reduced_node_data
         feature["properties"]["network"] = reduced_network_data
+        feature["properties"]["featureType"] = "node"
 
         return feature
 
@@ -195,6 +202,7 @@ class JSONToGeoJSONConverter:
 
         feature["properties"] = reduced_span_data
         feature["properties"]["network"] = reduced_network_data
+        feature["properties"]["featureType"] = "span"
 
         return feature
 
@@ -210,21 +218,33 @@ class GeoJSONToJSONConverter:
         )
         self._inconsistent_network_ids_seen: set = set()
 
-    def process_data(self, nodes_data: dict, spans_data: dict) -> None:
-        """Process data. Results are stored on object to get with other methods."""
+    def process_data(
+        self,
+        data: dict,
+        assumed_feature_type: GeoJSONAssumeFeatureType = GeoJSONAssumeFeatureType.NODE,
+    ) -> None:
+        """Process data. Results are stored on object to get with other methods.
+
+        Can be called multiple times with as many GeoJSON files as needed.
+        """
         # Network
-        for geojson_feature in nodes_data.get("features", []):
-            self._process_network(geojson_feature)
-        for geojson_feature in spans_data.get("features", []):
+        for geojson_feature in data.get("features", []):
             self._process_network(geojson_feature)
 
-        # Nodes
-        for geojson_feature in nodes_data.get("features", []):
-            self._process_node(geojson_feature)
-
-        # Spans
-        for geojson_feature in spans_data.get("features", []):
-            self._process_span(geojson_feature)
+        # Nodes/Spans
+        for geojson_feature in data.get("features", []):
+            type = assumed_feature_type.value
+            if isinstance(geojson_feature.get("properties"), dict) and isinstance(
+                geojson_feature["properties"].get("featureType"), str
+            ):
+                type = geojson_feature["properties"]["featureType"]
+            if type.lower() == "node":
+                self._process_node(geojson_feature)
+            elif type.lower() == "span":
+                self._process_span(geojson_feature)
+            else:
+                # TODO log error
+                pass
 
     def _process_network(self, geojson_feature_node_or_span: dict) -> None:
         if (
@@ -315,7 +335,7 @@ class GeoJSONToJSONConverter:
 
     def _process_node(self, geojson_feature_node: dict) -> None:
         node = copy.deepcopy(geojson_feature_node.get("properties", {}))
-        for key_to_remove in ["network"]:
+        for key_to_remove in ["network", "featureType"]:
             if key_to_remove in node:
                 del node[key_to_remove]
         network_id = (
@@ -350,7 +370,7 @@ class GeoJSONToJSONConverter:
 
     def _process_span(self, geojson_feature_span: dict) -> None:
         span = copy.deepcopy(geojson_feature_span.get("properties", {}))
-        for key_to_remove in ["network"]:
+        for key_to_remove in ["network", "featureType"]:
             if key_to_remove in span:
                 del span[key_to_remove]
         network_id = (

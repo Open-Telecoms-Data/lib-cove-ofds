@@ -54,6 +54,9 @@
         "/features/properties/network/name": {
             "count": 2
         },
+        "/features/properties/featureType": {
+            "count": 2
+        },
         "/features/properties/status": {
             "count": 1
         }
@@ -177,6 +180,9 @@
             "count": 1
         },
         "/features/properties/network/name": {
+            "count": 1
+        },
+        "/features/properties/featureType": {
             "count": 1
         }
     },

@@ -63,7 +63,17 @@
             "properties": {
                 "id": "1",
                 "name": "Accra to Kumasi",
-                "start": "BAD - this should be a dict",
+                "start": {
+                    "id": "1",
+                    "name": "Accra",
+                    "location": {
+                        "type": "Point",
+                        "coordinates": [
+                            -0.174,
+                            5.625
+                        ]
+                    }
+                },
                 "end": {
                     "id": "2",
                     "name": "Kumasi",
@@ -79,8 +89,7 @@
                 "network": {
                     "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
                     "name": "Ghana Fibre Network"
-                },
-                "featureType": "span"
+                }
             }
         }
     ]

@@ -144,7 +144,14 @@ def main():
             spans_data = json.load(fp)
 
         converter = libcoveofds.geojson.GeoJSONToJSONConverter()
-        converter.process_data(nodes_data, spans_data)
+        converter.process_data(
+            nodes_data,
+            assumed_feature_type=libcoveofds.geojson.GeoJSONAssumeFeatureType.NODE,
+        )
+        converter.process_data(
+            spans_data,
+            assumed_feature_type=libcoveofds.geojson.GeoJSONAssumeFeatureType.SPAN,
+        )
 
         with open(args.outputfilename, "w") as fp:
             json.dump(converter.get_json(), fp, indent=4)

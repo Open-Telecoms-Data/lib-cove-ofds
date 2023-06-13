@@ -26,7 +26,8 @@
                 "network": {
                     "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
                     "name": "Ghana Fibre Network"
-                }
+                },
+                "featureType": "node"
             }
         },
         {
@@ -55,7 +56,8 @@
                 "network": {
                     "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
                     "name": "Ghana Fibre Network"
-                }
+                },
+                "featureType": "node"
             }
         }
     ]
