@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.8.1] - 2023-06-23
+
 ### Fixed
 
 - Updated to latest version of Schema 0.3.0 (Disallow additional properties in Geometry objects.)
