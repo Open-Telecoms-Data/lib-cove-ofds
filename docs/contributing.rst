@@ -44,9 +44,14 @@ Check out the data standard repository. Make sure it is on the correct tag, bran
 
 Install https://pypi.org/project/compiletojsonschema/
 
+At this stage you may need to edit the schema files by hand.
+The `network-package-schema.json` file may refer to a `network-schema.json` file on GitHub, not locally.
+In this case change the `$id` and `$ref` to refer to the correct tag you want, or to refer to the local file.
+
 Change to the directory of the data standard repository, then run:
 
 .. code-block:: bash
 
-    compiletojsonschema -c codelists/closed/   schema/network-package-schema.json  >  compiled-schema.json
+    compiletojsonschema -c codelists/closed/   schema/network-package-schema.json  >  ~/WHEREVER/libcoveofds/data/schema-X-Y-Z.json
+    compiletojsonschema -c codelists/closed/   schema/network-schema.json  >  ~/WHEREVER/openfibre-lib-cove/libcoveofds/data/schema-X-Y-Z-network-only.json
 
