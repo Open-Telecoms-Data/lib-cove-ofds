@@ -1,0 +1,38 @@
+[
+    {
+        "message": "Additional properties are not allowed ('address' was unexpected)",
+        "path": [
+            "networks",
+            0,
+            "nodes",
+            0,
+            "location"
+        ],
+        "schema_path": [
+            "properties",
+            "networks",
+            "items",
+            "properties",
+            "nodes",
+            "items",
+            "properties",
+            "location",
+            "additionalProperties"
+        ],
+        "validator": "additionalProperties",
+        "data_ids": {
+            "network_id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+            "node_id": "1"
+        },
+        "validator_value": false,
+        "context": [],
+        "instance": {
+            "type": "Point",
+            "coordinates": [
+                -0.174,
+                5.625
+            ],
+            "address": "5, the high street"
+        }
+    }
+]

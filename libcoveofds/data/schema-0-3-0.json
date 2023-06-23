@@ -130,9 +130,7 @@
                     "coordinates"
                   ],
                   "minProperties": 1,
-                  "propertyNames": {
-                    "pattern": "^(?!(properties$|^features$))"
-                  }
+                  "additionalProperties": false
                 },
                 "address": {
                   "title": "Node address",
@@ -946,9 +944,7 @@
                     "coordinates"
                   ],
                   "minProperties": 1,
-                  "propertyNames": {
-                    "pattern": "^(?!(properties$|^features$))"
-                  }
+                  "additionalProperties": false
                 },
                 "physicalInfrastructureProvider": {
                   "title": "Physical infrastructure provider",
@@ -2842,9 +2838,7 @@
                   "coordinates"
                 ],
                 "minProperties": 1,
-                "propertyNames": {
-                  "pattern": "^(?!(properties$|^features$))"
-                }
+                "additionalProperties": false
               },
               "address": {
                 "title": "Address",
@@ -3651,9 +3645,7 @@
                   "coordinates"
                 ],
                 "minProperties": 1,
-                "propertyNames": {
-                  "pattern": "^(?!(properties$|^features$))"
-                }
+                "additionalProperties": false
               },
               "physicalInfrastructureProvider": {
                 "title": "Organisation reference",
@@ -5037,9 +5029,7 @@
               "coordinates"
             ],
             "minProperties": 1,
-            "propertyNames": {
-              "pattern": "^(?!(properties$|^features$))"
-            }
+            "additionalProperties": false
           },
           "OrganisationReference": {
             "title": "Organisation reference",
