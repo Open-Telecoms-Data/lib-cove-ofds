@@ -1,0 +1,28 @@
+{
+  "networks": [
+    {
+      "id": "a096d627-72e1-4f9b-b129-951b1737bff4",
+      "name": "Ghana Fibre Network",
+      "nodes": [
+        {
+          "id": "1",
+          "name": "Accra",
+          "location": {
+            "type": "Point",
+            "coordinates": [
+                -0.174,
+                5.625
+            ],
+            "address": "5, the high street"
+          }
+        }
+      ],
+      "links": [
+        {
+          "rel": "describedby",
+          "href": "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/0__3__0/schema/network-schema.json"
+        }
+      ]
+    }
+  ]
+}

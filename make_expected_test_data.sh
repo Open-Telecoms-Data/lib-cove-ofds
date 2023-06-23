@@ -34,6 +34,7 @@ libcoveofds jtogj --outputmetafilename tests/fixtures/json_to_geojson/phase_fund
 libcoveofds jsv  tests/fixtures/jsonschemavalidate/basic_1.input.json > tests/fixtures/jsonschemavalidate/basic_1.expected.json
 libcoveofds jsv  tests/fixtures/jsonschemavalidate/bad_uuid_1.input.json > tests/fixtures/jsonschemavalidate/bad_uuid_1.expected.json
 libcoveofds jsv  tests/fixtures/jsonschemavalidate/bad_iri_1.input.json > tests/fixtures/jsonschemavalidate/bad_iri_1.expected.json
+libcoveofds jsv  tests/fixtures/jsonschemavalidate/bad_additional_properties_1.input.json > tests/fixtures/jsonschemavalidate/bad_additional_properties_1.expected.json
 
 # Python validate
 libcoveofds pv tests/fixtures/pythonvalidate/basic_1.input.json  > tests/fixtures/pythonvalidate/basic_1.expected.json
