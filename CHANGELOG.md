@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- `extra` key in JSON Schema errors
+- `additional_properties` validator has `extra` key `additional_properties` with a list of what properties are unwanted.
+
 ## [0.8.2] - 2023-06-23
 
 ### Added

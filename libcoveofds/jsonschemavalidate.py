@@ -41,6 +41,15 @@ class ValidationError:
         )
         self._context = json_schema_exceptions_validation_error.context
         self._instance = json_schema_exceptions_validation_error.instance
+        self._extra: dict = {}
+
+        if self._validator == "additionalProperties" and "'" in self._message:
+            msg_bits = self._message.split("'")
+            self._extra["additional_properties"] = []
+            pos = 1
+            while pos < len(msg_bits) - 1:
+                self._extra["additional_properties"].append(msg_bits[pos])
+                pos += 2
 
     def json(self):
         """Return representation of this error in JSON."""
@@ -53,4 +62,5 @@ class ValidationError:
             "validator_value": self._validator_value,
             "context": self._context,
             "instance": self._instance,
+            "extra": self._extra,
         }

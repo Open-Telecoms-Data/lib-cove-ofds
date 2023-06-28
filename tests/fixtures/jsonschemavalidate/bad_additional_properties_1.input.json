@@ -13,7 +13,20 @@
                 -0.174,
                 5.625
             ],
-            "address": "5, the high street"
+            "address": "5, the high street",
+            "postcode": "BAD51 1NO"
+          }
+        },
+        {
+          "id": "2",
+          "name": "Accra",
+          "location": {
+            "type": "Point",
+            "coordinates": [
+                -0.174,
+                5.625
+            ],
+            "address": "73, the low street"
           }
         }
       ],

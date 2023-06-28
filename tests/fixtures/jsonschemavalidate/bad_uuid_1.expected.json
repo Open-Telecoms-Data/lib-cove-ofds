@@ -20,6 +20,7 @@
         },
         "validator_value": "uuid",
         "context": [],
-        "instance": "1"
+        "instance": "1",
+        "extra": {}
     }
 ]
