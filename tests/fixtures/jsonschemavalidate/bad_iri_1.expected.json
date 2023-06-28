@@ -20,6 +20,7 @@
         },
         "validator_value": "iri",
         "context": [],
-        "instance": "example.com"
+        "instance": "example.com",
+        "extra": {}
     }
 ]

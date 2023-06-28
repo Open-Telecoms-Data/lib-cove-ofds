@@ -26,6 +26,7 @@
         },
         "validator_value": "object",
         "context": [],
-        "instance": "Somewhere, idunno"
+        "instance": "Somewhere, idunno",
+        "extra": {}
     }
 ]
