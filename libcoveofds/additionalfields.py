@@ -1,4 +1,5 @@
 from libcove2.common import get_additional_fields_info
+
 from libcoveofds.schema import OFDSSchema
 
 

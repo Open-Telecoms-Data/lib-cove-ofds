@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+- Start using published libcove2 library
+
 ## [0.8.3] - 2023-06-28
 
 ### Added
