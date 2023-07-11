@@ -16,6 +16,7 @@ setup(
     long_description="A data review library",
     python_requires=">=3.8",
     install_requires=[
+        "libcove2",
         "jsonschema",
         "json-merge-patch",
         "rfc3987",

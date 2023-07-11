@@ -4,7 +4,6 @@ from enum import Enum
 from typing import Optional
 
 from json_merge_patch import create_patch as json_diff_function
-
 from libcove2.common import fields_present_generator
 
 
