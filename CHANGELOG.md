@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed false positive alerts due to enums being in the wrong place  https://github.com/Open-Telecoms-Data/lib-cove-ofds/issues/81
+
 ### Changed
 
 - Start using published libcove2 library

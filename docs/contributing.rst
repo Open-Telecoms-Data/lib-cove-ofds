@@ -42,7 +42,7 @@ Building new schema files
 
 Check out the data standard repository. Make sure it is on the correct tag, branch or commit you want.
 
-Install https://pypi.org/project/compiletojsonschema/
+Install https://pypi.org/project/compiletojsonschema/ version 0.5 or ahove
 
 At this stage you may need to edit the schema files by hand.
 The `network-package-schema.json` file may refer to a `network-schema.json` file on GitHub, not locally.
