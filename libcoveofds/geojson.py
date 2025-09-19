@@ -149,8 +149,8 @@ class JSONToGeoJSONConverter:
             )
 
         feature["properties"] = reduced_node_data
-        feature["properties"]["network"] = reduced_network_data
-        feature["properties"]["featureType"] = "node"
+        feature["properties"]["network"] = reduced_network_data  # type: ignore
+        feature["properties"]["featureType"] = "node"  # type: ignore
 
         return feature
 
@@ -200,8 +200,8 @@ class JSONToGeoJSONConverter:
                         reduced_span_data[endpoint] = node
 
         feature["properties"] = reduced_span_data
-        feature["properties"]["network"] = reduced_network_data
-        feature["properties"]["featureType"] = "span"
+        feature["properties"]["network"] = reduced_network_data  # type: ignore
+        feature["properties"]["featureType"] = "span"  # type: ignore
 
         return feature
 
