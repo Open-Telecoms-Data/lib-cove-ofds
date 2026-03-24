@@ -9,10 +9,10 @@ _schema_folder = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data
 class OFDSSchema:
     """Represents and provides information about the schema."""
 
-    schema_version: str = "0.3"
-    package_schema_url: str = os.path.join(_schema_folder, "schema-0-3-0.json")
+    schema_version: str = "0.4"
+    package_schema_url: str = os.path.join(_schema_folder, "schema-0-4-0.json")
     network_schema_url: str = os.path.join(
-        _schema_folder, "schema-0-3-0-network-only.json"
+        _schema_folder, "schema-0-4-0-network-only.json"
     )
 
     def get_package_schema(self):
