@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/0.4-dev/schema/network-package-schema.json",
+  "$id": "https://standard.ofds.info/en/0__4__0/network-package-schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Network package",
   "description": "A container for publishing Open Fibre Data Standard networks.",
@@ -14,7 +14,7 @@
       "type": "array",
       "minItems": 1,
       "items": {
-        "$id": "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/0__3__0/schema/network-schema.json",
+        "$id": "https://standard.ofds.info/en/0__4__0/network-schema.json",
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "title": "Network",
         "description": "A telecommunication network. A network consists of a set of nodes interconnected by spans.",
@@ -26,7 +26,7 @@
         "properties": {
           "id": {
             "title": "UUID",
-            "description": "A universally unique identifier for this network, as defined by [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122). For more information, see the [identifier reference](https://standard.ofds.info/en/{{version}}/reference/identifiers).",
+            "description": "A universally unique identifier for this network, as defined by [RFC 4122](https://datatracker.ietf.org/doc/html/rfc4122). For more information, see the [identifier reference](https://standard.ofds.info/en/0__4__0/reference/identifiers).",
             "format": "uuid",
             "type": "string"
           },
@@ -89,7 +89,7 @@
                 },
                 "status": {
                   "title": "Status",
-                  "description": "The status of this node, from the closed [nodeStatus codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#nodestatus).",
+                  "description": "The status of this node, from the closed [nodeStatus codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#nodestatus).",
                   "type": "string",
                   "codelist": "nodeStatus.csv",
                   "openCodelist": false,
@@ -160,7 +160,7 @@
                     },
                     "country": {
                       "title": "Country",
-                      "description": "The country in which the address is physically located, from the closed [country codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#country).",
+                      "description": "The country in which the address is physically located, from the closed [country codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#country).",
                       "type": "string",
                       "codelist": "country.csv",
                       "openCodelist": false,
@@ -422,7 +422,7 @@
                 },
                 "type": {
                   "title": "Type",
-                  "description": "This node's function, from the open [nodeType codelist]https://standard.ofds.info/en/{{version}}/reference/codelists#nodetype). For nodes with multiple network providers, the union of the node types for each provider. If a node's only function is to serve as a junction between spans, this attribute should be omitted. Junction nodes are identified by the existence of more than two spans that begin or end at the node.",
+                  "description": "This node's function, from the open [nodeType codelist]https://standard.ofds.info/en/0__4__0/reference/codelists#nodetype). For nodes with multiple network providers, the union of the node types for each provider. If a node's only function is to serve as a junction between spans, this attribute should be omitted. Junction nodes are identified by the existence of more than two spans that begin or end at the node.",
                   "type": "array",
                   "items": {
                     "type": [
@@ -442,7 +442,7 @@
                   "properties": {
                     "type": {
                       "title": "Type",
-                      "description": "The type of supporting infrastructure, from the open [nodeSupportingInfrastructure codelist](https://open-fibre-data-standard.readthedocs.io/en/{{vesion}}/reference/codelists#nodesupportinginfrastructure).",
+                      "description": "The type of supporting infrastructure, from the open [nodeSupportingInfrastructure codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#nodesupportinginfrastructure).",
                       "type": "string",
                       "minLength": 1,
                       "openCodelist": true,
@@ -526,7 +526,7 @@
                       },
                       "country": {
                         "title": "Country",
-                        "description": "The country in which the address is physically located, from the closed [country codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#country).",
+                        "description": "The country in which the address is physically located, from the closed [country codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#country).",
                         "type": "string",
                         "codelist": "country.csv",
                         "openCodelist": false,
@@ -797,7 +797,7 @@
                 },
                 "technologies": {
                   "title": "Technologies",
-                  "description": "The active technologies used at this node, from the open [nodeTechnologies codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#nodetechnologies). For nodes with multiple network providers, the union of the active technologies used by each provider.",
+                  "description": "The active technologies used at this node, from the open [nodeTechnologies codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#nodetechnologies). For nodes with multiple network providers, the union of the active technologies used by each provider.",
                   "type": "array",
                   "items": {
                     "type": [
@@ -841,7 +841,7 @@
                   "type": "array",
                   "items": {
                     "title": "Organisation reference",
-                    "description": "The [local identifier](https://standard.ofds.info/en/{{vesion}}/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
+                    "description": "The [local identifier](https://standard.ofds.info/en/0__4__0/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
                     "type": "object",
                     "properties": {
                       "id": {
@@ -927,7 +927,7 @@
                 },
                 "status": {
                   "title": "Status",
-                  "description": "The status of the network infrastructure for this span, from the closed [spanStatus codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#spanstatus).",
+                  "description": "The status of the network infrastructure for this span, from the closed [spanStatus codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#spanstatus).",
                   "type": "string",
                   "codelist": "spanStatus.csv",
                   "openCodelist": false,
@@ -1027,7 +1027,7 @@
                   "type": "array",
                   "items": {
                     "title": "Organisation reference",
-                    "description": "The [local identifier](https://standard.ofds.info/en/{{vesion}}/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
+                    "description": "The [local identifier](https://standard.ofds.info/en/0__4__0/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
                     "type": "object",
                     "properties": {
                       "id": {
@@ -1078,7 +1078,7 @@
                 },
                 "transmissionMedium": {
                   "title": "Transmission medium",
-                  "description": "The physical media of this span, from the closed [transmissionMedium codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#transmissionmedium).",
+                  "description": "The physical media of this span, from the closed [transmissionMedium codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#transmissionmedium).",
                   "type": "array",
                   "items": {
                     "type": [
@@ -1099,7 +1099,7 @@
                 },
                 "deployment": {
                   "title": "Deployment",
-                  "description": "The physical deployment of this span, from the closed [deployment codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#deployment). Further details of this span's deployment can be provided in `.supportingInfrastructure`.",
+                  "description": "The physical deployment of this span, from the closed [deployment codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#deployment). Further details of this span's deployment can be provided in `.supportingInfrastructure`.",
                   "type": "array",
                   "items": {
                     "type": [
@@ -1123,7 +1123,7 @@
                   "properties": {
                     "type": {
                       "title": "Type",
-                      "description": "The type of supporting infrastructure, from the open [spanSupportingInfrastructure codelist](https://open-fibre-data-standard.readthedocs.io/en/{{vesion}}/reference/codelists#spansupportinginfrastructure).",
+                      "description": "The type of supporting infrastructure, from the open [spanSupportingInfrastructure codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#spansupportinginfrastructure).",
                       "type": "string",
                       "minLength": 1,
                       "openCodelist": true,
@@ -1191,7 +1191,7 @@
                 },
                 "fibreType": {
                   "title": "Fibre type",
-                  "description": "The type of fibre used in this span, from the closed [fibreType codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#fibretype). Further details of the span's fibre type can be provided in `.fibreTypeDetails`.",
+                  "description": "The type of fibre used in this span, from the closed [fibreType codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#fibretype). Further details of the span's fibre type can be provided in `.fibreTypeDetails`.",
                   "type": "string",
                   "codelist": "fibreType.csv",
                   "openCodelist": false,
@@ -1239,7 +1239,7 @@
                 },
                 "technologies": {
                   "title": "Technologies",
-                  "description": "The active technologies used on this span, from the open [spanTechnologies codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#spantechnologies). For spans with multiple network providers, the union of the active technologies used by each provider.",
+                  "description": "The active technologies used on this span, from the open [spanTechnologies codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#spantechnologies). For spans with multiple network providers, the union of the active technologies used by each provider.",
                   "type": "array",
                   "items": {
                     "type": [
@@ -1254,7 +1254,7 @@
                 },
                 "capacity": {
                   "title": "Equipped capacity",
-                  "description": "The transmission rate, or throughput, of this span, expressed in Gbit/sec (Gbps). The equipped capacity is the total capacity of the circuits (e.g. E1, DS3, STM-1 etc.) which have been activated in the network transmission equipment of the span. For spans with multiple network providers, the sum of the capacity of each provider's network on this span. Further details of this span's capacity can be provided in `.capacityDetails`. For more information, see [equipped capacity](https://standard.ofds.info/en/{{version}}/reference/data_model/#equipped-capacity).",
+                  "description": "The transmission rate, or throughput, of this span, expressed in Gbit/sec (Gbps). The equipped capacity is the total capacity of the circuits (e.g. E1, DS3, STM-1 etc.) which have been activated in the network transmission equipment of the span. For spans with multiple network providers, the sum of the capacity of each provider's network on this span. Further details of this span's capacity can be provided in `.capacityDetails`. For more information, see [equipped capacity](https://standard.ofds.info/en/0__4__0/reference/data_model/#equipped-capacity).",
                   "type": "number",
                   "$comment": ""
                 },
@@ -1285,7 +1285,7 @@
                 },
                 "countries": {
                   "title": "Countries",
-                  "description": "The countries in which this span is physically located, from the closed [country codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#country).",
+                  "description": "The countries in which this span is physically located, from the closed [country codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#country).",
                   "type": "array",
                   "items": {
                     "type": [
@@ -1597,7 +1597,7 @@
                   "type": "array",
                   "items": {
                     "title": "Organisation reference",
-                    "description": "The [local identifier](https://standard.ofds.info/en/{{vesion}}/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
+                    "description": "The [local identifier](https://standard.ofds.info/en/0__4__0/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
                     "type": "object",
                     "properties": {
                       "id": {
@@ -1665,7 +1665,7 @@
                     },
                     "scheme": {
                       "title": "Scheme",
-                      "description": "The register from which the identifier in `.id` is drawn, from the open [organisationIdentifierScheme codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#organisationidentifierscheme).",
+                      "description": "The register from which the identifier in `.id` is drawn, from the open [organisationIdentifierScheme codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#organisationidentifierscheme).",
                       "type": "string",
                       "codelist": "organisationIdentifierScheme.csv",
                       "openCodelist": true,
@@ -1689,7 +1689,7 @@
                 },
                 "country": {
                   "title": "Country",
-                  "description": "The country in which this organisation is legally registered, from the closed [country codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#country).",
+                  "description": "The country in which this organisation is legally registered, from the closed [country codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#country).",
                   "type": "string",
                   "codelist": "country.csv",
                   "openCodelist": false,
@@ -1948,7 +1948,7 @@
                 },
                 "roles": {
                   "title": "Roles",
-                  "description": "This organisation's roles in this network, from the open [organisationRole codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#organisationrole). Further details about this organisation's roles can be provided in `.roleDetails`.",
+                  "description": "This organisation's roles in this network, from the open [organisationRole codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#organisationrole). Further details about this organisation's roles can be provided in `.roleDetails`.",
                   "type": "array",
                   "items": {
                     "type": [
@@ -2078,7 +2078,7 @@
                         },
                         "currency": {
                           "title": "Currency",
-                          "description": "The currency of this value, from the closed [currency codelist](https://open-fibre-data-standard.readthedocs.io/en/{{vesion}}/reference/codelists#currency).",
+                          "description": "The currency of this value, from the closed [currency codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#currency).",
                           "type": "string",
                           "codelist": "currency.csv",
                           "openCodelist": false,
@@ -2087,7 +2087,6 @@
                             "AFN",
                             "ALL",
                             "AMD",
-                            "ANG",
                             "AOA",
                             "ARS",
                             "AUD",
@@ -2096,7 +2095,6 @@
                             "BAM",
                             "BBD",
                             "BDT",
-                            "BGN",
                             "BHD",
                             "BIF",
                             "BMD",
@@ -2120,7 +2118,6 @@
                             "COP",
                             "COU",
                             "CRC",
-                            "CUC",
                             "CUP",
                             "CVE",
                             "CZK",
@@ -2212,7 +2209,6 @@
                             "SGD",
                             "SHP",
                             "SLE",
-                            "SLL",
                             "SOS",
                             "SRD",
                             "SSP",
@@ -2242,6 +2238,7 @@
                             "VND",
                             "VUV",
                             "WST",
+                            "XAD",
                             "XAF",
                             "XAG",
                             "XAU",
@@ -2250,6 +2247,7 @@
                             "XBC",
                             "XBD",
                             "XCD",
+                            "XCG",
                             "XDR",
                             "XOF",
                             "XPD",
@@ -2262,10 +2260,11 @@
                             "YER",
                             "ZAR",
                             "ZMW",
-                            "ZWL",
+                            "ZWG",
                             "ADP",
                             "AFA",
                             "ALK",
+                            "ANG",
                             "AOK",
                             "AON",
                             "AOR",
@@ -2282,6 +2281,7 @@
                             "BGJ",
                             "BGK",
                             "BGL",
+                            "BGN",
                             "BOP",
                             "BRB",
                             "BRC",
@@ -2295,6 +2295,7 @@
                             "CSD",
                             "CSJ",
                             "CSK",
+                            "CUC",
                             "CYP",
                             "DDM",
                             "DEM",
@@ -2355,6 +2356,7 @@
                             "SDP",
                             "SIT",
                             "SKK",
+                            "SLL",
                             "SRG",
                             "STD",
                             "SUR",
@@ -2385,6 +2387,7 @@
                             "ZRZ",
                             "ZWC",
                             "ZWD",
+                            "ZWL",
                             "ZWN",
                             "ZWR"
                           ]
@@ -2428,7 +2431,7 @@
                 },
                 "type": {
                   "title": "Type",
-                  "description": "The type of this contract, from the open [contractType codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#contracttype).",
+                  "description": "The type of this contract, from the open [contractType codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#contracttype).",
                   "type": "string",
                   "codelist": "contractType.csv",
                   "openCodelist": true,
@@ -2447,7 +2450,7 @@
                     },
                     "currency": {
                       "title": "Currency",
-                      "description": "The currency of this value, from the closed [currency codelist](https://open-fibre-data-standard.readthedocs.io/en/{{vesion}}/reference/codelists#currency).",
+                      "description": "The currency of this value, from the closed [currency codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#currency).",
                       "type": "string",
                       "codelist": "currency.csv",
                       "openCodelist": false,
@@ -2456,7 +2459,6 @@
                         "AFN",
                         "ALL",
                         "AMD",
-                        "ANG",
                         "AOA",
                         "ARS",
                         "AUD",
@@ -2465,7 +2467,6 @@
                         "BAM",
                         "BBD",
                         "BDT",
-                        "BGN",
                         "BHD",
                         "BIF",
                         "BMD",
@@ -2489,7 +2490,6 @@
                         "COP",
                         "COU",
                         "CRC",
-                        "CUC",
                         "CUP",
                         "CVE",
                         "CZK",
@@ -2581,7 +2581,6 @@
                         "SGD",
                         "SHP",
                         "SLE",
-                        "SLL",
                         "SOS",
                         "SRD",
                         "SSP",
@@ -2611,6 +2610,7 @@
                         "VND",
                         "VUV",
                         "WST",
+                        "XAD",
                         "XAF",
                         "XAG",
                         "XAU",
@@ -2619,6 +2619,7 @@
                         "XBC",
                         "XBD",
                         "XCD",
+                        "XCG",
                         "XDR",
                         "XOF",
                         "XPD",
@@ -2631,10 +2632,11 @@
                         "YER",
                         "ZAR",
                         "ZMW",
-                        "ZWL",
+                        "ZWG",
                         "ADP",
                         "AFA",
                         "ALK",
+                        "ANG",
                         "AOK",
                         "AON",
                         "AOR",
@@ -2651,6 +2653,7 @@
                         "BGJ",
                         "BGK",
                         "BGL",
+                        "BGN",
                         "BOP",
                         "BRB",
                         "BRC",
@@ -2664,6 +2667,7 @@
                         "CSD",
                         "CSJ",
                         "CSK",
+                        "CUC",
                         "CYP",
                         "DDM",
                         "DEM",
@@ -2724,6 +2728,7 @@
                         "SDP",
                         "SIT",
                         "SKK",
+                        "SLL",
                         "SRG",
                         "STD",
                         "SUR",
@@ -2754,6 +2759,7 @@
                         "ZRZ",
                         "ZWC",
                         "ZWD",
+                        "ZWL",
                         "ZWN",
                         "ZWR"
                       ]
@@ -2798,7 +2804,7 @@
                       },
                       "format": {
                         "title": "Format",
-                        "description": "The format of this document, from the open [mediaType codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#mediatype).",
+                        "description": "The format of this document, from the open [mediaType codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#mediatype).",
                         "type": "string",
                         "codelist": "mediaType.csv",
                         "openCodelist": true,
@@ -2881,7 +2887,7 @@
                   },
                   "scheme": {
                     "title": "Scheme",
-                    "description": "The register from which the identifier in `.id` is drawn, from the open [organisationIdentifierScheme codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#organisationidentifierscheme).",
+                    "description": "The register from which the identifier in `.id` is drawn, from the open [organisationIdentifierScheme codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#organisationidentifierscheme).",
                     "type": "string",
                     "codelist": "organisationIdentifierScheme.csv",
                     "openCodelist": true,
@@ -2961,7 +2967,7 @@
           },
           "language": {
             "title": "Language",
-            "description": "The default language used in text attributes,from the open [language codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#language). A [BCP47 language tag](https://www.w3.org/International/articles/language-tags/) is allowed, if there is a user need for the additional information.",
+            "description": "The default language used in text attributes,from the open [language codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#language). A [BCP47 language tag](https://www.w3.org/International/articles/language-tags/) is allowed, if there is a user need for the additional information.",
             "type": "string",
             "codelist": "language.csv",
             "openCodelist": true,
@@ -2969,7 +2975,7 @@
           },
           "links": {
             "title": "Links",
-            "description": "Links to related resources. The first item in the links array must be a link to the canonical JSON schema that describes the structure of the data. Links to API endpoints for nodes and spans should be provided when a network is too large to return in a single API response and links to bulk files should be provided when a network is too large to load into memory, for more information, see [how to publish large networks](https://standard.ofds.info/en/{{version}}/guidance/publication#how-to-publish-large-networks).",
+            "description": "Links to related resources. The first item in the links array must be a link to the canonical JSON schema that describes the structure of the data. Links to API endpoints for nodes and spans should be provided when a network is too large to return in a single API response and links to bulk files should be provided when a network is too large to load into memory, for more information, see [how to publish large networks](https://standard.ofds.info/en/0__4__0/guidance/publication#how-to-publish-large-networks).",
             "type": "array",
             "prefixItems": [
               {
@@ -2977,7 +2983,7 @@
                 "properties": {
                   "href": {
                     "type": "string",
-                    "const": "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/0__3__0/schema/network-schema.json"
+                    "const": "https://standard.ofds.info/en/0__4__0/network-schema.json"
                   },
                   "rel": {
                     "type": "string",
@@ -3000,7 +3006,7 @@
                 },
                 "rel": {
                   "title": "Relation type",
-                  "description": "The relationship with this related resource, from the open [linkRelationType codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#linkrelationtype). The 'describedby' code must only be used in the first item in the `links` array to link to the schema that describes the structure of the data.",
+                  "description": "The relationship with this related resource, from the open [linkRelationType codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#linkrelationtype). The 'describedby' code must only be used in the first item in the `links` array to link to the schema that describes the structure of the data.",
                   "type": "string",
                   "codelist": "linkRelationType.csv",
                   "openCodelist": true,
@@ -3062,7 +3068,7 @@
               },
               "status": {
                 "title": "Status",
-                "description": "The status of this node, from the closed [nodeStatus codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#nodestatus).",
+                "description": "The status of this node, from the closed [nodeStatus codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#nodestatus).",
                 "type": "string",
                 "codelist": "nodeStatus.csv",
                 "openCodelist": false,
@@ -3133,7 +3139,7 @@
                   },
                   "country": {
                     "title": "Country",
-                    "description": "The country in which the address is physically located, from the closed [country codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#country).",
+                    "description": "The country in which the address is physically located, from the closed [country codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#country).",
                     "type": "string",
                     "codelist": "country.csv",
                     "openCodelist": false,
@@ -3395,7 +3401,7 @@
               },
               "type": {
                 "title": "Type",
-                "description": "This node's function, from the open [nodeType codelist]https://standard.ofds.info/en/{{version}}/reference/codelists#nodetype). For nodes with multiple network providers, the union of the node types for each provider. If a node's only function is to serve as a junction between spans, this attribute should be omitted. Junction nodes are identified by the existence of more than two spans that begin or end at the node.",
+                "description": "This node's function, from the open [nodeType codelist]https://standard.ofds.info/en/0__4__0/reference/codelists#nodetype). For nodes with multiple network providers, the union of the node types for each provider. If a node's only function is to serve as a junction between spans, this attribute should be omitted. Junction nodes are identified by the existence of more than two spans that begin or end at the node.",
                 "type": "array",
                 "items": {
                   "type": [
@@ -3415,7 +3421,7 @@
                 "properties": {
                   "type": {
                     "title": "Type",
-                    "description": "The type of supporting infrastructure, from the open [nodeSupportingInfrastructure codelist](https://open-fibre-data-standard.readthedocs.io/en/{{vesion}}/reference/codelists#nodesupportinginfrastructure).",
+                    "description": "The type of supporting infrastructure, from the open [nodeSupportingInfrastructure codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#nodesupportinginfrastructure).",
                     "type": "string",
                     "minLength": 1,
                     "openCodelist": true,
@@ -3429,7 +3435,7 @@
                   },
                   "owner": {
                     "title": "Organisation reference",
-                    "description": "The [local identifier](https://standard.ofds.info/en/{{vesion}}/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
+                    "description": "The [local identifier](https://standard.ofds.info/en/0__4__0/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
                     "type": "object",
                     "properties": {
                       "id": {
@@ -3499,7 +3505,7 @@
                     },
                     "country": {
                       "title": "Country",
-                      "description": "The country in which the address is physically located, from the closed [country codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#country).",
+                      "description": "The country in which the address is physically located, from the closed [country codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#country).",
                       "type": "string",
                       "codelist": "country.csv",
                       "openCodelist": false,
@@ -3770,7 +3776,7 @@
               },
               "technologies": {
                 "title": "Technologies",
-                "description": "The active technologies used at this node, from the open [nodeTechnologies codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#nodetechnologies). For nodes with multiple network providers, the union of the active technologies used by each provider.",
+                "description": "The active technologies used at this node, from the open [nodeTechnologies codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#nodetechnologies). For nodes with multiple network providers, the union of the active technologies used by each provider.",
                 "type": "array",
                 "items": {
                   "type": [
@@ -3785,7 +3791,7 @@
               },
               "transmissionMediumOwner": {
                 "title": "Organisation reference",
-                "description": "The [local identifier](https://standard.ofds.info/en/{{vesion}}/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
+                "description": "The [local identifier](https://standard.ofds.info/en/0__4__0/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
                 "type": "object",
                 "properties": {
                   "id": {
@@ -3814,7 +3820,7 @@
                 "type": "array",
                 "items": {
                   "title": "Organisation reference",
-                  "description": "The [local identifier](https://standard.ofds.info/en/{{vesion}}/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
+                  "description": "The [local identifier](https://standard.ofds.info/en/0__4__0/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
                   "type": "object",
                   "properties": {
                     "id": {
@@ -3893,7 +3899,7 @@
               },
               "status": {
                 "title": "Status",
-                "description": "The status of the network infrastructure for this span, from the closed [spanStatus codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#spanstatus).",
+                "description": "The status of the network infrastructure for this span, from the closed [spanStatus codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#spanstatus).",
                 "type": "string",
                 "codelist": "spanStatus.csv",
                 "openCodelist": false,
@@ -3964,7 +3970,7 @@
               },
               "transmissionMediumOwner": {
                 "title": "Organisation reference",
-                "description": "The [local identifier](https://standard.ofds.info/en/{{vesion}}/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
+                "description": "The [local identifier](https://standard.ofds.info/en/0__4__0/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
                 "type": "object",
                 "properties": {
                   "id": {
@@ -3993,7 +3999,7 @@
                 "type": "array",
                 "items": {
                   "title": "Organisation reference",
-                  "description": "The [local identifier](https://standard.ofds.info/en/{{vesion}}/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
+                  "description": "The [local identifier](https://standard.ofds.info/en/0__4__0/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
                   "type": "object",
                   "properties": {
                     "id": {
@@ -4020,7 +4026,7 @@
               },
               "supplier": {
                 "title": "Organisation reference",
-                "description": "The [local identifier](https://standard.ofds.info/en/{{vesion}}/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
+                "description": "The [local identifier](https://standard.ofds.info/en/0__4__0/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
                 "type": "object",
                 "properties": {
                   "id": {
@@ -4044,7 +4050,7 @@
               },
               "transmissionMedium": {
                 "title": "Transmission medium",
-                "description": "The physical media of this span, from the closed [transmissionMedium codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#transmissionmedium).",
+                "description": "The physical media of this span, from the closed [transmissionMedium codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#transmissionmedium).",
                 "type": "array",
                 "items": {
                   "type": [
@@ -4065,7 +4071,7 @@
               },
               "deployment": {
                 "title": "Deployment",
-                "description": "The physical deployment of this span, from the closed [deployment codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#deployment). Further details of this span's deployment can be provided in `.supportingInfrastructure`.",
+                "description": "The physical deployment of this span, from the closed [deployment codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#deployment). Further details of this span's deployment can be provided in `.supportingInfrastructure`.",
                 "type": "array",
                 "items": {
                   "type": [
@@ -4089,7 +4095,7 @@
                 "properties": {
                   "type": {
                     "title": "Type",
-                    "description": "The type of supporting infrastructure, from the open [spanSupportingInfrastructure codelist](https://open-fibre-data-standard.readthedocs.io/en/{{vesion}}/reference/codelists#spansupportinginfrastructure).",
+                    "description": "The type of supporting infrastructure, from the open [spanSupportingInfrastructure codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#spansupportinginfrastructure).",
                     "type": "string",
                     "minLength": 1,
                     "openCodelist": true,
@@ -4103,7 +4109,7 @@
                   },
                   "owner": {
                     "title": "Organisation reference",
-                    "description": "The [local identifier](https://standard.ofds.info/en/{{vesion}}/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
+                    "description": "The [local identifier](https://standard.ofds.info/en/0__4__0/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
                     "type": "object",
                     "properties": {
                       "id": {
@@ -4157,7 +4163,7 @@
               },
               "fibreType": {
                 "title": "Fibre type",
-                "description": "The type of fibre used in this span, from the closed [fibreType codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#fibretype). Further details of the span's fibre type can be provided in `.fibreTypeDetails`.",
+                "description": "The type of fibre used in this span, from the closed [fibreType codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#fibretype). Further details of the span's fibre type can be provided in `.fibreTypeDetails`.",
                 "type": "string",
                 "codelist": "fibreType.csv",
                 "openCodelist": false,
@@ -4205,7 +4211,7 @@
               },
               "technologies": {
                 "title": "Technologies",
-                "description": "The active technologies used on this span, from the open [spanTechnologies codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#spantechnologies). For spans with multiple network providers, the union of the active technologies used by each provider.",
+                "description": "The active technologies used on this span, from the open [spanTechnologies codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#spantechnologies). For spans with multiple network providers, the union of the active technologies used by each provider.",
                 "type": "array",
                 "items": {
                   "type": [
@@ -4220,7 +4226,7 @@
               },
               "capacity": {
                 "title": "Equipped capacity",
-                "description": "The transmission rate, or throughput, of this span, expressed in Gbit/sec (Gbps). The equipped capacity is the total capacity of the circuits (e.g. E1, DS3, STM-1 etc.) which have been activated in the network transmission equipment of the span. For spans with multiple network providers, the sum of the capacity of each provider's network on this span. Further details of this span's capacity can be provided in `.capacityDetails`. For more information, see [equipped capacity](https://standard.ofds.info/en/{{version}}/reference/data_model/#equipped-capacity).",
+                "description": "The transmission rate, or throughput, of this span, expressed in Gbit/sec (Gbps). The equipped capacity is the total capacity of the circuits (e.g. E1, DS3, STM-1 etc.) which have been activated in the network transmission equipment of the span. For spans with multiple network providers, the sum of the capacity of each provider's network on this span. Further details of this span's capacity can be provided in `.capacityDetails`. For more information, see [equipped capacity](https://standard.ofds.info/en/0__4__0/reference/data_model/#equipped-capacity).",
                 "type": "number",
                 "$comment": ""
               },
@@ -4251,7 +4257,7 @@
               },
               "countries": {
                 "title": "Countries",
-                "description": "The countries in which this span is physically located, from the closed [country codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#country).",
+                "description": "The countries in which this span is physically located, from the closed [country codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#country).",
                 "type": "array",
                 "items": {
                   "type": [
@@ -4556,7 +4562,7 @@
                 "type": "array",
                 "items": {
                   "title": "Organisation reference",
-                  "description": "The [local identifier](https://standard.ofds.info/en/{{vesion}}/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
+                  "description": "The [local identifier](https://standard.ofds.info/en/0__4__0/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
                   "type": "object",
                   "properties": {
                     "id": {
@@ -4617,7 +4623,7 @@
                   },
                   "scheme": {
                     "title": "Scheme",
-                    "description": "The register from which the identifier in `.id` is drawn, from the open [organisationIdentifierScheme codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#organisationidentifierscheme).",
+                    "description": "The register from which the identifier in `.id` is drawn, from the open [organisationIdentifierScheme codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#organisationidentifierscheme).",
                     "type": "string",
                     "codelist": "organisationIdentifierScheme.csv",
                     "openCodelist": true,
@@ -4641,7 +4647,7 @@
               },
               "country": {
                 "title": "Country",
-                "description": "The country in which this organisation is legally registered, from the closed [country codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#country).",
+                "description": "The country in which this organisation is legally registered, from the closed [country codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#country).",
                 "type": "string",
                 "codelist": "country.csv",
                 "openCodelist": false,
@@ -4900,7 +4906,7 @@
               },
               "roles": {
                 "title": "Roles",
-                "description": "This organisation's roles in this network, from the open [organisationRole codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#organisationrole). Further details about this organisation's roles can be provided in `.roleDetails`.",
+                "description": "This organisation's roles in this network, from the open [organisationRole codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#organisationrole). Further details about this organisation's roles can be provided in `.roleDetails`.",
                 "type": "array",
                 "items": {
                   "type": [
@@ -4964,7 +4970,7 @@
               },
               "type": {
                 "title": "Type",
-                "description": "The type of this contract, from the open [contractType codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#contracttype).",
+                "description": "The type of this contract, from the open [contractType codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#contracttype).",
                 "type": "string",
                 "codelist": "contractType.csv",
                 "openCodelist": true,
@@ -4983,7 +4989,7 @@
                   },
                   "currency": {
                     "title": "Currency",
-                    "description": "The currency of this value, from the closed [currency codelist](https://open-fibre-data-standard.readthedocs.io/en/{{vesion}}/reference/codelists#currency).",
+                    "description": "The currency of this value, from the closed [currency codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#currency).",
                     "type": "string",
                     "codelist": "currency.csv",
                     "openCodelist": false,
@@ -5255,6 +5261,7 @@
                       "VND",
                       "VUV",
                       "WST",
+                      "XAD",
                       "XAF",
                       "XAG",
                       "XAU",
@@ -5263,6 +5270,7 @@
                       "XBC",
                       "XBD",
                       "XCD",
+                      "XCG",
                       "XDR",
                       "XEU",
                       "XFO",
@@ -5289,6 +5297,7 @@
                       "ZRZ",
                       "ZWC",
                       "ZWD",
+                      "ZWG",
                       "ZWL",
                       "ZWN",
                       "ZWR"
@@ -5334,7 +5343,7 @@
                     },
                     "format": {
                       "title": "Format",
-                      "description": "The format of this document, from the open [mediaType codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#mediatype).",
+                      "description": "The format of this document, from the open [mediaType codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#mediatype).",
                       "type": "string",
                       "codelist": "mediaType.csv",
                       "openCodelist": true,
@@ -5443,7 +5452,7 @@
           },
           "OrganisationReference": {
             "title": "Organisation reference",
-            "description": "The [local identifier](https://standard.ofds.info/en/{{vesion}}/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
+            "description": "The [local identifier](https://standard.ofds.info/en/0__4__0/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
             "type": "object",
             "properties": {
               "id": {
@@ -5520,7 +5529,7 @@
               },
               "country": {
                 "title": "Country",
-                "description": "The country in which the address is physically located, from the closed [country codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#country).",
+                "description": "The country in which the address is physically located, from the closed [country codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#country).",
                 "type": "string",
                 "codelist": "country.csv",
                 "openCodelist": false,
@@ -5806,7 +5815,7 @@
               },
               "format": {
                 "title": "Format",
-                "description": "The format of this document, from the open [mediaType codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#mediatype).",
+                "description": "The format of this document, from the open [mediaType codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#mediatype).",
                 "type": "string",
                 "codelist": "mediaType.csv",
                 "openCodelist": true,
@@ -5857,7 +5866,7 @@
               },
               "rel": {
                 "title": "Relation type",
-                "description": "The relationship with this related resource, from the open [linkRelationType codelist](https://standard.ofds.info/en/{{version}}/reference/codelists#linkrelationtype). The 'describedby' code must only be used in the first item in the `links` array to link to the schema that describes the structure of the data.",
+                "description": "The relationship with this related resource, from the open [linkRelationType codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#linkrelationtype). The 'describedby' code must only be used in the first item in the `links` array to link to the schema that describes the structure of the data.",
                 "type": "string",
                 "codelist": "linkRelationType.csv",
                 "openCodelist": true,
@@ -5884,7 +5893,7 @@
               },
               "currency": {
                 "title": "Currency",
-                "description": "The currency of this value, from the closed [currency codelist](https://open-fibre-data-standard.readthedocs.io/en/{{vesion}}/reference/codelists#currency).",
+                "description": "The currency of this value, from the closed [currency codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#currency).",
                 "type": "string",
                 "codelist": "currency.csv",
                 "openCodelist": false,
@@ -6156,6 +6165,7 @@
                   "VND",
                   "VUV",
                   "WST",
+                  "XAD",
                   "XAF",
                   "XAG",
                   "XAU",
@@ -6164,6 +6174,7 @@
                   "XBC",
                   "XBD",
                   "XCD",
+                  "XCG",
                   "XDR",
                   "XEU",
                   "XFO",
@@ -6190,6 +6201,7 @@
                   "ZRZ",
                   "ZWC",
                   "ZWD",
+                  "ZWG",
                   "ZWL",
                   "ZWN",
                   "ZWR"
@@ -6234,7 +6246,7 @@
               },
               "grantor": {
                 "title": "Organisation reference",
-                "description": "The [local identifier](https://standard.ofds.info/en/{{vesion}}/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
+                "description": "The [local identifier](https://standard.ofds.info/en/0__4__0/reference/identifiers#local-identifiers) and name of the organisation being referenced. Used for cross-referencing within the dataset.",
                 "type": "object",
                 "properties": {
                   "id": {
@@ -6302,7 +6314,7 @@
                       },
                       "currency": {
                         "title": "Currency",
-                        "description": "The currency of this value, from the closed [currency codelist](https://open-fibre-data-standard.readthedocs.io/en/{{vesion}}/reference/codelists#currency).",
+                        "description": "The currency of this value, from the closed [currency codelist](https://standard.ofds.info/en/0__4__0/reference/codelists#currency).",
                         "type": "string",
                         "codelist": "currency.csv",
                         "openCodelist": false,
@@ -6574,6 +6586,7 @@
                           "VND",
                           "VUV",
                           "WST",
+                          "XAD",
                           "XAF",
                           "XAG",
                           "XAU",
@@ -6582,6 +6595,7 @@
                           "XBC",
                           "XBD",
                           "XCD",
+                          "XCG",
                           "XDR",
                           "XEU",
                           "XFO",
@@ -6608,6 +6622,7 @@
                           "ZRZ",
                           "ZWC",
                           "ZWD",
+                          "ZWG",
                           "ZWL",
                           "ZWN",
                           "ZWR"
