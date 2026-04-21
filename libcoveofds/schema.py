@@ -9,9 +9,10 @@ _schema_folder = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data
 class OFDSSchema:
     """Represents and provides information about the schema."""
 
-    package_schema_url: str = os.path.join(_schema_folder, "schema-0-3-0.json")
+    schema_version: str = "0.4"
+    package_schema_url: str = os.path.join(_schema_folder, "schema-0-4-0.json")
     network_schema_url: str = os.path.join(
-        _schema_folder, "schema-0-3-0-network-only.json"
+        _schema_folder, "schema-0-4-0-network-only.json"
     )
 
     def get_package_schema(self):
@@ -32,6 +33,9 @@ class OFDSSchema:
 
     def get_package_schema_fields(self) -> set:
         return set(schema_dict_fields_generator(self.get_package_schema()))
+
+    def get_schema_version(self) -> str:
+        return self.schema_version
 
     def extract_data_ids_from_data_and_path(self, data: dict, path: list) -> dict:
         out: dict = {}
