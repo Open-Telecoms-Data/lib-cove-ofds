@@ -7,9 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-04-21
+
 ### Removed
 
 - Support for Python 3.8 and 3.9, as they are end of life
+
+### Changed
+
+- Update to version 0.4.0 of the Open Fibre Data Standard
 
 ## [0.9.0] - 2023-09-22
 
