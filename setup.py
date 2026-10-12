@@ -22,7 +22,7 @@ setup(
         "rfc3987",
     ],
     extras_require={
-        "dev": ["pytest", "flake8", "black==22.3.0", "isort", "mypy", "Sphinx"]
+        "dev": ["pytest", "flake8", "black==22.8.0", "isort", "mypy", "Sphinx"]
     },
     classifiers=[
         "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
