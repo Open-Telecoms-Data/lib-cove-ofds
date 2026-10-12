@@ -9,7 +9,7 @@ jobs:
     - name: Setup python
       uses: actions/setup-python@v6
       with:
-        python-version: 3.13
+        python-version: 3.15
         architecture: x64
     - run: pip install .[dev]
     - run: isort --check-only libcoveofds/ tests/ setup.py
