@@ -59,8 +59,8 @@ class ImportJSONToCallable:
         # Get Information
         with open(
             os.path.join(
-                PLUGIN_DIR,
-                "..",
+                "libcoveofds",
+                "data",
                 "schema_0_4",
                 "schema_information.json",
             )

@@ -1,4 +1,4 @@
-from ofdsqgisplugin.python.import_from_json import ImportJSONToCallable
+from libcoveofds.gpkg.from_json import ImportJSONToCallable
 
 
 def test_get_deep_key_from_data_for_import_1():

@@ -3,6 +3,7 @@ import json
 
 import libcoveofds.additionalfields
 import libcoveofds.geojson
+import libcoveofds.gpkg.to_json
 import libcoveofds.jsonschemavalidate
 import libcoveofds.python_validate
 import libcoveofds.schema
@@ -72,6 +73,23 @@ def main():
         "outputfilename", help="Output filename to write JSON data to"
     )
     geojson_to_json_parser.add_argument(
+        "--outputmetafilename",
+        help="Output filename to write meta JSON data to",
+        required=False,
+    )
+
+    gpkg_to_json_parser = subparsers.add_parser(
+        "gpkgtojson",
+        aliases=["gpkgtoj"],
+        help="Convert data from GeoPackage to JSON format",
+    )
+    gpkg_to_json_parser.add_argument(
+        "inputfilename", help="File name of an input GeoPackage data file"
+    )
+    gpkg_to_json_parser.add_argument(
+        "outputfilename", help="Output filename to write JSON data to"
+    )
+    gpkg_to_json_parser.add_argument(
         "--outputmetafilename",
         help="Output filename to write meta JSON data to",
         required=False,
@@ -152,6 +170,20 @@ def main():
             spans_data,
             assumed_feature_type=libcoveofds.geojson.GeoJSONAssumeFeatureType.SPAN,
         )
+
+        with open(args.outputfilename, "w") as fp:
+            json.dump(converter.get_json(), fp, indent=4)
+
+        if args.outputmetafilename:
+            with open(args.outputmetafilename, "w") as fp:
+                json.dump(converter.get_meta_json(), fp, indent=4)
+
+    elif args.subparser_name == "gpkgtojson" or args.subparser_name == "gpkgjtoj":
+        schema = libcoveofds.schema.OFDSSchema()
+
+        #converter = libcoveofds.gpkg.to_json.GPKGToJSONConverter(schema)
+        converter = libcoveofds.gpkg.to_json.GPKGToJSONConverter()
+        converter.process_gpkg_filename(args.inputfilename)
 
         with open(args.outputfilename, "w") as fp:
             json.dump(converter.get_json(), fp, indent=4)
