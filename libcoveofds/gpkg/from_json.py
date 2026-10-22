@@ -50,7 +50,6 @@ def import_json_to_sqlite(
 
 
 class ImportJSONToCallable:
-
     def __init__(self, json_data_to_import, callable_write, callable_read):
         self._json_data_to_import = json_data_to_import
         self._callable_write = callable_write
