@@ -145,13 +145,15 @@ def test_import_nodes_network_providers_1():
     assert ("node1", 1) == rows[0]
     assert ("node2", 1) == rows[1]
     # nodes network providers
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT nodes.ofds_id, organisations.ofds_id
         FROM relation_nodes_networkProviders
         JOIN nodes ON nodes.id == relation_nodes_networkProviders.base_id
         JOIN organisations ON organisations.id = relation_nodes_networkProviders.related_id
         ORDER BY nodes.ofds_id ASC
-        """)
+        """
+    )
     rows = cursor.fetchall()
     assert 2 == len(rows)
     assert ("node1", "orga") == rows[0]
@@ -314,13 +316,15 @@ def test_import_multiple_codelists_1():
     assert 1 == len(rows)
     assert ("node1", 1) == rows[0]
     # node type
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT nodes.ofds_id, codelist_open_nodeType.code
         FROM relation_nodes_type
         JOIN nodes ON nodes.id == relation_nodes_type.base_id
         JOIN codelist_open_nodeType ON codelist_open_nodeType.id = relation_nodes_type.related_id
         ORDER BY nodes.ofds_id ASC
-        """)
+        """
+    )
     rows = cursor.fetchall()
     assert 1 == len(rows)
     assert ("node1", "addDropSite") == rows[0]
@@ -377,13 +381,15 @@ def test_import_multiple_open_codelists_new_value_1():
     assert 1 == len(rows)
     assert ("node1", 1) == rows[0]
     # node type
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT nodes.ofds_id, codelist_open_nodeType.code
         FROM relation_nodes_type
         JOIN nodes ON nodes.id == relation_nodes_type.base_id
         JOIN codelist_open_nodeType ON codelist_open_nodeType.id = relation_nodes_type.related_id
         ORDER BY nodes.ofds_id ASC
-        """)
+        """
+    )
     rows = cursor.fetchall()
     assert 1 == len(rows)
     assert ("node1", "newAndSpecial") == rows[0]
@@ -618,13 +624,15 @@ def test_wayleaves():
     rows = cursor.fetchall()
     assert 1 == len(rows)
     assert (1, "wl1", 1, 2022, "0", 25, "1", 1.75, "GHS", 1) == rows[0]
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT spans.ofds_id, wayleaves.ofds_id
         FROM relation_spans_wayleaves
         JOIN spans ON spans.id == relation_spans_wayleaves.base_id
         JOIN wayleaves ON wayleaves.id = relation_spans_wayleaves.related_id
         ORDER BY spans.ofds_id ASC
-        """)
+        """
+    )
     rows = cursor.fetchall()
     assert 1 == len(rows)
     assert ("span1to2", "wl1") == rows[0]

@@ -49,7 +49,6 @@ def export_sqlite_to_json(sqlite_filename):
 
 
 class ExportCallableToJSON:
-
     def __init__(self, callable):
         self._callable = callable
         self._tables_ids_to_standard_info_mappings = {}
@@ -117,9 +116,9 @@ class ExportCallableToJSON:
         for open_codelist_name in self._schema_information["open_codelists"].keys():
             open_codelists_ids_to_codes_mappings[open_codelist_name] = {}
             for data in self._callable("codelist_open_" + open_codelist_name[:-4]):
-                open_codelists_ids_to_codes_mappings[open_codelist_name][data["id"]] = (
-                    data["code"]
-                )
+                open_codelists_ids_to_codes_mappings[open_codelist_name][
+                    data["id"]
+                ] = data["code"]
         # Load table data that is the target of foreign keys for use later
         self._tables_ids_to_standard_info_mappings = {}
         for table_name in ["nodes", "networks", "organisations", "phases"]:
@@ -175,9 +174,9 @@ class ExportCallableToJSON:
             geopackage_id_to_standard_info_mappings[table_name] = {}
             for data in self._callable(table_name):
                 if table_name == "wayleaves":
-                    geopackage_id_to_standard_info_mappings[table_name][data["id"]] = (
-                        data["ofds_id"]
-                    )
+                    geopackage_id_to_standard_info_mappings[table_name][
+                        data["id"]
+                    ] = data["ofds_id"]
                 else:
                     geopackage_id_to_standard_info_mappings[table_name][data["id"]] = {
                         "id": data["ofds_id"],
