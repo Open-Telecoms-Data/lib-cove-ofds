@@ -3,9 +3,7 @@ import shutil
 import sqlite3
 import tempfile
 
-from ofdsqgisplugin.python.import_from_json import import_json_to_sqlite
-
-PLUGIN_DIR = os.path.dirname(__file__)
+from libcoveofds.gpkg.from_json import import_json_to_sqlite
 
 
 def test_import_1():
@@ -16,9 +14,8 @@ def test_import_1():
     # Copy template
     shutil.copyfile(
         os.path.join(
-            PLUGIN_DIR,
-            "..",
-            "ofdsqgisplugin",
+            "libcoveofds",
+            "data",
             "schema_0_4",
             "network-schema.gpkg",
         ),
@@ -91,9 +88,8 @@ def test_import_nodes_network_providers_1():
     # Copy template
     shutil.copyfile(
         os.path.join(
-            PLUGIN_DIR,
-            "..",
-            "ofdsqgisplugin",
+            "libcoveofds",
+            "data",
             "schema_0_4",
             "network-schema.gpkg",
         ),
@@ -175,9 +171,8 @@ def test_import_contract_documents_1():
     # Copy template
     shutil.copyfile(
         os.path.join(
-            PLUGIN_DIR,
-            "..",
-            "ofdsqgisplugin",
+            "libcoveofds",
+            "data",
             "schema_0_4",
             "network-schema.gpkg",
         ),
@@ -276,9 +271,8 @@ def test_import_multiple_codelists_1():
     # Copy template
     shutil.copyfile(
         os.path.join(
-            PLUGIN_DIR,
-            "..",
-            "ofdsqgisplugin",
+            "libcoveofds",
+            "data",
             "schema_0_4",
             "network-schema.gpkg",
         ),
@@ -341,9 +335,8 @@ def test_import_multiple_open_codelists_new_value_1():
     # Copy template
     shutil.copyfile(
         os.path.join(
-            PLUGIN_DIR,
-            "..",
-            "ofdsqgisplugin",
+            "libcoveofds",
+            "data",
             "schema_0_4",
             "network-schema.gpkg",
         ),
@@ -408,9 +401,8 @@ def test_import_custom_single_open_codelist_entry_1():
     # Copy template
     shutil.copyfile(
         os.path.join(
-            PLUGIN_DIR,
-            "..",
-            "ofdsqgisplugin",
+            "libcoveofds",
+            "data",
             "schema_0_4",
             "network-schema.gpkg",
         ),
@@ -477,9 +469,8 @@ def test_span_with_start_and_end_set_1():
     # Copy template
     shutil.copyfile(
         os.path.join(
-            PLUGIN_DIR,
-            "..",
-            "ofdsqgisplugin",
+            "libcoveofds",
+            "data",
             "schema_0_4",
             "network-schema.gpkg",
         ),
@@ -542,9 +533,8 @@ def test_wayleaves():
     # Copy template
     shutil.copyfile(
         os.path.join(
-            PLUGIN_DIR,
-            "..",
-            "ofdsqgisplugin",
+            "libcoveofds",
+            "data",
             "schema_0_4",
             "network-schema.gpkg",
         ),
@@ -651,9 +641,8 @@ def test_import_broken_foreign_keys():
     # Copy template
     shutil.copyfile(
         os.path.join(
-            PLUGIN_DIR,
-            "..",
-            "ofdsqgisplugin",
+            "libcoveofds",
+            "data",
             "schema_0_4",
             "network-schema.gpkg",
         ),

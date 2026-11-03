@@ -3,9 +3,7 @@ import shutil
 import sqlite3
 import tempfile
 
-from ofdsqgisplugin.python.export_to_json import export_sqlite_to_json
-
-PLUGIN_DIR = os.path.dirname(__file__)
+from libcoveofds.gpkg.to_json import export_sqlite_to_json
 
 
 def _get_and_setup_sqlite_filename():
@@ -16,9 +14,8 @@ def _get_and_setup_sqlite_filename():
     # Copy template
     shutil.copyfile(
         os.path.join(
-            PLUGIN_DIR,
-            "..",
-            "ofdsqgisplugin",
+            "libcoveofds",
+            "data",
             "schema_0_4",
             "network-schema.gpkg",
         ),
