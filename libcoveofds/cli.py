@@ -3,6 +3,8 @@ import json
 
 import libcoveofds.additionalfields
 import libcoveofds.geojson
+import libcoveofds.gpkg.from_json
+import libcoveofds.gpkg.to_json
 import libcoveofds.jsonschemavalidate
 import libcoveofds.python_validate
 import libcoveofds.schema
@@ -75,6 +77,30 @@ def main():
         "--outputmetafilename",
         help="Output filename to write meta JSON data to",
         required=False,
+    )
+
+    gpkg_to_json_parser = subparsers.add_parser(
+        "jsontogpkg",
+        aliases=["jtogpkg"],
+        help="Convert data from JSON to GeoPackage format",
+    )
+    gpkg_to_json_parser.add_argument(
+        "inputfilename", help="File name of an input JSON data file"
+    )
+    gpkg_to_json_parser.add_argument(
+        "outputfilename", help="Output filename to write GeoPackage data to"
+    )
+
+    gpkg_to_json_parser = subparsers.add_parser(
+        "gpkgtojson",
+        aliases=["gpkgtoj"],
+        help="Convert data from GeoPackage to JSON format",
+    )
+    gpkg_to_json_parser.add_argument(
+        "inputfilename", help="File name of an input GeoPackage data file"
+    )
+    gpkg_to_json_parser.add_argument(
+        "outputfilename", help="Output filename to write JSON data to"
     )
 
     args = parser.parse_args()
@@ -159,6 +185,26 @@ def main():
         if args.outputmetafilename:
             with open(args.outputmetafilename, "w") as fp:
                 json.dump(converter.get_meta_json(), fp, indent=4)
+
+    elif args.subparser_name == "jsontogpkg" or args.subparser_name == "jtogpkg":
+        schema = libcoveofds.schema.OFDSSchema()
+
+        with open(args.inputfilename) as fp:
+            input_data = json.load(fp)
+
+        # converter = libcoveofds.gpkg.to_json.JSONToGPKGConverter(schema)
+        converter = libcoveofds.gpkg.from_json.JSONToGPKGConverter()
+        converter.process_json(input_data, args.outputfilename)
+
+    elif args.subparser_name == "gpkgtojson" or args.subparser_name == "gpkgtoj":
+        schema = libcoveofds.schema.OFDSSchema()
+
+        # converter = libcoveofds.gpkg.from_json.GPKGToJSONConverter(schema)
+        converter = libcoveofds.gpkg.to_json.GPKGToJSONConverter()
+        converter.process_gpkg_filename(args.inputfilename)
+
+        with open(args.outputfilename, "w") as fp:
+            json.dump(converter.get_json(), fp, indent=4)
 
 
 if __name__ == "__main__":

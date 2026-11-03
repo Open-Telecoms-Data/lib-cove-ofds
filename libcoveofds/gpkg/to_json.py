@@ -48,6 +48,14 @@ def export_sqlite_to_json(sqlite_filename):
     return data
 
 
+class GPKGToJSONConverter:
+    def process_gpkg_filename(self, sqlite_filename):
+        self.data = export_sqlite_to_json(sqlite_filename)
+
+    def get_json(self):
+        return self.data
+
+
 class ExportCallableToJSON:
     def __init__(self, callable):
         self._callable = callable
@@ -55,8 +63,8 @@ class ExportCallableToJSON:
         # Get Information
         with open(
             os.path.join(
-                PLUGIN_DIR,
-                "..",
+                "libcoveofds",
+                "data",
                 "schema_0_4",
                 "schema_information.json",
             )
@@ -218,7 +226,7 @@ class ExportCallableToJSON:
                         )
                 if self._schema_information["tables"][table_name]["geographic_field"]:
                     geom_data = data["geom"]
-                    if geom_data:
+                    if False:  # FIXME geom_data:
                         geom_data = json.loads(geom_data)
                         if geom_data:
                             out[

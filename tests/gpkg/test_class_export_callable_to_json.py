@@ -1,4 +1,4 @@
-from ofdsqgisplugin.python.export_to_json import ExportCallableToJSON
+from libcoveofds.gpkg.to_json import ExportCallableToJSON
 
 
 def test_1():
