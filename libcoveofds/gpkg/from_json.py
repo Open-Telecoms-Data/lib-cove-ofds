@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 import sqlite3
 import uuid
 
@@ -51,6 +52,15 @@ def import_json_to_sqlite(
 
 class JSONToGPKGConverter:
     def process_json(self, json_data_to_import, sqlite_filename):
+        shutil.copyfile(
+            os.path.join(
+                "libcoveofds",
+                "data",
+                "schema_0_4",
+                "network-schema.gpkg",
+            ),
+            sqlite_filename,
+        )
         self.data = import_json_to_sqlite(
             json_data_to_import, sqlite_filename, enforce_foreign_keys=True
         )
