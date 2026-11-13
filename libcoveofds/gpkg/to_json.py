@@ -3,6 +3,7 @@ import json
 import os
 import sqlite3
 import uuid
+
 from libcoveofds.schema import _schema_folder
 
 PLUGIN_DIR = os.path.dirname(__file__)

@@ -1,16 +1,15 @@
 import json
 import os
+import re
 import shutil
 import sqlite3
 import uuid
+
 from libcoveofds.schema import _schema_folder
 
 PLUGIN_DIR = os.path.dirname(__file__)
 
 
-# Note: this function is only called from the tests, not from the qgis plugin
-# If it is to be used outside the tests, we should review the nosec comments below
-# (remove them and run this file with bandit for more information)
 def import_json_to_sqlite(
     json_data_to_import, sqlite_filename, enforce_foreign_keys=False
 ):
@@ -23,6 +22,11 @@ def import_json_to_sqlite(
 
     # Start
     def callable_write(table_name, data):
+        if not re.match("^[A-Za-z0-9_]+$", table_name):
+            raise ValueError(f"Suspected insecure table name: '{table_name}'")
+        for i in data:
+            if not re.match("^[A-Za-z0-9_]+$", i[0]):
+                raise ValueError(f"Suspected insecure header name: '{i[0]}'")
         cursor.execute(
             "INSERT INTO "
             + table_name  # nosec B608
@@ -38,6 +42,8 @@ def import_json_to_sqlite(
         return cursor.fetchone()[0]
 
     def callable_read(table_name):
+        if not re.match("^[A-Za-z0-9_]+$", table_name):
+            raise ValueError(f"Suspected insecure table name: '{table_name}'")
         cursor.execute("SELECT * FROM " + table_name)  # nosec B608
         return cursor.fetchall()
 
