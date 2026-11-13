@@ -3,6 +3,7 @@ import os
 import shutil
 import sqlite3
 import uuid
+from libcoveofds.schema import _schema_folder
 
 PLUGIN_DIR = os.path.dirname(__file__)
 
@@ -54,8 +55,7 @@ class JSONToGPKGConverter:
     def process_json(self, json_data_to_import, sqlite_filename):
         shutil.copyfile(
             os.path.join(
-                "libcoveofds",
-                "data",
+                _schema_folder,
                 "schema_0_4",
                 "network-schema.gpkg",
             ),
@@ -78,8 +78,7 @@ class ImportJSONToCallable:
         # Get Information
         with open(
             os.path.join(
-                "libcoveofds",
-                "data",
+                _schema_folder,
                 "schema_0_4",
                 "schema_information.json",
             )
