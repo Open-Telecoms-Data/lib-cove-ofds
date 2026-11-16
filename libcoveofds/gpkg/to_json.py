@@ -18,7 +18,7 @@ START_OF_NETWORK = {
     "wayleaves": [],
     "links": [
         {
-            "href": "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/0__4__0/schema/network-schema.json",
+            "href": "https://standard.ofds.info/en/0__4__0/network-schema.json",
             "rel": "describedby",
         }
     ],
