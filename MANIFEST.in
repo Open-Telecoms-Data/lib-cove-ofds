@@ -1,1 +1,2 @@
 include libcoveofds/data/*.json
+include libcoveofds/data/schema_*/*
