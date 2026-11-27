@@ -6,13 +6,13 @@ import uuid
 import osgeo.gdal
 import osgeo.ogr
 
-from libcoveofds.schema import _schema_folder
+from libcoveofds.schema import OFDSSchema
 
 PLUGIN_DIR = os.path.dirname(__file__)
 
 
 def import_json_to_sqlite(
-    json_data_to_import, sqlite_filename, enforce_foreign_keys=False
+    json_data_to_import, sqlite_filename, enforce_foreign_keys=False, schema=None
 ):
     osgeo.gdal.UseExceptions()
     with osgeo.gdal.OpenEx(sqlite_filename, osgeo.gdal.OF_UPDATE) as dataset:
@@ -43,24 +43,25 @@ def import_json_to_sqlite(
                 raise NotImplementedError
 
         import_json_to_callable = ImportJSONToCallable(
-            json_data_to_import, callable_write, callable_read
+            json_data_to_import, callable_write, callable_read, schema
         )
         import_json_to_callable.go()
 
 
 class JSONToGPKGConverter:
+    def __init__(self, schema):
+        self._schema = schema
+
     def process_json(self, json_data_to_import, sqlite_filename):
         shutil.copyfile(
-            os.path.join(
-                "libcoveofds",
-                "data",
-                "schema_0_4",
-                "network-schema.gpkg",
-            ),
+            self._schema.gpkg_template_path,
             sqlite_filename,
         )
         self.data = import_json_to_sqlite(
-            json_data_to_import, sqlite_filename, enforce_foreign_keys=True
+            json_data_to_import,
+            sqlite_filename,
+            enforce_foreign_keys=True,
+            schema=self._schema,
         )
 
     def get_json(self):
@@ -68,20 +69,17 @@ class JSONToGPKGConverter:
 
 
 class ImportJSONToCallable:
-    def __init__(self, json_data_to_import, callable_write, callable_read):
+    def __init__(self, json_data_to_import, callable_write, callable_read, schema=None):
         self._json_data_to_import = json_data_to_import
         self._callable_write = callable_write
         self._callable_read = callable_read
+        if schema:
+            self._schema = schema
+        else:
+            self._schema = OFDSSchema()
         self._open_codelists_codes_to_id_mappings = {}
         # Get Information
-        with open(
-            os.path.join(
-                "libcoveofds",
-                "data",
-                "schema_0_4",
-                "schema_information.json",
-            )
-        ) as fp:
+        with open(self._schema.schema_information_path) as fp:
             self._schema_information = json.load(fp)
 
     def _get_deep_key_from_data_for_import(self, data, key, column_info={}):

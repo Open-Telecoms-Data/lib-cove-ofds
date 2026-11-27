@@ -14,6 +14,12 @@ class OFDSSchema:
     network_schema_url: str = os.path.join(
         _schema_folder, "schema-0-4-0-network-only.json"
     )
+    gpkg_template_path: str = os.path.join(
+        _schema_folder, "schema_0_4", "network-schema.gpkg"
+    )
+    schema_information_path: str = os.path.join(
+        _schema_folder, "schema_0_4", "schema_information.json"
+    )
 
     def get_package_schema(self):
         with open(self.package_schema_url) as fp:

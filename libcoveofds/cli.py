@@ -192,15 +192,13 @@ def main():
         with open(args.inputfilename) as fp:
             input_data = json.load(fp)
 
-        # converter = libcoveofds.gpkg.to_json.JSONToGPKGConverter(schema)
-        converter = libcoveofds.gpkg.from_json.JSONToGPKGConverter()
+        converter = libcoveofds.gpkg.from_json.JSONToGPKGConverter(schema)
         converter.process_json(input_data, args.outputfilename)
 
     elif args.subparser_name == "gpkgtojson" or args.subparser_name == "gpkgtoj":
         schema = libcoveofds.schema.OFDSSchema()
 
-        # converter = libcoveofds.gpkg.from_json.GPKGToJSONConverter(schema)
-        converter = libcoveofds.gpkg.to_json.GPKGToJSONConverter()
+        converter = libcoveofds.gpkg.to_json.GPKGToJSONConverter(schema)
         converter.process_gpkg_filename(args.inputfilename)
 
         with open(args.outputfilename, "w") as fp:

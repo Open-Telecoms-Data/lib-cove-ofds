@@ -5,7 +5,7 @@ import uuid
 
 import osgeo.gdal
 
-from libcoveofds.schema import _schema_folder
+from libcoveofds.schema import OFDSSchema
 
 PLUGIN_DIR = os.path.dirname(__file__)
 
@@ -19,7 +19,7 @@ START_OF_NETWORK = {
     "wayleaves": [],
     "links": [
         {
-            "href": "https://raw.githubusercontent.com/Open-Telecoms-Data/open-fibre-data-standard/0__4__0/schema/network-schema.json",
+            "href": "https://standard.ofds.info/en/0__4__0/network-schema.json",
             "rel": "describedby",
         }
     ],
@@ -33,7 +33,7 @@ START_OF_NETWORK = {
 BP = {0: True}
 
 
-def export_sqlite_to_json(sqlite_filename):
+def export_sqlite_to_json(sqlite_filename, schema=None):
     osgeo.gdal.UseExceptions()
     with osgeo.gdal.OpenEx(sqlite_filename) as dataset:
 
@@ -48,10 +48,13 @@ def export_sqlite_to_json(sqlite_filename):
                 out.append(data)
             return out
 
-        return ExportCallableToJSON(callable).go()
+        return ExportCallableToJSON(callable, schema).go()
 
 
 class GPKGToJSONConverter:
+    def __init__(self, schema):
+        self._schema = schema
+
     def process_gpkg_filename(self, sqlite_filename):
         self.data = export_sqlite_to_json(sqlite_filename)
 
@@ -60,18 +63,15 @@ class GPKGToJSONConverter:
 
 
 class ExportCallableToJSON:
-    def __init__(self, callable):
+    def __init__(self, callable, schema=None):
         self._callable = callable
+        if schema:
+            self._schema = schema
+        else:
+            self._schema = OFDSSchema()
         self._tables_ids_to_standard_info_mappings = {}
         # Get Information
-        with open(
-            os.path.join(
-                "libcoveofds",
-                "data",
-                "schema_0_4",
-                "schema_information.json",
-            )
-        ) as fp:
+        with open(self._schema.schema_information_path) as fp:
             self._schema_information = json.load(fp)
 
     def _set_key_in_dict_for_export(
