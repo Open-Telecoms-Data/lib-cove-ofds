@@ -20,6 +20,7 @@ setup(
         "jsonschema",
         "json-merge-patch",
         "rfc3987",
+        "GDAL",
     ],
     extras_require={
         "dev": ["pytest", "flake8", "black==22.8.0", "isort", "mypy", "Sphinx", "pdbpp"]

@@ -8,7 +8,7 @@ from libcoveofds.gpkg.to_json import export_sqlite_to_json
 
 def _get_and_setup_sqlite_filename():
     # Get new SQLite filename
-    sqlite_filename = tempfile.mkstemp(suffix=".sqlite")
+    sqlite_filename = tempfile.mkstemp(suffix=".gpkg")
     os.close(sqlite_filename[0])
     sqlite_filename = sqlite_filename[1]
     # Copy template
@@ -84,7 +84,10 @@ def test_export_network_with_id_and_organisation_and_node_and_org_and_node_linke
         "INSERT INTO organisations (ofds_id, name, network_id) VALUES ('orga', 'Org A', 1)"
     )
     cursor.execute(
-        "INSERT INTO nodes (ofds_id, name, network_id, geom, transmissionMediumOwner) VALUES ('nodea', 'Node A', 1, '{}', 1)"
+        "INSERT INTO nodes (ofds_id, name, network_id, geom, transmissionMediumOwner) VALUES ('nodea', 'Node A', 1, ?, 1)",
+        [
+            b"GP\x00\x01\xe6\x10\x00\x00\x01\x01\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xb9?\x00\x00\x00\x00\x00\x00\xe0\xbf"
+        ],
     )
     cursor.execute(
         "INSERT INTO relation_nodes_networkProviders(base_id, related_id) VALUES (1, 1)"
@@ -101,6 +104,10 @@ def test_export_network_with_id_and_organisation_and_node_and_org_and_node_linke
     assert data["networks"][0]["organisations"][0] == {"id": "orga", "name": "Org A"}
     assert data["networks"][0]["nodes"][0]["id"] == "nodea"
     assert data["networks"][0]["nodes"][0]["name"] == "Node A"
+    assert data["networks"][0]["nodes"][0]["location"] == {
+        "type": "Point",
+        "coordinates": [0.1, -0.5],
+    }
     assert data["networks"][0]["nodes"][0]["networkProviders"][0] == {
         "id": "orga",
         "name": "Org A",
@@ -192,7 +199,7 @@ def test_export_mulitple_codelists_1():
     )
     # TODO Hard coding the id's is a bit of an assumption but we are getting away with it
     cursor.execute(
-        "INSERT INTO nodes (ofds_id, name, network_id, geom) VALUES ('nodea', 'Node A', 1, '{}')"
+        "INSERT INTO nodes (ofds_id, name, network_id, geom) VALUES ('nodea', 'Node A', 1, NULL)"
     )
     cursor.execute("INSERT INTO relation_nodes_type(base_id, related_id) VALUES (1, 1)")
 
@@ -251,10 +258,10 @@ def test_span_with_start_and_end_set_1():
     cursor = connection.cursor()
     cursor.execute("INSERT INTO networks (ofds_id, name) VALUES ('netty', 'Network')")
     cursor.execute(
-        "INSERT INTO nodes (network_id, ofds_id, geom) VALUES (1, 'node1', '{}'), (1, 'node2','{}')"
+        "INSERT INTO nodes (network_id, ofds_id, geom) VALUES (1, 'node1', NULL), (1, 'node2',NULL)"
     )
     cursor.execute(
-        "INSERT INTO spans (ofds_id, network_id, start, end, geom) VALUES ('span1to2', 1, 1, 2, '{}')",
+        "INSERT INTO spans (ofds_id, network_id, start, end, geom) VALUES ('span1to2', 1, 1, 2, NULL)",
     )
     connection.commit()
     connection.close()
@@ -278,10 +285,10 @@ def test_export_wayleaves():
     cursor = connection.cursor()
     cursor.execute("INSERT INTO networks (ofds_id, name) VALUES ('netty', 'Network')")
     cursor.execute(
-        "INSERT INTO nodes (network_id, ofds_id, geom) VALUES (1, 'node1', '{}'), (1, 'node2','{}')"
+        "INSERT INTO nodes (network_id, ofds_id, geom) VALUES (1, 'node1', NULL), (1, 'node2', NULL)"
     )
     cursor.execute(
-        "INSERT INTO spans (ofds_id, network_id, start, end, geom) VALUES ('span1to2', 1, 1, 2, '{}')",
+        "INSERT INTO spans (ofds_id, network_id, start, end, geom) VALUES ('span1to2', 1, 1, 2, NULL)",
     )
     cursor.execute(
         "INSERT INTO wayleaves (id, ofds_id, grantor, yearSigned, term__indefinite, term__years, cost__recurring, cost__perMetre__amount, cost__perMetre__currency, network_id) VALUES (1, 'wl1', 1, 2022, 0, 25, 'true', 1.75, 'GHS', 1)"
@@ -325,7 +332,7 @@ def test_export_no_geom():
     cursor.execute("INSERT INTO networks (ofds_id, name) VALUES ('netty', 'Network')")
     # TODO Hard coding the id's is a bit of an assumption but we are getting away with it
     cursor.execute(
-        "INSERT INTO nodes (ofds_id, name, network_id, geom) VALUES ('nodea', 'Node A', 1, '')"
+        "INSERT INTO nodes (ofds_id, name, network_id, geom) VALUES ('nodea', 'Node A', 1, NULL)"
     )
     connection.commit()
     connection.close()

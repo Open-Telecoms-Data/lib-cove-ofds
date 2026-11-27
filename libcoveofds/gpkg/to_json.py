@@ -1,8 +1,11 @@
 import copy
 import json
 import os
-import sqlite3
 import uuid
+
+import osgeo.gdal
+
+from libcoveofds.schema import _schema_folder
 
 PLUGIN_DIR = os.path.dirname(__file__)
 
@@ -27,25 +30,25 @@ START_OF_NETWORK = {
 }
 
 
-# Note: this function is only called from the tests, not from the qgis plugin
-# If it is to be used outside the tests, we should review the nosec comments below
-# (remove them and run this file with bandit for more information)
+BP = {0: True}
+
+
 def export_sqlite_to_json(sqlite_filename):
-    # Setup
-    connection = sqlite3.connect(sqlite_filename)
-    connection.row_factory = sqlite3.Row
-    cursor = connection.cursor()
+    osgeo.gdal.UseExceptions()
+    with osgeo.gdal.OpenEx(sqlite_filename) as dataset:
 
-    # Start
-    def callable(table_name):
-        cursor.execute("SELECT * FROM " + table_name)  # nosec B608
-        return cursor.fetchall()
+        def callable(table_name):
+            layer = dataset.GetLayerByName(table_name)
+            out = []
+            for feature in layer:
+                data = feature.items()
+                data["id"] = feature.GetFID()
+                if feature.geometry():
+                    data["geom"] = feature.geometry().ExportToJson()
+                out.append(data)
+            return out
 
-    data = ExportCallableToJSON(callable).go()
-    # Wrap up
-    connection.commit()
-    connection.close()
-    return data
+        return ExportCallableToJSON(callable).go()
 
 
 class GPKGToJSONConverter:
@@ -225,15 +228,15 @@ class ExportCallableToJSON:
                             ),
                         )
                 if self._schema_information["tables"][table_name]["geographic_field"]:
-                    geom_data = data["geom"]
-                    if False:  # FIXME geom_data:
+                    geom_data = data.get("geom")
+                    if isinstance(geom_data, str):
                         geom_data = json.loads(geom_data)
-                        if geom_data:
-                            out[
-                                self._schema_information["tables"][table_name][
-                                    "geographic_field"
-                                ]
-                            ] = geom_data
+                    if geom_data:
+                        out[
+                            self._schema_information["tables"][table_name][
+                                "geographic_field"
+                            ]
+                        ] = geom_data
                 # other tables
                 # This is an inefficient way of doing this, as we loop within loop - but will do for first pass and the small data sizes we expect
                 for sub_table_and_field_name, parent_field_name in sub_tables:

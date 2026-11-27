@@ -36,6 +36,7 @@ def test_import_1():
                         {
                             "id": "node1",
                             "transmissionMediumOwner": {"id": "orga"},
+                            "location": {"type": "Point", "coordinates": [0.1, -0.5]},
                         }
                     ],
                 },
@@ -75,7 +76,8 @@ def test_import_1():
     )
     rows = cursor.fetchall()
     assert 1 == len(rows)
-    assert ("node1", 1, 1, None) == rows[0]
+    geom = b"GP\x00\x01\xe6\x10\x00\x00\x01\x01\x00\x00\x00\x9a\x99\x99\x99\x99\x99\xb9?\x00\x00\x00\x00\x00\x00\xe0\xbf"
+    assert ("node1", 1, 1, geom) == rows[0]
     # wrapup
     connection.close()
 

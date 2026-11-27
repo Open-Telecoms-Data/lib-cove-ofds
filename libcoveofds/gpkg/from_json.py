@@ -1,53 +1,51 @@
 import json
 import os
 import shutil
-import sqlite3
 import uuid
+
+import osgeo.gdal
+import osgeo.ogr
+
+from libcoveofds.schema import _schema_folder
 
 PLUGIN_DIR = os.path.dirname(__file__)
 
 
-# Note: this function is only called from the tests, not from the qgis plugin
-# If it is to be used outside the tests, we should review the nosec comments below
-# (remove them and run this file with bandit for more information)
 def import_json_to_sqlite(
     json_data_to_import, sqlite_filename, enforce_foreign_keys=False
 ):
-    # Setup
-    connection = sqlite3.connect(sqlite_filename)
-    connection.row_factory = sqlite3.Row
-    cursor = connection.cursor()
-    if enforce_foreign_keys:
-        cursor.execute("PRAGMA foreign_keys = ON;")
+    osgeo.gdal.UseExceptions()
+    with osgeo.gdal.OpenEx(sqlite_filename, osgeo.gdal.OF_UPDATE) as dataset:
 
-    # Start
-    def callable_write(table_name, data):
-        cursor.execute(
-            "INSERT INTO "
-            + table_name  # nosec B608
-            + " ("
-            + ",".join([i[0] for i in data])
-            + ") VALUES ("
-            + ",".join(["?" for i in data])
-            + ")",
-            [i[1] for i in data],
+        def callable_read(table_name):
+            layer = dataset.GetLayerByName(table_name)
+            out = []
+            for feature in layer:
+                data = feature.items()
+                data["id"] = feature.GetFID()
+                if feature.geometry():
+                    data["geom"] = feature.geometry().ExportToJson()
+                out.append(data)
+            return out
+
+        def callable_write(table_name, data):
+            layer = dataset.GetLayerByName(table_name)
+            if layer:
+                feature = osgeo.ogr.Feature(layer.GetLayerDefn())
+                for field_name, value in data:
+                    if field_name == "geom":
+                        feature.SetGeometry(osgeo.ogr.CreateGeometryFromJson(value))
+                    else:
+                        feature.SetField(field_name, value)
+                layer.CreateFeature(feature)
+                return feature.GetFID()
+            else:
+                raise NotImplementedError
+
+        import_json_to_callable = ImportJSONToCallable(
+            json_data_to_import, callable_write, callable_read
         )
-
-        cursor.execute("SELECT last_insert_rowid()")
-        return cursor.fetchone()[0]
-
-    def callable_read(table_name):
-        cursor.execute("SELECT * FROM " + table_name)  # nosec B608
-        return cursor.fetchall()
-
-    import_json_to_callable = ImportJSONToCallable(
-        json_data_to_import, callable_write, callable_read
-    )
-    import_json_to_callable.go()
-
-    # Wrap up
-    connection.commit()
-    connection.close()
+        import_json_to_callable.go()
 
 
 class JSONToGPKGConverter:
